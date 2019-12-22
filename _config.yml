@@ -280,7 +280,7 @@ defaults:
       type: posts
     values:
       layout: default
-      author_profile: true
+      author_profile: false     # 작성자 프로필 true/false
       read_time: true
       comments: # true
       share: true
