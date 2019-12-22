@@ -16,9 +16,9 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : ""
+title                    : "Dev Note"
 title_separator          : "-"
-name                     : ""
+name                     : "Brady Oh"
 description              : ""
 url                      : "https://kapentaz.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -74,11 +74,11 @@ analytics:
 
 # Site Author
 author:
-  name             : ""
-  avatar           : ""
+  name             : "Brady Oh"
+  avatar           : "https://avatars3.githubusercontent.com/u/5786613?s=460&v=4"
   bio              : ""
-  location         : ""
-  email            : ""
+  location         : "Seoul"
+  email            : "kapentaz@gmail.com"
   links:
     #- label: "Email"
     #  icon: "fas fa-fw fa-envelope-square"
