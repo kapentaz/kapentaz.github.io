@@ -24,8 +24,6 @@ classes: wide                       # 기본 본문 넓이가 작다. wide 추�
 comments: true                      # 댓글 시스템 사용여부
 ---
 
-# JPA Batch Insert with MySQL 
-
 JPA에서 Batch Insert가 되지 않아서 그 이유를 확인하던 과정을 공유합니다. Spring, Kotlin, MySQL 환경기준으로 작성했습니다.
 
 ## JDBC Batch
