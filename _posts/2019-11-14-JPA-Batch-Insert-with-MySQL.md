@@ -20,7 +20,6 @@ toc_label: "Table Of Contents"
 toc_icon: "fal fa-list-alt"
 toc_sticky: true
 
-classes: wide
 comments: true
 author_profile: true
 ---
