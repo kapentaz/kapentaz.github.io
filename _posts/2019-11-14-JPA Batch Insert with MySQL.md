@@ -22,7 +22,6 @@ toc_sticky: true
 
 classes: wide
 comments: true
-author: Brady Oh # _data/authors.yml에 추가해야함
 author_profile: true
 ---
 
