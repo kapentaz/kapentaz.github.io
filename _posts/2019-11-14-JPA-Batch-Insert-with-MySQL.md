@@ -1,12 +1,12 @@
 ---
 title: "JPA Batch Insert with MySQL"
 last_modified_at: 2019-11-14T22:01:00-05:00
-excerpt: "JPA를 사용하면서 MySQL 환경에서 Batch Insert 처리 과정"
+excerpt: "JPA를 사용하면서 MySQL 환경에 Batch Insert 처리하는 과정"
 header:
-  overlay_image: /assets/images/sky-balloon.jpg
-  og_image: /assets/images/sky-balloon.jpg
+  overlay_image: /assets/images/background/light_in_dark_sky.jpg
+  og_image: /assets/images/background/light_in_dark_sky.jpg
   overlay_filter: 0.6
-  caption: "Photo Credit: [realisticshots.com](https://realisticshots.com)"
+  caption: "Photo Credit: [brady](https://kapentaz.github.io)"
 tags:
   - JPA
   - Bulk
@@ -21,7 +21,7 @@ classes: wide                       # 기본 본문 넓이가 작다. wide 추�
 comments: true                      # 댓글 시스템 사용여부
 ---
 
-JPA에서 Batch Insert가 되지 않아서 그 이유를 확인하던 과정을 공유합니다. Spring, Kotlin, MySQL 환경기준으로 작성했습니다.
+JPA에서 Batch Insert가 되지 않아서 그 이유를 확인한 과정을 공유합니다. Spring, Kotlin, MySQL 환경기준으로 작성했습니다.
 
 ## JDBC Batch
 
@@ -49,7 +49,7 @@ fun batchInsert() {
   }  
 }
 ```
-> 테스트를 목적으로 단순하게 작성 했으며, 고정된 값으로 설정 했습니다.
+> 테스트를 목적으로 단순하게 작성 했으며 고정된 값으로 설정 했습니다.
 
 실행 후 로그를 확인하면   batch 모드로 잘 실행된 것을 확인할 수 있습니다.
 
@@ -140,7 +140,7 @@ spring.jpa.properties.hibernate.order_inserts=true
 spring.jpa.properties.hibernate.order_updates=true
 spring.jpa.properties.hibernate.jdbc.batch_size=50
 ```
-다시 테스트 코드를 실행해보면 잘 되겠죠? 하지만, 결과는 역시나 안됩니다.
+다시 테스트 코드를 실행해보면 잘 될 줄 알았는데 결과는 역시나 안됩니다.
 ```
 704668858 nanoseconds spent preparing 10000 JDBC statements;
 20382439004 nanoseconds spent executing 10000 JDBC statements;
@@ -148,7 +148,7 @@ spring.jpa.properties.hibernate.jdbc.batch_size=50
 ```
 왜 그럴까요? 좀 더 확인 해봐야겠습니다.
 ### IDENTITY
-검색  [결과](https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#batch-session-batch)에 따르면 GenerationType의 **IDENTITY**  타입 식별자를 사용할 경우 Hibernate가 JDBC 배치를 비활성화 시켜 버린다고 합니다. IDENTITY 방식이라면 안된다는 것이죠. 왜 그럴까요?
+검색  [결과](https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#batch-session-batch)에 따르면 GenerationType의 **IDENTITY**  타입 식별자를 사용할 경우 Hibernate가 JDBC 배치를 비활성화 시켜 버린다고 합니다. IDENTITY 방식이라면 안된다는 것이죠. 이유가 뭘까요?
 
 간단합니다. entity를 persist 하려면 @Id로 지정한 필드에 값이 필요한데 IDENTITY(auto_increment) 타입은 실제 DB에 insert를 해야만 값을 얻을 수 있기 때문에 batch 처리가 되지 않는 것입니다. 
 > 미리 @Id값을 설정할 수 있다면 잘 동작할 것입니다
@@ -204,7 +204,7 @@ batch 모드로 잘 실행은 되었지만,  로그를 확인해보면 sequence�
 > update product_sequence set next_val=?  where next_val=? and sequence_name=?
 ```
 
-product_sequence 시퀀스를 다른 트랜잭션에서도 접근할 수 있기 때문에 **row-lock**을 위해 for update 문을 이용해서 조회하고, 설정한 allocationSize 값만큼 next_val을 증가시킵니다.
+product_sequence 시퀀스 테이블에 다른 트랜잭션에서도 접근할 수 있기 때문에 **row-lock**을 위해 for update 문을 이용해서 조회하고, 설정한 allocationSize 값만큼 next_val을 증가시킵니다.
 
 시퀀스 생성은 saveAll을 통해서 insert 하려는 list size만큼을 미리 생성하기 때문에 list size 보다 지나치게 작은 사이즈로 설정하는 것은 성능상 문제가 될 수 있습니다. 만약 1로 설정하고, batch insert 하려는 size가 10,000건이라면 총 10,000번의 시퀀스 생성을 시도하게 됩니다. 이렇게 비효율적으로 동작하지 않도록 적절한 사이즈를 설정할 필요가 있습니다.
 

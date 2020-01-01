@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "Dev Note"
+title                    : "Continuous Growth"
 title_separator          : "-"
 name                     : "Brady Oh"
 description              : ""
@@ -74,7 +74,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Brady Oh"
+  name             : "Brady"
   avatar           : "https://avatars3.githubusercontent.com/u/5786613?s=460&v=4"
   bio              : ""
   location         : "Seoul"
