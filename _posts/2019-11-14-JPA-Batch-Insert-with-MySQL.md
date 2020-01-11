@@ -6,7 +6,7 @@ header:
   overlay_image: /assets/images/background/light_in_dark_sky.jpg
   og_image: /assets/images/background/light_in_dark_sky.jpg
   overlay_filter: 0.6
-  caption: "Photo Credit: [brady](https://kapentaz.github.io)"
+  caption: "Photo Credit: [Brady](https://kapentaz.github.io)"
 tags:
   - JPA
   - Bulk
