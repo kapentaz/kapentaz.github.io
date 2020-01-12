@@ -1,7 +1,7 @@
 ---
 title: "Spring Data JPA에서 Insert 전에 Select 하는 이유"
 last_modified_at: 2020-01-12T01:10:00-05:00
-# excerpt: "insert 전에 select 쿼리가 실행되는 이유"
+excerpt: "insert 전에 select 쿼리가 실행되는 현상"
 header:
   overlay_image: /assets/images/background/fried-potato.jpg
   og_image: /assets/images/background/fried-potato.jpg
