@@ -22,29 +22,29 @@ comments: true
 ---
 
 
-지금까지 IntelliJ를 사용하면서 여러 유용한 기능들을 잘 사용하고 있다고 생각했는데 뒤늦게 알게된 Http Request File 에 대해서 만족하게 되서 내용을 공유합니다.
+뒤늦게 알게된 Http Request File 기능이 좋아서 [메뉴얼](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html) 참고해서 내용 정리립니다.
 
 ## Rest Client
 
-개발을 진행하다 보면 API를 호출이 필요한 경우가 있습니다. 코드로 작성하기 전에 미리 잘 되는지 요청과 응답 정보를 확인할 필요가 있는데요. Intellij 에서는 이럴때 사용하기 좋은 Rest Client 라는 기능이 있습니다.
+개발을 진행하다 보면 API를 호출이 필요한 경우가 있습니다. 코드로 작성하기 전에 미리 잘 되는지 요청과 응답 정보를 확인할 필요가 있는데요. Intellij에서는 이럴 때 사용하기 좋은 Rest Client라는 기능이 있습니다.
 
 > Tool > HTTP Client > Test Restful Web Service
 
 ![Rest Client](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2020/http_client.png)
 
-request 정보를 설정하고 호출하면 응답 정보를 Intellij 에서 바로 확인할 수 있습니다. method, host, path, header 등을 설정할 수도 있고 응답도 바로 확인할 수 있으니 개발할 때 꽤 유용하게 사용할 수 있습니다.
+request 정보를 설정하고 호출하면 응답 정보를 Intellij에서 바로 확인할 수 있습니다. method, host, path, header 등을 설정할 수도 있고 응답도 바로 확인할 수 있으니 개발할 때 꽤 유용하게 사용할 수 있습니다.
 
-이 기능을 처음 알게 되었을 때 적극적으로 사용하려고 했지만 지금은 사용하지 않습니다. 그 이유는 API를 호출한 기록 보기가 어려웠고 API 호출정보를 저장하고 불러오기도 불편했습니다. 그리고 새로운 request 정보를 등록하기 위해서는 너무 많은 커서 이동과 클릭이 필요 했습니다.
+이 기능을 처음 알게 되었을 때 적극적으로 사용하려고 했지만 지금은 사용하지 않습니다. 그 이유는 API를 호출한 기록 보기가 어려웠고 API 호출 정보를 저장하고 불러오기도 불편했습니다. 그리고 새로운 request 정보를 등록하기 위해서는 너무 많은 커서 이동과 클릭이 필요했습니다.
 
-개발할 때 도구 사용을 위해서 창 이동을 별로 좋아하지 않아서 Sourcetree, MySQL Workbench 를 사용하지 않고 Intellij 로 다 해결하는 저에게는 쉽지 않았지만 결국 포기하고 [Postman](https://www.getpostman.com/)을 사용합니다.
+개발할 때 도구 사용을 위해서 창 이동을 별로 좋아하지 않아서 Sourcetree, MySQL Workbench를 사용하지 않고 Intellij로 다 해결하는 저에게는 쉽지 않았지만 결국 포기하고 [Postman](https://www.getpostman.com/)을 사용합니다.
 
-Postman은 히스토리 관리도 편했고, Collections을 통해서 미리 정의하고 호출하기도 편했습니다. 링크를 통해서 다른 사람과 호출정보를 공유할 수도 있고 그외에도 다양한 기능이 있습니다. 하지만 여전히 많은 기능과 마우스 이동과 클릭등 불편한 점이 있습니다.
+Postman은 히스토리 관리도 편했고, Collections을 통해서 미리 정의하고 호출하기도 편했습니다. 링크를 통해서 다른 사람과 호출 정보를 공유할 수도 있고 그 외에도 다양한 기능이 있습니다. 하지만 여전히 많은 기능과 마우스 이동과 클릭 등 불편한 점이 있습니다.
 
 ## Http Request File
 
-몰랐었는데 IntelliJ IDEA 2017.3 부터 http request file 기능이 생겼다고 합니다. 생성 방법은 간단합니다.  `.http` 확장자를 가진 파일을 만들면 됩니다. 프로젝트에 파일로 관리할 정도는 아니고 잠시 테스트할 목적이라면 scratch file 파일로 생성( `shift` + `command` + `n`)할 수도 있습니다.
+몰랐었는데 IntelliJ IDEA 2017.3부터 http request file 기능이 생겼다고 합니다. 생성 방법은 간단합니다.  `.http` 확장자를 가진 파일을 만들면 됩니다. 프로젝트에 파일로 관리할 정도는 아니고 잠시 테스트할 목적이라면 scratch file 파일로 생성( `shift` + `command` + `n`)할 수도 있습니다.
 
-API 호출 정보를 file로 관리할 수 있으니 git을 통해서 버전관리와 공유가 편한 장점이 있습니다. 그리고 코드로 요청정보를 만들기 때문에 editor 창에서 바로 작성할 수 있이서 편리합니다. 요청 문법 구조는 다음과 같습니다.
+API 호출 정보를 file로 관리할 수 있으니 git을 통해서 버전 관리와 공유가 편한 장점이 있습니다. 그리고 코드로 요청 정보를 만들기 때문에 editor 창에서 바로 작성할 수 있서 편리합니다. 요청 문법 구조는 다음과 같습니다.
 
 ```
 Method Request-URI HTTP-Version
@@ -74,7 +74,7 @@ Request-Body
 
 ### External File
 
-request body는 미리 정의되어 있는 외부 파일로 지정할 수 있습니다. 외부 파일 경로는 `./idea/httpRequests` 여기 아래에 위치하기나 파일의 fullpath를 지정해야합니다. (같은 경로에 있는 파일을 왜 읽지 못하는지 모르겠다.)
+request body는 미리 정의되어 있는 외부 파일로 지정할 수 있습니다. 외부 파일 경로는 `./idea/httpRequests` 여기 아래에 위치하기나 파일의 fullpath를 지정해야 합니다. (같은 경로에 있는 파일을 왜 읽지 못하는지 모르겠다.)
 
 ```http
 POST http://localhost:8080/products
@@ -85,7 +85,7 @@ Content-Type: application/json
 
 ### Environment
 
-API 호출 테스트를 하다 보면 Dev와 Real 같이 환경별로 호출 해야할 수 있습니다. 이럴 때 환경마다 http file을 만드는건 비효율적이기 때문에 환경별 변수를 파일로 지정할 수 있습니다. `rest-client.env.json` 라고 파일명을 만들고 변수를 지정하면 사용할 수 있습니다.
+API 호출 테스트를 하다 보면 Dev와 Real 같이 환경별로 호출해야 할 수 있습니다. 이럴 때 환경마다 http file을 만드는 건 비효율적이기 때문에 환경별 변수를 파일로 지정할 수 있습니다. `rest-client.env.json`라고 파일명을 만들고 변수를 지정하면 사용할 수 있습니다.
 
 ```json
 {
@@ -147,7 +147,7 @@ Accept: application/json
 ```
 
 ## 결론
-API 호출과 확인을 파일로 작성하기 때문에 editor 창에서 바로 더 빠르고 편하게 만들 수 있습니다. git으로 버전관리와 공유 하기도 용이합니다. 다른 도구 사용을 위해 창 이동도 필요 없습니다. 개인적으로 굉장히 만족스럽습니다. 아직 사용해보지 않았다면, 사용해보시길 추천드립니다.
+API 호출과 확인을 파일로 작성하기 때문에 editor 창에서 바로 더 빠르고 편하게 만들 수 있습니다. git으로 버전 관리와 공유하기도 용이합니다. 다른 도구 사용을 위해 창 이동도 필요 없습니다. 개인적으로 굉장히 만족스럽습니다. 아직 사용해보지 않았다면, 사용해보시길 추천드립니다.
 
 끝.
 
