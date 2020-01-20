@@ -1,7 +1,7 @@
 ---
 title: "Http Request File in Intellij"
-last_modified_at: 2020-01-12T01:10:00-05:00
-excerpt: "뒤늦게 알게 된 Http Request File 기능! 만족합니다."
+last_modified_at: 2020-01-20T23:41:00-05:00
+excerpt: "뒤늦게 알게 된 Http Request File 기능! 좋습니다."
 header:
   overlay_image: /assets/images/background/light_in_the_city.jpg
   og_image: /assets/images/background/light_in_the_city.jpg
