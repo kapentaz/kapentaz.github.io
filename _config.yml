@@ -34,7 +34,7 @@ comments:
   #  shortname            : https-nhn-commerce-github-io
   provider               : "facebook"
   facebook:
-    appid                : ""
+    appid                : "794898520980769"
     num_posts            : 5  # default 5
     colorscheme          : "light" # light, dark
 reCaptcha:
