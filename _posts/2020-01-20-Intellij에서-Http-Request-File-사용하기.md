@@ -116,7 +116,7 @@ GET http://{{host}}:8080/products/1
 GET http://localhost:8080/products/1
 Accept: application/json
 
-> {%  client.global.set("productName", response.body.productName); %}
+
 
 ###
 
