@@ -116,7 +116,8 @@ GET http://{{host}}:8080/products/1
 GET http://localhost:8080/products/1
 Accept: application/json
 
-
+{% raw %}
+> {%  client.global.set("productName", response.body.productName); %}
 
 ###
 
@@ -124,6 +125,7 @@ POST http://localhost:8080/products
 Content-Type: application/json
 
 {"productName": "{{productName}}"}
+{% endraw %}
 
 ###
 ```
@@ -135,11 +137,13 @@ API  호출 결과에 대한  검증도 진행할 수 있습니다.  보통 stat
 GET http://localhost:8080/products/1
 Accept: application/json
 
+{% raw %}
 > {% client.test("test", function() {
   client.log(response.body);
   client.assert(response.status === 200, "OK");
 });
 %}
+{% endraw %}
 ```
 
 ## 결론
