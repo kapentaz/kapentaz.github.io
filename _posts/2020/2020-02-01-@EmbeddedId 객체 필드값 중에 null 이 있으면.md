@@ -1,9 +1,10 @@
 ---
 title: "@EmbeddedId 객체 필드값 중에 null 이 있으면?"
 last_modified_at: 2020-02-02T01:32:00-05:00
+excerpt:
 header:
-  overlay_image: /assets/images/2020/tree_and_guys.jpg
-  og_image: /assets/images/2020/tree_and_guys.jpg
+  overlay_image: /assets/images/post/2020/tree_and_guys.jpg
+  og_image: /assets/images/posts/2020/tree_and_guys.jpg
   overlay_filter: 0.6
   caption: "Photo Credit: [Brady](https://kapentaz.github.io)"
 tags:
