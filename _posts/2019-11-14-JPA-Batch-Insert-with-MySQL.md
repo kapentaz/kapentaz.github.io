@@ -1,8 +1,8 @@
 ---
 title: "JPA Batch Insert with MySQL"
 last_modified_at: 2019-11-14T22:01:00-05:00
-excerpt: "JPA를 사용하면서 MySQL 환경에 Batch Insert 처리하는 과정"
 header:
+  show_overlay_excerpt: false
   overlay_image: /assets/images/background/light_in_dark_sky.jpg
   og_image: /assets/images/background/light_in_dark_sky.jpg
   overlay_filter: 0.6
