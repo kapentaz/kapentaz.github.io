@@ -166,6 +166,7 @@ for ( int i = 0; i < propertySpan; i++ ) {
 1. 자동증가 형태의 PK 컬럼 추가.
 2. depth1 ~ depth2만 `CategoryInfo`로 변경
 3. `CategoryInfo`를 제거하고 사용하지 않음
+
 1번이 가장 좋은 방법일 것 같지만 여건이 되지 않는다면 2번 또는 3번으로 선택해야 할 것 같습니다.
 
 끝.
