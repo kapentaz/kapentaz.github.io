@@ -11,6 +11,7 @@ tags:
   - IntelliJ
   - Test
   - API
+  - .http
 category: #카테고리
   - IntelliJ
 toc: false
