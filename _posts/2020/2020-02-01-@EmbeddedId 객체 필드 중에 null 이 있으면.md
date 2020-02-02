@@ -1,5 +1,5 @@
 ---
-title: "@EmbeddedId 객체 필드값 중에 null 이 있으면?"
+title: "@EmbeddedId 객체 필드 중에 null 이 있으면?"
 last_modified_at: 2020-02-02T01:32:00-05:00
 header:
   show_overlay_excerpt: false
@@ -22,7 +22,7 @@ comments: true
 ---
 
 
-PK 컬럼이 not null인 것 처럼 JPA에서 @Id 애노테이션이 있는 필드도 not null 이어야 합니다. PK 컬럼이 여러개인 복합키인 경우에도 PK로 지정한 컬럼은 모두 not null 이어야 하는데요. JPA를 사용하면서 이부분에 대해 실수하게 된 경험입니다.
+PK 컬럼이 not null인 것 처럼 JPA에서 @Id 애노테이션이 있는 필드도 not null 이어야 합니다. PK 컬럼이 여러개인 복합키인 경우에도 PK로 지정한 컬럼은 모두 not null 이어야 하는데요. JPA를 사용하면서 이부분에 대해 경험한 내용입니다.
 
 > Kotlin, HIbernate, MySQL 환경으로 테스트했습니다.
 
@@ -55,7 +55,7 @@ insert into category values (1, '패션', null, 5, '남성의류', null, 7, '트
 Entity 클래스도 같이 만듭니다.
 
 ```kotlin
- @Entity
+@Entity
 @Table(name = "category")
 data class Category(
     @Column(name = "depth1_category_no")
@@ -90,7 +90,7 @@ data class Category(
     val createDate: LocalDateTime = LocalDateTime.now()
 )
  ```
-Entity로 만들고 보니 보니 depth1 ~ depth3 까지 필드 구조가 중복된는것이 눈에 띕니다.  이 부분을 Value 객체로 만들고 Entity를 변경해보겠습니다.
+Entity로 만들고 보니 보니 depth1 ~ depth3 까지 필드 구조가 중복된는것이 눈에 띕니다.  이 부분을 Embeddable 객체로 만들고 Entity를 변경하겠습니다.
 ```kotlin
 @Embeddable
 data class CategoryInfo(
@@ -131,11 +131,12 @@ data class Category(
     val createDate: LocalDateTime = LocalDateTime.now()
 )
 ```
-코드 라인수는 비슷하지만 중복되는 정보를 CategoryInfo 로 관리할 수 있게 됐기 때문에  Entity 다루기가 좀 더 편해졌다고 할 수 있습니다.
+코드 라인수는 비슷하지만 중복되는 정보를 CategoryInfo 로 관리할 수 있게 됐습니다.
 
-Value 형태로 변경하면서 `depth3_category_no` 에 지정된 @Id는 더 이상 사용수 없기 때문에 @EmbeddedId를 설정하는 형태로 변경했습니다. 
+Embeddable 형태로 변경하면서 `depth3_category_no` 에 지정된 @Id는 더 이상 사용수 없기 때문에 @EmbeddedId를 설정 하도록 변경했습니다. 
 
-변경된 구조로 데이터가 잘 조회되는지 테스트 코드를 실행해보겠습니다. 하지만 조회 결과는 실패입니다. collection에 null element 가 포함되어 있기 때문입니다.
+변경된 구조로 데이터가 잘 조회되는지 테스트 코드를 아래와 같이 실행하면 실패를 하게 됩니다. collection에 null element 가 포함되어 있기 때문입니다.
+
 ```kotlin
 @Test  
 fun test() {  
@@ -145,7 +146,7 @@ fun test() {
 }
 ```
 
-Hibernate의 소스코드를 따라 가서 `org.hibernate.type.ComponentType#hydrate` 확인하면 이유를 알 수 있습니다.  해당 메소드의 내용 일부 입니다. key 값일 경우 필드가 하나라도 null 이라면 null로 리턴 합니다. 다시 말하면 `CategoryInfo` 를 리턴해야 하는데 null로 리턴해버리는 것이죠.
+Hibernate의 소스코드를 따라 가서 `org.hibernate.type.ComponentType#hydrate` 확인하면 이유를 알 수 있습니다. 아래는 해당 메소드의 내용 일부 입니다. key 값일 경우 필드가 하나라도 null 이라면 null로 리턴 합니다. 다시 말하면 `CategoryInfo` 를 리턴해야 하는데 null로 리턴해버리는 것이죠.
 
 ```java
 for ( int i = 0; i < propertySpan; i++ ) {
@@ -160,7 +161,8 @@ for ( int i = 0; i < propertySpan; i++ ) {
 	...
 }
 ```
-이렇게 되면 @EmbeddedId로 지정한 필드가 null이게 되니 영속성 객체로 인식할 기준값이 없는 것이고, 그러다 보니 null 을 반환하게 되는 것입니다. 이런 상황이라면 다른 방법이 없을 것 같습니다. 자동증가 컬럼을 추가 하거나 `CategoryInfo` 로 처리한 부분을 다시 복원해야 할 것 같습니다.
+이렇게 되면 @EmbeddedId로 지정한 객체의 필드가 null이게 되니 영속성 객체로 인식할 기준값이 없는 것이고, 그러다 보니 null 을 반환하게 되는 것입니다. 
+이런 상황이라면 다른 방법이 없을 것 같습니다. 자동증가 컬럼을 추가 하거나 `CategoryInfo` 로 처리한 부분을 다시 복원해야 할 것 같습니다.
 
 끝.
 
