@@ -31,7 +31,7 @@ words_per_minute         : 200
 comments:
   #provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
   #disqus:
-  #  shortname            : https-nhn-commerce-github-io
+  #  shortname            :
   provider               : "facebook"
   facebook:
     appid                : "794898520980769"
@@ -82,7 +82,7 @@ author:
   links:
     #- label: "Email"
     #  icon: "fas fa-fw fa-envelope-square"
-    #  url: "mailto:dl_ncp_gitb@nhn.com"
+    #  url: "mailto:"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: ""

@@ -21,7 +21,6 @@ comments: true
 ---
 
 
-# Spring Data JPA에서 Insert 전에 Select 하는 이유는?
 
 [이전 글]([https://kapentaz.github.io/jpa/JPA-Batch-Insert-with-MySQL/])에서 bulk insert 처리를 할 수 있는 방법 중에 하나가 @Id 값 알고 있는 경우라고 했었는데요. 실제로 잘 되는지 확인하는 과정에 발생한 문제 내용을 공유합니다.
 
