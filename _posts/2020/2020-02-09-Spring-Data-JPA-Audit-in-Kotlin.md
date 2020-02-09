@@ -14,6 +14,7 @@ tags:
   - Kotlin
 category: #카테고리
   - JPA
+  - Kotlin
 toc: false
 toc_label: "Table Of Contents"
 toc_icon: "fal fa-list-alt"
