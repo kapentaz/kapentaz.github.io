@@ -1,6 +1,6 @@
 ---
 title: "Spring Data JPA Audit in Kotlin"
-last_modified_at: 2020-02-09T01:03:00-05:00
+last_modified_at: 2020-02-09T10:16:00-05:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2020/wood_and_river.jpg
@@ -23,7 +23,7 @@ comments: true
 ---
 
 
-Kotlin으로 Entity를 만들 때 등록일/수정일 정의를 어떻게 하는 게 좋을 고민을 하게 됐습니다. 여러 방법이 있겠지만 제가 선택한 방법입니다. 
+Kotlin으로 Entity를 만들 때 등록일/수정일 정의를 어떻게 하는 게 좋을지 고민한 내용입니다.
 
 > Spring Data JPA, Kotlin, MySQL 환경 입니다.
 
@@ -57,9 +57,7 @@ class Ticket  {
   var updateAt: LocalDateTime = LocalDateTime.now()
 }
 ```
-property의 초기값 지정이 필요해서 `LocalDateTime.now()`로 설정 했습니다. 하지만 Audit 설정으로 실제 DB에 insert/update 할 때 날짜 객체를 또 생성할 테니 객체를 2번 생성하는 꼴입니다. 초기값 설정을 하고 싶지 않다면 `lateinit` 키워드를 추가해서 초기값 생성과정을 제거할 수도 있습니다.
-
-> org.springframework.data.auditing.CurrentDateTimeProvider#getNow 참고
+property의 초기값 지정이 필요해서 `LocalDateTime.now()`로 설정 했습니다. 하지만 Audit 설정으로 실제 DB에 insert/update 할 때 날짜 객체를 또 생성할 테니 객체를 2번 생성하는 꼴입니다. 초기값 설정을 하고 싶지 않다면 `lateinit` 키워드를 추가해서 초기값 생성과정을 제거할 수 있습니다.
 
 ```kotlin
 @CreatedDate  
@@ -73,9 +71,13 @@ lateinit var updateAt: LocalDateTime
 ```kotlin
 kotlin.UninitializedPropertyAccessException: lateinit property createAt has not been initialized
 ```
-실제 이렇게 호출하는 코드를 작성하지 않는다고 하더라도 접근이 가능한 상황이니 좋다고는 할 수는 없을 것 같습니다.
+실제 이렇게 호출하는 코드를 작성하지 않는다고 하더라도 호출할 수 있는 가능성과 호출 시 오류가 발생한다는 것은 잠재적 문제라고 할 수는 없을 것 같습니다.
 
-그리고 createAt, updateAt을 `var` 로 정의했기 때문에 setter를 통해서 다른 날짜로 변경할 수도 있으니 `val`로 변경하는게 좋을 것 같습니다. `val`로 변경하게 되면 `lateinit`을 사용하기 없으니 다시 초기값 설정이 필요하게 됩니다. 초기값을 설정해야 하는 상황을 피할 수 없을 것 같습니다. Audit을 통해서 `LocalDateTime` 객체를 생성할 테니 중복 생성하지 않고 미리 상수로 정의되어 있는  `LocalDateTime.MIN`로 지정합니다.
+그리고 createAt, updateAt을 `var` 로 정의했기 때문에 setter를 통해서 다른 날짜로 변경할 수도 있으니 `val`로 변경하는게 좋을 것 같습니다. `val`로 변경하게 되면 `lateinit`을 사용할 수 없으니 다시 초기값 설정이 필요하게 됩니다. setter를 없애기를 위해서는 초기값 설정을 꼭 해야할 것 같습니다. 
+
+> org.springframework.data.auditing.CurrentDateTimeProvider#getNow 참고
+
+Audit을 통해서 `LocalDateTime` 객체를 생성할 테니 중복 생성하지 않고 미리 상수로 정의되어 있는 `LocalDateTime.MIN`로 지정합니다.
 
 ```kotlin
 @CreatedDate  
@@ -84,13 +86,15 @@ val createAt: LocalDateTime = LocalDateTime.MIN
 @LastModifiedDate  
 val updateAt: LocalDateTime = LocalDateTime.MIN
 ```
-이 상태로 `save()` 하면 오류가 발생합니다. 이유는 val proeprty로 설정하게 되면 실제 Java Class로로 바뀌면서 final 키워드가 붙게 되어 변경할 수 없기 때문에 오류가 발생합니다.
+이 상태로 실행하면 runtime 오류가 발생합니다. 이유는 `val` proeprty로 설정하게 되면 실제 Java Class로 바뀌면서 final 키워드가 붙게 되어 
+Audit을 통해서 값을 변경할 수 없기 때문에 오류가 발생합니다.
 ```
 java.lang.UnsupportedOperationException: No accessor to set property @org.springframework.data.annotation.CreatedDate()private final java.time.LocalDateTime .....
 ```
-> 실제 Auditing 에서 setter를 호출하는 부분은 `org.springframework.data.auditing.MappingAuditableBeanWrapperFactory.MappingMetadataAuditableBeanWrapper#setDateProperty`  메소드에서 확인할 수 있습니다.
+> `org.springframework.data.auditing.MappingAuditableBeanWrapperFactory.
+> MappingMetadataAuditableBeanWrapper#setDateProperty` 참고
 
-마지막으로 선택한 방법은 `var` 로 정의를 하고 setter를 외부에 공개하지 않는것이 좋을 것 같습니다.
+마지막으로 선택한 방법은 `var` 로 정의를 하고 setter를 외부에 공개하지 않는 것입니다.
 
 ```kotlin
 @Entity
@@ -110,6 +114,10 @@ class Ticket {
     private set
 }
 ```
+
+`LocalDateTime.MIN`을 초기값으로 설정해서 불필요한 기본값 객체 생성을 방지하고 혹시라도 Audit이 실행되기 전에 해당 property에 접근하더라도 runtime 오류가 발생하지 않습니다.
+`val`이 아닌 `var`로 정의했기 때문에 Audit을 통해서 값 설정이 가능하고 마지막으로 `private set`을 통해서 외부에서 값을 변경할 수 있는 가능성을 제거했습니다.
+
 
 끝.
 
