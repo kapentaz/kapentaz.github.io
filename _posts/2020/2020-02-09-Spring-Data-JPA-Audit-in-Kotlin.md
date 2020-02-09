@@ -75,7 +75,7 @@ kotlin.UninitializedPropertyAccessException: lateinit property createAt has not 
 
 그리고 createAt, updateAt을 `var` 로 정의했기 때문에 setter를 통해서 다른 날짜로 변경할 수도 있으니 `val`로 변경하는게 좋을 것 같습니다. `val`로 변경하게 되면 `lateinit`을 사용할 수 없으니 다시 초기값 설정이 필요하게 됩니다. setter를 없애기를 위해서는 초기값 설정을 꼭 해야할 것 같습니다. 
 
-> org.springframework.data.auditing.CurrentDateTimeProvider#getNow 참고
+> CurrentDateTimeProvider#getNow 참고
 
 Audit을 통해서 `LocalDateTime` 객체를 생성할 테니 중복 생성하지 않고 미리 상수로 정의되어 있는 `LocalDateTime.MIN`로 지정합니다.
 
@@ -91,7 +91,7 @@ Audit을 통해서 값을 변경할 수 없기 때문에 오류가 발생합니�
 ```
 java.lang.UnsupportedOperationException: No accessor to set property @org.springframework.data.annotation.CreatedDate()private final java.time.LocalDateTime .....
 ```
-> `org.springframework.data.auditing.MappingAuditableBeanWrapperFactory.
+
 > MappingMetadataAuditableBeanWrapper#setDateProperty` 참고
 
 마지막으로 선택한 방법은 `var` 로 정의를 하고 setter를 외부에 공개하지 않는 것입니다.
