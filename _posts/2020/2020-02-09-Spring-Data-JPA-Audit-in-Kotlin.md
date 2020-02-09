@@ -92,7 +92,8 @@ Audit을 통해서 값을 변경할 수 없기 때문에 오류가 발생합니�
 java.lang.UnsupportedOperationException: No accessor to set property @org.springframework.data.annotation.CreatedDate()private final java.time.LocalDateTime .....
 ```
 
-> MappingMetadataAuditableBeanWrapper#setDateProperty` 참고
+> MappingMetadataAuditableBeanWrapper
+> #setDateProperty 참고
 
 마지막으로 선택한 방법은 `var` 로 정의를 하고 setter를 외부에 공개하지 않는 것입니다.
 
