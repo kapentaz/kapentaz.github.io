@@ -30,8 +30,8 @@ breadcrumbs              : true
 words_per_minute         : 200
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
-  #disqus:
-  #  shortname            :
+  disqus:
+    shortname            : "continuous-growth"
   #provider               : "facebook"
   #facebook:
   #  appid                : "794898520980769"
