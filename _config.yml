@@ -29,14 +29,14 @@ masthead_title           : # overrides the website title displayed in the masthe
 breadcrumbs              : true
 words_per_minute         : 200
 comments:
-  #provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
+  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
   #disqus:
   #  shortname            :
-  provider               : "facebook"
-  facebook:
-    appid                : "794898520980769"
-    num_posts            : 5  # default 5
-    colorscheme          : "light" # light, dark
+  #provider               : "facebook"
+  #facebook:
+  #  appid                : "794898520980769"
+  #  num_posts            : 5  # default 5
+  #  colorscheme          : "light" # light, dark
 reCaptcha:
   siteKey                :
   secret                 :
