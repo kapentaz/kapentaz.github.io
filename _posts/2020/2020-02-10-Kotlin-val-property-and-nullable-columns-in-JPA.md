@@ -1,5 +1,5 @@
 ---
-title: "Kotlin val property with nullable column in JPA"
+title: "Kotlin val property and nullable columns in JPA"
 last_modified_at: 2020-02-10T23:21:00-05:00
 header:
   show_overlay_excerpt: false
