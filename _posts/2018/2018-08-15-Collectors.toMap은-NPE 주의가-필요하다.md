@@ -70,7 +70,7 @@ Map<String, Integer> itemMap = items.stream()
 
  이것은 `BinaryOperator` 타입의 `mergeFunction` 을 지정하는 방법으로 해결할 수 있습니다. key가 중복될 경우 어떻게 처리할지를 전달하는 것이죠.
 
-value가 Integer 타입이므로 sum()을 mergeFunction으로 지정했습니다. String 타입이라면 String::concat, List 타입이라면 List::addAll로 하거나 직접 구현할 수도 있다.
+value가 Integer 타입이므로 sum()을 mergeFunction으로 지정했습니다. String 타입이라면 String::concat, List 타입이라면 List::addAll로 하거나 직접 구현할 수도 있습니다.
 
 ```java
 Map<String, Integer> itemMap = items.stream()
