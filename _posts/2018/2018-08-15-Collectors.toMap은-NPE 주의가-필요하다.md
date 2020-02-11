@@ -36,7 +36,9 @@ Map<String, Integer> itemMap = items.stream()
 		.collect(Collectors.toMap(Item::getName, Item::getPrice));	// NPE
 ```
 
-`Collectors.toMap()`의 내용을 살펴보면 Java8에서 추가된 Map 인터페이스의 merge() 메소드를 사용하는데 HashMap의 merge() 에서는 value가 null인 경우를 하용하지 않습니다. HashMap 자체는 key와 value 모두 null을 허용하는데, 왜 merge()에서는 NPE를 발생시킬까요? 그 이유는 Map의 key와 value 중에서 value가 merge() 대상이인데, value가 null이면 merge를 할 수가 없기 때문에 NPE가 발생하게 됩니다.
+`Collectors.toMap()`의 내용을 살펴보면 Java8에서 추가된 Map 인터페이스의 merge() 메소드를 사용하는데 HashMap의 merge() 에서는 value가 null인 경우를 하용하지 않습니다. HashMap 자체는 key와 value 모두 null을 허용하는데, 왜 merge()에서는 NPE를 발생시킬까요?
+
+그 이유는 Map의 key와 value 중에서 value가 merge() 대상이인데, value가 null이면 merge를 할 수가 없기 때문에 NPE가 발생하게 됩니다.
 
 이 문제를 해결하기 위해서는 stream의 filter를 통해서 value로 지정될 값이 null인 경우를 대상에서 제외하는 방법과
 
