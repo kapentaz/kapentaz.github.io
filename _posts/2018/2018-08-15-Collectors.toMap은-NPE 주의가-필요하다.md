@@ -23,7 +23,7 @@ comments: true
 
 Java8에서 `Collectors.toMap()`을 사용할 경우 NPE 발생에 대한 주의가 필요합니다. 개발 및 테스트 환경에서는 이상이 없었는데 운영에서 오류가 발생한 경험에 대한 내용입니다.
 
-아래와 같이 리스트 형태의 Item을 Map 형식으로 변경 하려고 할 경우 `toMap()`에서 NPE가 발생합니다.
+아래와 같이 리스트 형태의 Item을 Map 형식으로 변경 하려고 할 경우 `toMap()`에서 NPE가 발생합니다. "Mango"의 가격이 null 이기 때문입니다.
 
 ```java
 List<Item> items = Arrays.asList(
