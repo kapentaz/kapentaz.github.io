@@ -55,7 +55,7 @@ Map<String, Integer> itemMap = items.stream()
 		.collect(HashMap::new, (m1, m2) -> m1.put(m2.getName(), m2.getPrice()), HashMap::putAll);
 ```
 
-추가로 만약에 아래와 같이 "Apple"이라는 동일한 key가 존재할 경우에는 `IllegalStateException(Duplicate key)`이 발생하게 됩니다.
+추가로 만약에 아래와 같이 "Apple"이라는 동일한 key가 존재할 경우에는 `IllegalStateException()`이 발생하게 됩니다.
 
 ```java
 List<Item> items = Arrays.asList(
