@@ -46,23 +46,22 @@ layout: default
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 
-      <!-- 애드센스 -->
-      <div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- footer -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-3775167311633597"
-           data-ad-slot="2666037427"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </div>
-      <!-- //애드센스 -->
-      
       <footer class="page__meta">
+
+        <!-- 애드센스 -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- footer -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3775167311633597"
+             data-ad-slot="2666037427"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <!-- //애드센스 -->
+
         {% if site.data.ui-text[site.locale].meta_label %}
           <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
         {% endif %}
