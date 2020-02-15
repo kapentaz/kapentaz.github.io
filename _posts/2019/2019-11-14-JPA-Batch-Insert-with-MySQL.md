@@ -147,6 +147,9 @@ spring.jpa.properties.hibernate.jdbc.batch_size=50
 0 nanoseconds spent executing 0 JDBC batches;
 ```
 왜 그럴까요? 좀 더 확인 해봐야겠습니다.
+
+{% include ad_content.html %}
+
 ### IDENTITY
 검색  [결과](https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#batch-session-batch)에 따르면 GenerationType의 **IDENTITY**  타입 식별자를 사용할 경우 Hibernate가 JDBC 배치를 비활성화 시켜 버린다고 합니다. IDENTITY 방식이라면 안된다는 것이죠. 이유가 뭘까요?
 

@@ -25,8 +25,6 @@ Java8에서 `Collectors.toMap()`을 사용할 경우 NPE 발생에 대한 주의
 
 아래와 같이 리스트 형태의 Item을 Map 형식으로 변경 하려고 할 경우 `toMap()`에서 NPE가 발생합니다. "Mango"의 가격이 null 이기 때문입니다.
 
-{% include ad_content.html %}
-
 ```java
 List<Item> items = Arrays.asList(
 		new Item("Apple", 1800),
