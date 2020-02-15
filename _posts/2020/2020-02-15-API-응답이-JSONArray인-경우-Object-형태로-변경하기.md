@@ -22,8 +22,6 @@ comments: true
 
 
 
-# API 응답이 JSON Array인 경우 Object 형태로 변경하기
-
 자바 클래스 `List` 형태의 응답을 `Map`으로 제공받고 싶은데 현실적으로 어려운 경우 할 수 있는 방법에 관한 내용입니다.
 
 어떤 *상품들*을 조회하는 API가 있습니다. path는 `/products`이고 응답은 아래와 같이 JSON Array로 제공합니다.
