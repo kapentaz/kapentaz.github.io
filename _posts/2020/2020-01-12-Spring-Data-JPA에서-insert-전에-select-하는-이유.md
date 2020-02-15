@@ -72,6 +72,8 @@ insert
 ```
 `save()`를 실행했는데 insert 전에 왜 select 쿼리가 실행되는 걸까요? 이런 상황이라면 만약 ProductDetail를 bulk insert 하려고 10,000개를 `saveAll()` 하게 되면 10,000번의 select 쿼리가 실행될 텐데요. 끔찍하네요. 원인을 찾아야겠습니다.
 
+{% include ad_content.html %}
+
 ## Persist or Merge
 먼저 `CrudRepository` 구현체인 `SimpleJpaRepository` 에서 `save()` 메서드를 어떻게 처리하고 있는 살펴보겠습니다. 코드가 보이는대로 읽어보면 새로운 entity 이면 `persist()` 메서드를 아니면 `merge()` 메서드를  실행하는 것을 알 수 있습니다.
 ```java

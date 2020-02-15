@@ -77,6 +77,8 @@ class Ticket(
 
 이유는 `@Id` 위치에 따라 영속성 객체를 만들 때 field 또는 proeprty에 값을 설정하게 되는데 `@get:Id` 가 아니기 때문에 필드 주입방식으로 처리합니다. Java로 보면 JPA에서 실제 필드값을 null로 셋팅을 하기 때문에 Kotlin의 not null 타입이 소용이 없는 것입니다.
 
+{% include ad_content.html %}
+
 ## 포기할 수 없는 Not Null 타입
 실제는 nullable 할 수 없는 값이기 때문에 Not Null 타입은 포기할 수 없습니다.  아래처럼 변경해보겠습니다.
 ```kotlin

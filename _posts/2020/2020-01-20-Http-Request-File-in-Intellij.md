@@ -84,6 +84,8 @@ Content-Type: application/json
 < product.json
 ```
 
+{% include ad_content.html %}
+
 ### Environment
 
 API 호출 테스트를 하다 보면 Dev와 Real 같이 환경별로 호출해야 할 수 있습니다. 이럴 때 환경마다 http file을 만드는 건 비효율적이기 때문에 환경별 변수를 파일로 지정할 수 있습니다. `rest-client.env.json`라고 파일명을 만들고 변수를 지정하면 사용할 수 있습니다.

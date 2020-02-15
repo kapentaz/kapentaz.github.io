@@ -74,6 +74,8 @@ kotlin.UninitializedPropertyAccessException: lateinit property createAt has not 
 ```
 실제 이렇게 호출하는 코드를 작성하지 않는다고 하더라도 호출할 수 있는 가능성과 호출 시 오류가 발생한다는 것은 잠재적 문제라고 할 수는 없을 것 같습니다.
 
+{% include ad_content.html %}
+
 그리고 createAt, updateAt을 `var` 로 정의했기 때문에 setter를 통해서 다른 날짜로 변경할 수도 있으니 `val`로 변경하는게 좋을 것 같습니다. `val`로 변경하게 되면 `lateinit`을 사용할 수 없으니 다시 초기값 설정이 필요하게 됩니다. setter를 없애기를 위해서는 초기값 설정을 꼭 해야할 것 같습니다. 
 
 > CurrentDateTimeProvider#getNow 참고
