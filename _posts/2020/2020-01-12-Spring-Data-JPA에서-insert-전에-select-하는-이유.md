@@ -3,8 +3,8 @@ title: "Spring Data JPA에서 Insert 전에 Select 하는 이유"
 last_modified_at: 2020-01-12T01:10:00-05:00
 header:
   show_overlay_excerpt: false
-  overlay_image: /assets/images/background/fried-potato.jpg
-  og_image: /assets/images/background/fried-potato.jpg
+  overlay_image: /assets/images/post/2020/2020-01-12-fried-potato.jpg
+  og_image: /assets/images/background/2020-01-12-fried-potato.jpg
   overlay_filter: 0.6
   caption: "Photo Credit: [Brady](https://kapentaz.github.io)"
 tags:

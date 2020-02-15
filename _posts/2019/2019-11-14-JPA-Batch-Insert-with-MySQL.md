@@ -3,8 +3,8 @@ title: "JPA Batch Insert with MySQL"
 last_modified_at: 2019-11-14T22:01:00-05:00
 header:
   show_overlay_excerpt: false
-  overlay_image: /assets/images/background/light_in_dark_sky.jpg
-  og_image: /assets/images/background/light_in_dark_sky.jpg
+  overlay_image: /assets/images/post/2019/2019-11-14-light_in_dark_sky.jpg
+  og_image: /assets/images/post/2019/2019-11-14-light_in_dark_sky.jpg
   overlay_filter: 0.6
   caption: "Photo Credit: [Brady](https://kapentaz.github.io)"
 tags:
