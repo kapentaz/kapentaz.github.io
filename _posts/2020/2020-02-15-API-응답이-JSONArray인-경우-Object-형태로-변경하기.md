@@ -70,7 +70,8 @@ Map<Integer, Product> map = objectMapper.readValue(jsonString,
 Product product1 = map.get(1);  
 Product product2 = map.get(2);
 ```
-하지만 사실 API를 제공하는 입장에서는 *상품들*을 요청한 것이고 Repository에 저장되어 있는 데이터를 List 형태로 조회하고 이를 JSON Array 형태의 응답으로 제공하는 것은 자연스러운 상황입니다. 클라이언트의 변경 요청을 쉽게 받아들이지 않을 수 있습니다. 그리고 이미 다른 곳에 제공하는 API라면 더욱 변경해서 제공하기 어려울 것입니다. 
+하지만 사실 API를 제공하는 입장에서는 **상품들**을 요청한 것이고 Repository에 저장되어 있는 데이터를 List 형태로 조회하고 이를 JSON Array 형태의 응답으로 제공하는 것은 자연스러운 상황일 수 있습니다. 
+그래서 클라이언트의 변경 요청을 쉽게 받아들이지 않을 수 있습니다. 그리고 이미 다른 곳에 제공하는 API라면 더욱 변경해서 제공하기 어려울 것입니다. 
 
 이럴 경우에는 그냥 `@JsonCreator`와 `@JsonValue`를 이용해서 Response 모델을 만드는 걸 추천합니다. 
 ```java
