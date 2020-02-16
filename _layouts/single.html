@@ -43,9 +43,9 @@ layout: default
           </aside>
         {% endif %}
 
-        <!--<h4 style="margin-top:0;">
-
-        </h4>-->
+        <h4 style="margin-top:0;">
+          {% include ad_top.html %}
+        </h4>
         {{ content }}
         {% include ad_footer.html %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
