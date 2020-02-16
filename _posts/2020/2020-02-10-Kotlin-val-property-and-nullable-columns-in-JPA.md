@@ -46,6 +46,8 @@ nullable로 설정한 정확인 이유는 모르지만 추측해본다면..
 
 3번 같은 경우에는 테이블에 사이즈가 크고 엑세스가 자주 발생한다면 신규 컬럼을 추가하면서 기본값까지 추가하면 업데이트가 발생하게 되니 작업하기 부담스러웠을 수 있습니다. 서비스 점검을 통해서만 처리할 수 있는 상황이라면 현실적 타협 통해서 null로 지정한 케이스 일 것 같습니다.
 
+{% include ad_content.html %}
+
 ## var or val
 
 사실 어떤 이유라고 하더라도 도메인 로직상으로는 `status`가 nullable 할 수 없는 상황이라고 한다면 테이블은 당장 바꾸지 않더라도 Entity를 만들 때는 `status` 타입을 not null 로 하는 게 맞을 것 같습니다.
@@ -76,8 +78,6 @@ class Ticket(
 `status`가 null인 경우에도 JPA조회를 하면 객체는 정상적으로 생성됩니다. `status`가 not null 타입이라 믿고 사용하다는 결국 NPE를 만날수 있습니다.
 
 이유는 `@Id` 위치에 따라 영속성 객체를 만들 때 field 또는 proeprty에 값을 설정하게 되는데 `@get:Id` 가 아니기 때문에 필드 주입방식으로 처리합니다. Java로 보면 JPA에서 실제 필드값을 null로 셋팅을 하기 때문에 Kotlin의 not null 타입이 소용이 없는 것입니다.
-
-{% include ad_content.html %}
 
 ## 포기할 수 없는 Not Null 타입
 실제는 nullable 할 수 없는 값이기 때문에 Not Null 타입은 포기할 수 없습니다.  아래처럼 변경해보겠습니다.
