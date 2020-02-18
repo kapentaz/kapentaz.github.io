@@ -110,4 +110,4 @@ getter를 호출할 때 field 값이 null인지 확인하고 null일 경우 "UNU
 
 
 ## Reference
-- https://kotlinlang.org/docs/reference/properties.html
+- [Properties and Fields](https://kotlinlang.org/docs/reference/properties.html)
