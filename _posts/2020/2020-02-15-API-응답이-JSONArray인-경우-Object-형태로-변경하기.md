@@ -3,8 +3,8 @@ title: "API 응답이 JSON Array인 경우 Object 형태로 변경하기"
 last_modified_at: 2020-02-15T17:08:00-05:00
 header:
   show_overlay_excerpt: false
-  overlay_image: /assets/images/post/2020/2020-02-15-option.jpeg
-  og_image: /assets/images/posts/2020/2020-02-15-option.jpeg
+  overlay_image: /assets/images/post/2020/02/2020-02-15-option.jpeg
+  og_image: /assets/images/posts/2020/02/2020-02-15-option.jpeg
   overlay_filter: 0.6
   caption: "Photo Credit: [Brady](https://kapentaz.github.io)"
 tags:

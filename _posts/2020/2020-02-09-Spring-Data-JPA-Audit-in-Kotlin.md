@@ -3,8 +3,8 @@ title: "Spring Data JPA Audit in Kotlin"
 last_modified_at: 2020-02-09T10:16:00-05:00
 header:
   show_overlay_excerpt: false
-  overlay_image: /assets/images/post/2020/2020-02-09-wood_and_river.jpg
-  og_image: /assets/images/posts/2020/2020-02-09-wood_and_river.jpg
+  overlay_image: /assets/images/post/2020/02/2020-02-09-wood_and_river.jpg
+  og_image: /assets/images/posts/2020/02/2020-02-09-wood_and_river.jpg
   overlay_filter: 0.6
   caption: "Photo Credit: [Brady](https://kapentaz.github.io)"
 tags:

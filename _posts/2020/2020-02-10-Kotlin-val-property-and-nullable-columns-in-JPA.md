@@ -3,8 +3,8 @@ title: "Kotlin val property and nullable columns in JPA"
 last_modified_at: 2020-02-10T23:21:00-05:00
 header:
   show_overlay_excerpt: false
-  overlay_image: /assets/images/post/2020/2020-02-10-grass_leaf.jpg
-  og_image: /assets/images/posts/2020/2020-02-10-grass_leaf.jpg
+  overlay_image: /assets/images/post/2020/02/2020-02-10-grass_leaf.jpg
+  og_image: /assets/images/posts/2020/02/2020-02-10-grass_leaf.jpg
   overlay_filter: 0.6
   caption: "Photo Credit: [Brady](https://kapentaz.github.io)"
 tags:
