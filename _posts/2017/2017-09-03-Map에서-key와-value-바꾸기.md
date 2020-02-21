@@ -49,7 +49,7 @@ apple=[order3, order1]
 strawberry=[order2]
 ```
 
-만약 value를 List로 처리하기 싫다면 `Collector.joining()` 를 이용하거나 직접 reduece() 처리를 하면 됩니다.
+만약 value를 List로 처리하기 싫다면 `Collector.joining()` 를 이용하거나 직접 reduce() 처리를 하면 됩니다.
 ```java
 Map<String, String> collect = fruits.stream()  
         .collect(toMap(Function.identity(), fruit -> map.entrySet().stream()  
