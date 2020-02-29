@@ -122,6 +122,8 @@ fun create(create: ArticleCreate) {
 ```
 그런데 `getLastCode()`를 호출하고 설정하는 부분을 코드를 읽을 때 매번 확인할 필요가 없고 변경될 가능성도 없기에 이 코드를 보기 싫을 수 있습니다. 그렇다면 service 영역에서 감추고 싶다면 어떻게 해야 할까요?
 
+{% include ad_content.html %}
+
 ## @ValueGenerationType
 
 이럴 경우에는 Hibernate의  `@ValueGenerationType`를 이용할 수 있습니다. 이 방식은 애노테이션으로 value 생성할 수 있게 해줍니다.
@@ -209,6 +211,8 @@ fun create(create: ArticleCreate) {
   articleRepository.save(Article.create(create))
 }
 ```
+
+{% include ad_content.html %}
 
 ## 멀티스레드 환경
 
