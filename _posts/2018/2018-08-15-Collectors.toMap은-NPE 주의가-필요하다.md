@@ -1,6 +1,6 @@
 ---
 title: "Collectors.toMap은 NPE 주의가 필요하다"
-last_modified_at: 2018-08-15T21:26:28+09:00
+last_modified_at: 2018-08-15T21:26:28+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2018/2018-08-15-blue_sky.jpg
@@ -19,8 +19,6 @@ classes: wide
 comments: true
 ---
 
-
-> 이전 블로그에서 작성한 글을 옮겨 왔습니다.
 
 Java8에서 `Collectors.toMap()`을 사용할 경우 NPE 발생에 대한 주의가 필요합니다. 개발 및 테스트 환경에서는 이상이 없었는데 운영에서 오류가 발생한 경험에 대한 내용입니다.
 
@@ -81,3 +79,5 @@ Map<String, Integer> itemMap = items.stream()
 
 ## 결론
 `Collectors.toMap()`을 사용할 때는 NPE가 발생할 수 있으므로 사용하기 전에 객체 내용중  value로 지정될 필드가 null일 가능성이 존재하는지 꼭 확인할 필요가 있습니다.
+
+끝.

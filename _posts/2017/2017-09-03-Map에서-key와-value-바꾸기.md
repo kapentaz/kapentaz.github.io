@@ -1,6 +1,6 @@
 ---
 title: "Map에서 key와 value 바꾸기"
-last_modified_at: 2020-02-20T22:13:00+09:00
+last_modified_at: 2020-02-20T22:13:00+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2017/2017-09-03-snow_tree.jpg
@@ -19,8 +19,6 @@ classes: wide
 comments: true
 ---
 
-
-> 이전 블로그에서 작성한 글을 옮겨 왔습니다.
 
 `Map`에서 key와 value의 위치를 서로 변경해야 할 일이 생길 수 있습니다. 어떻게 처리해야 할지 살펴보겠습니다. 기본적으로 `Map`은 중복된 key 값을 가질 수 없지만 value는 중복일 수 있습니다. 그래서 서로 위치를 변경하게 되면 value는 `List`로 처리해야 합니다. 
 

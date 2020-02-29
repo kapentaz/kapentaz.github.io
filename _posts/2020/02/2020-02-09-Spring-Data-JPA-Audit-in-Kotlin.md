@@ -1,6 +1,6 @@
 ---
 title: "Spring Data JPA Audit in Kotlin"
-last_modified_at: 2020-02-09T10:16:00+09:00
+last_modified_at: 2020-02-09T10:16:00+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2020/02/2020-02-09-wood_and_river.jpg

@@ -1,6 +1,6 @@
 ---
 title: "JPA Batch Insert with MySQL"
-last_modified_at: 2019-11-14T22:01:00+09:00
+last_modified_at: 2019-11-14T22:01:00+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2019/2019-11-14-light_in_dark_sky.jpg

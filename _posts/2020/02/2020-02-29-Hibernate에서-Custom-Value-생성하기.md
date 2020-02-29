@@ -1,12 +1,12 @@
 ---
 title: "Hibernate에서 Custom value 생성하기"
-last_modified_at: 2020-02-29T17:50:00+09:00
+last_modified_at: 2020-02-29T17:50:00+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2020/02/2020-02-29-value-factory.jpg
   og_image: /assets/images/posts/2020/02/2020-02-29-value-factory.jpg
   overlay_filter: 0.6
-  caption: "Photo by Museums Victoria on Unsplash"
+  caption: "Photo Credit: [Photo by Museums Victoria on Unsplas]"
   
 tags:
   - JPA
