@@ -1,5 +1,5 @@
 ---
-title: "Hibernate에서 Custom value 생성하기"
+title: "Hibernate에서 Custom Value 생성하기"
 last_modified_at: 2020-02-29T17:50:00+00:00
 header:
   show_overlay_excerpt: false
