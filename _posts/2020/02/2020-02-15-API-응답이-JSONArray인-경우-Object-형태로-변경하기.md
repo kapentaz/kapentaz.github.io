@@ -1,6 +1,6 @@
 ---
 title: "API 응답이 JSON Array인 경우 Object 형태로 변경하기"
-last_modified_at: 2020-02-15T17:08:00-05:00
+last_modified_at: 2020-02-15T17:08:00+09:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2020/02/2020-02-15-option.jpeg
