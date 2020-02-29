@@ -21,7 +21,7 @@ comments: true
 ---
 
 
-오랜만에 사용 하려면 기억나지 않는 `DecimalFormat` 클래스의 Number Format Pattern을 정리한다.
+오랜만에 사용하려면 기억나지 않는 `DecimalFormat` 클래스의 Number Format Pattern을 정리합니다.
 
 | **심볼** | **설명**                                                     |
 | -------- | ------------------------------------------------------------ |
