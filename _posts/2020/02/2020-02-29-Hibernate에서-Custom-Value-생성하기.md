@@ -71,7 +71,7 @@ class ArticleService(private val articleRepository: ArticleRepository) {
 
 ## var을 val로 변경하기
 
-우선은`Article`을 service 메서드의 파라미터로 직접 받기보다는 별도의 모델을 정의하고 entity의 `code`가  `var`로 정의되어 있어 외부에서 변경될 가능성이 존재하기 때문에 `val` 형태로 변경하는 게 좋을 것 같습니다. setter가 공개되는 것 자체를 차단하는 것이죠.
+우선은`Article`을 service 메서드의 파라미터로 직접 받기보다는 별도의 모델을 정의합니다. 그리고 entity의 `code`가  `var`로 정의되어 있어 외부에서 변경될 가능성이 존재하기 때문에 `val` 형태로 변경하는 게 좋을 것 같습니다. setter가 공개되는 것 자체를 차단하는 것이죠.
 
 ```kotlin
 data class ArticleCreate(
