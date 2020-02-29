@@ -6,7 +6,7 @@ header:
   overlay_image: /assets/images/post/2020/02/2020-02-29-value-factory.jpg
   og_image: /assets/images/posts/2020/02/2020-02-29-value-factory.jpg
   overlay_filter: 0.6
-  caption: "Photo Credit: [Photo by Museums Victoria on Unsplas]"
+  caption: "Photo by Museums Victoria on Unsplas"
   
 tags:
   - JPA

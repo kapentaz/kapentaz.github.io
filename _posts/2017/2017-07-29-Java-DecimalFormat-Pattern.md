@@ -6,7 +6,7 @@ header:
   overlay_image: /assets/images/post/2017/2017-07-29-numbers.jpg
   og_image: /assets/images/post/2017/2017-07-29-numbers.jpg
   overlay_filter: 0.6
-  caption: "Photo Credit: [Photo by Matt Hoffman on Unsplash]"
+  caption: "Photo by Matt Hoffman on Unsplash"
 tags:
   - Java
   - DecimalFormat
