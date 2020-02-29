@@ -24,9 +24,9 @@ comments: true
 
 
 
-> Kotlin, Spring 그리고 Hibernate 환경 기준입니다.
-
 데이터를 저장할 때 특정 조건에 의해서 증가하는 값을 Hibernate에서는 어떻게 할 수 있는지 확인해보겠습니다.
+
+> Kotlin, Spring 그리고 Hibernate 환경 기준입니다.
 
 아래와 같은 entity가 있을 때  `code`는 삭제된 데이터와 관계없이 `type` 별 최댓값으로 설정해야 한다고 가정하겠습니다.  그렇다면 `Article`을 생성하기 전에 생성하려는 `type`의 최대 `code`값을 조회하고, 1증가 시킨 후 등록해야 할 것입니다.
 
