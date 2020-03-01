@@ -96,6 +96,8 @@ Params:[(상품명,5000)...생략]
 
 코드 실행후 로그만 믿고 있다간 발등 찍힐 수 있으니 주의가 필요할 것 같습니다.
 
+{% include ad_content.html %}
+
 ## JPA Batch Insert
 
 이제 JPA Batch Insert에 대해서 알아 보겠습니다. 위에서 사용했던  Product 테이블 기준으로 Entity 클래스를 하나 만듭니다.
@@ -148,8 +150,6 @@ spring.jpa.properties.hibernate.jdbc.batch_size=50
 ```
 왜 그럴까요? 좀 더 확인 해봐야겠습니다.
 
-{% include ad_content.html %}
-
 ### IDENTITY
 검색  [결과](https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#batch-session-batch)에 따르면 GenerationType의 **IDENTITY**  타입 식별자를 사용할 경우 Hibernate가 JDBC 배치를 비활성화 시켜 버린다고 합니다. IDENTITY 방식이라면 안된다는 것이죠. 이유가 뭘까요?
 
@@ -163,6 +163,8 @@ GenerationType은 총 3가지가 있습니다.
 * **TABLE**
 
 IDENTITY는 안된다고 하고, SEQUENCE는 MySQL에 없으니 확인해 볼 수 있는 건 TABLE뿐입니다.
+
+{% include ad_content.html %}
 
 ### Table
 별도 키 생성 테이블을 만들어서 사용하는 방법입니다. 시퀀스 방식을 테이블로 표현했다고 할 수 있습니다.
