@@ -31,7 +31,7 @@ comments: true
 
 > Tool > HTTP Client > Test Restful Web Service
 
-![Rest Client](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2020/2020-01-20-http_client.png)
+![Rest Client](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2020/01/2020-01-20-http_client.png)
 
 request 정보를 설정하고 호출하면 응답 정보를 Intellij에서 바로 확인할 수 있습니다. method, host, path, header 등을 설정할 수도 있고 응답도 바로 확인할 수 있으니 개발할 때 꽤 유용하게 사용할 수 있습니다.
 
@@ -62,7 +62,7 @@ Request-Body
 
 > Preferences > Editor > Live Templates
 
-![live template](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2020/2020-01-20-http_request_file_live_template.gif)
+![live template](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2020/01/2020-01-20-http_request_file_live_template.gif)
 
 | Template | Usage                                     |
 | :------- | :---------------------------------------- |
@@ -108,7 +108,7 @@ API 호출 테스트를 하다 보면 Dev와 Real 같이 환경별로 호출해�
 GET http://{{host}}:8080/products/1
 ```
 
-![http request file env](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2020/2020-01-20-http_request_file_env.png)
+![http request file env](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2020/01/2020-01-20-http_request_file_env.png)
 
 ### Variable and Test
 
