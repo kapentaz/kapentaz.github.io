@@ -84,7 +84,6 @@ layout: default
         {% endfor %}
       </div>
       <div class="grid__wrapper">
-        {% include ad_end_of_footer.html %}
       </div>
     </div>
   {% comment %}<!-- otherwise show recent posts if no related when `related: true` -->{% endcomment %}
@@ -101,4 +100,7 @@ layout: default
       </div>
     </div>
   {% endif %}
+  <div class="page__related">
+    {% include ad_end_of_footer.html %}
+  </div>
 </div>
