@@ -27,9 +27,7 @@ comments: true
 
 ## UUID로 ID 생성
 
-> uuid는 hibernate에서 기본적으로 제공하고 있습니다.  기본적으로  제공하는 다른 종류의 키는 DefaultIdentifierGeneratorFactory에서 확인할 수 있습니다.
-
-기본적으로 제공하는 uuid를 이용해서 처리하는 방식을 먼저 확인해보겠습니다. 아래와 같이 entity 저장을 하면 길이 36의 문자 uuid 값으로 잘 생성되는 것을 확인할 수 있습니다.
+Hibernate에서 기본적으로 제공하는 uuid를 이용해서 처리하는 방식을 먼저 확인해보겠습니다. 아래와 같이 entity 정의하고 저장하면 길이 36의 문자 uuid 값으로 잘 생성되는 것을 확인할 수 있습니다.
 ```kotlin
 @Entity
 @Table(name = """"order"""")
@@ -54,6 +52,9 @@ class Order{
   }
 }
 ```
+@GenericGenerator 애노테이션의 strategy 속성에서 uuid2으로 설정하면 org.hibernate.id.UUIDGenerator를 이용해서 키값을 생성하게 됩니다.
+
+> uuid2는 hibernate에서 기본적으로 제공하고 있습니다. 다른 종류의 기본 전략은 DefaultIdentifierGeneratorFactory에서 확인할 수 있습니다.
 
 ## Custom ID 생성
 
@@ -85,4 +86,4 @@ val orderNo: String = ""
 
 
 ### Reference
-- [https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-generators-GenericGenerator](https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-generators-GenericGenerator)
+- [identifiers-generators-GenericGenerator](https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#identifiers-generators-GenericGenerator)
