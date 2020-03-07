@@ -47,13 +47,11 @@ layout: default
           {% include ad_top.html %}
         </h4>
         {{ content }}
-        {% include ad_end_of_footer.html %}
         {% include ad_footer.html %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 
       <footer class="page__meta">
-
         {% if site.data.ui-text[site.locale].meta_label %}
           <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
         {% endif %}
@@ -99,4 +97,7 @@ layout: default
       </div>
     </div>
   {% endif %}
+  <div>
+    {% include ad_end_of_footer.html %}
+  </div>
 </div>
