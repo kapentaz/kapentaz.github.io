@@ -23,8 +23,6 @@ comments: true
 
 
 
-# Hibernate에서 Custom ID 생성하기
-
 보통 테이블의 키값은 DB에서 제공하는 sequence나  auto increment 같은 증가 값 형태를 많이 사용하는데요. 특정 방식으로 키값을 관리해야 하는 경우도 있습니다. 예를 들면 uuid 형태나 주문번호같이 일정 패턴으로 생성하는 값을 키값으로 사용하는 경우가 있습니다. 
 
 ## UUID로 ID 생성
