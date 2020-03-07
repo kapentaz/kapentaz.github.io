@@ -23,11 +23,11 @@ comments: true
 
 
 
-보통 테이블의 키값은 DB에서 제공하는 sequence나  auto increment 같은 증가 값 형태를 많이 사용하는데요. 특정 방식으로 키값을 관리해야 하는 경우도 있습니다. 예를 들면 uuid나 주문번호같이 일정 패턴으로 생성하는 값을 키값으로 사용하는 경우가 있습니다. 
+보통 테이블의 키값은 DB에서 제공하는 sequence나  auto increment 같은 증가 값 형태를 많이 사용하는데요. 특정 방식으로 키값을 관리해야 하는 경우도 있습니다. 예를 들면 uuid나 주문번호처럼 일정 패턴으로 생성하는 값을 키값으로 사용하는 경우가 있습니다. 
 
 ## UUID로 ID 생성
 
-Hibernate에서 기본적으로 제공하는 uuid를 이용해서 처리하는 방식을 먼저 확인해보겠습니다. 아래와 같이 entity 정의하고 저장하면 길이 36의 문자 uuid 값으로 잘 생성되는 것을 확인할 수 있습니다.
+Hibernate에서 기본적으로 제공하는 uuid를 이용해서 처리하는 방법을 먼저 확인해보겠습니다. 아래와 같이 entity 정의하고 저장하면 길이 36의 문자 uuid 값으로 생성되는 것을 확인할 수 있습니다. @GenericGenerator 애노테이션의 strategy 속성에서 uuid2으로 설정하면 org.hibernate.id.UUIDGenerator를 이용해서 키값을 생성하게 됩니다.
 ```kotlin
 @Entity
 @Table(name = """"order"""")
@@ -52,9 +52,8 @@ class Order{
   }
 }
 ```
-@GenericGenerator 애노테이션의 strategy 속성에서 uuid2으로 설정하면 org.hibernate.id.UUIDGenerator를 이용해서 키값을 생성하게 됩니다.
 
-> uuid2는 hibernate에서 기본적으로 제공하고 있습니다. 다른 종류의 기본 전략은 DefaultIdentifierGeneratorFactory에서 확인할 수 있습니다.
+> hibernate에서 제공하는 다른 종류의 기본 전략은 DefaultIdentifierGeneratorFactory에서 확인할 수 있습니다.
 
 ## Custom ID 생성
 
@@ -79,7 +78,7 @@ class OrderNoGenerator: IdentifierGenerator {
 val orderNo: String = ""
 ```
 
-테스트 코드를 실행하면 '1583553989221246952'  형태로 값이 생성되는 것을 확인할 수 있습니다. ID가 아닌 곳에 값을 설정하고 싶다면 지난 포스트 [Hibernate에서 Custom Value 생성하기](https://kapentaz.github.io/jpa/Hibernate%EC%97%90%EC%84%9C-Custom-Value-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/)를 참고하면 됩니다.
+테스트 코드를 실행하면 '1583553989221246952'  형태로 값이 생성되는 것을 확인할 수 있습니다. ID가 아닌 곳에 값을 설정하고 싶다면 지난 포스트 [Hibernate에서 Custom Value 생성하기](https://kapentaz.github.io/jpa/Hibernate%EC%97%90%EC%84%9C-Custom-Value-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/)를 참고해 주세요.
 
 끝.
 
