@@ -28,7 +28,7 @@ comments: true
 
 > Kotlin, Spring, MySQL 환경입니다. 
 
-## JDBC bulk Insert 키 조회
+## JDBC Bulk Insert 키 조회
 JDBC에서 bulk insert 후 키값을 조회하려면 PrepareStatement를 생성할 때 파라미터 `Statement.RETURN_GENERATED_KEYS` 을 추가하면 `ps.executeBatch()` 실행한 이후에 `getGeneratedKeys()` 메서드를 통해서 insert 한 키값을 확인할 수 있습니다.
 ```kotlin
 fun batchInsert() {
@@ -62,7 +62,7 @@ fun batchInsert() {
 
 {% include ad_content.html %}
 
-## JdbcTemplate bulk Insert 키 조회
+## JdbcTemplate Bulk Insert 키 조회
 
 Spring JdbcTemplate은 bulk insert 한 키값을 조회할 수 있는 메서드를 제공하지 않습니다. 위에서 언급한 것처럼 클라이언트 환경에 따라 달라질 수 있기 때문입니다. 다른 방법으로는  `select last_insert_id()` 쿼리를 실행해서 마지막에 입력한 키값을 조회하는 것입니다.
 ```kotlin
