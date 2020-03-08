@@ -236,7 +236,7 @@ fun batchInsert(products: List<Product>) {
       }
 
       override fun getBatchSize(): Int {
-        return 50
+        return it.size
       }
     })
   }
