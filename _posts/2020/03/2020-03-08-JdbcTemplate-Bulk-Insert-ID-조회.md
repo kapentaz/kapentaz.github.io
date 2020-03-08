@@ -60,6 +60,8 @@ fun batchInsert() {
 ```
 참고로 JDBC 스펙에서는 `getGeneratedKeys()`와 `executeBatch()`를 같이 사용하는 것에 대해 필수 구현 사항이 아니기 때문에 특정 DB나 구 버전에서는 지원하지 않을 수 있다고 합니다. 그래서 환경에 따라서 이 방법으로 키값을 조회 못할 수 있습니다.
 
+{% include ad_content.html %}
+
 ## JdbcTemplate bulk Insert 키 조회
 
 Spring JdbcTemplate은 bulk insert 한 키값을 조회할 수 있는 메서드를 제공하지 않습니다. 위에서 언급한 것처럼 클라이언트 환경에 따라 달라질 수 있기 때문입니다. 다른 방법으로는  `select last_insert_id()` 쿼리를 실행해서 마지막에 입력한 키값을 조회하는 것입니다.
