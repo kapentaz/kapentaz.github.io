@@ -1,3 +1,10 @@
+# Group 1
+User-agent: Googlebot
+Disallow: /categories/
+Disallow: /year-archive/
+Disallow: /tags/
+
+# Group 2
 User-agent: *
 Allow: /
-Sitemap: https://kapentaz.github.io/sitemap.xml
+
