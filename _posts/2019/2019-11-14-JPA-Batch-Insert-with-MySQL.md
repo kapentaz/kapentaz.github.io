@@ -11,6 +11,7 @@ tags:
   - JPA
   - Bulk
   - MySQL  
+  - JDBC  
 category: #카테고리
   - JPA
 toc: false                          # 목차(table of contents) 사용여부
