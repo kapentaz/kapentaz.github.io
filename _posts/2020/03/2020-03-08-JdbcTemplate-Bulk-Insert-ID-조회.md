@@ -58,7 +58,7 @@ fun batchInsert() {
   }
 }
 ```
-참고로 JDBC 스펙에서는 `getGeneratedKeys()`와 `executeBatch()`를 같이 사용하는 것에 대해 필수 구현 사항이 아니기 때문에 특정 DB나 구 버전에서는 지원하지 않을 수 있다고 합니다. 그래서 환경에 따라서 이 방법으로 키값을 조회 못할 수 있습니다.
+참고로 JDBC 스펙에서는 `getGeneratedKeys()`와 `executeBatch()`를 같이 사용하는 것에 대해 필수 구현 사항이 아니기 때문에 특정 DB나 구 버전에서는 지원하지 않을 수 있다고 합니다. 따라서 환경에 따라서 이 방법으로 키값을 조회 못할 수 있습니다.
 
 {% include ad_content.html %}
 
