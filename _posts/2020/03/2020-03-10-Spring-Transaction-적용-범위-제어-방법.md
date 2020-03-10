@@ -28,6 +28,7 @@ Spring을 사용하면 트랜잭션을 설정하기 위해 보통은 `@Transacti
 간단한 예제를 통해서 확인해보겠습니다. 아래와 같은 `update()` 메서드가 있습니다. 상품을 조회하고 업데이트 이후에 API 호출을 통해서 email 전송을 합니다. 
 
 > 단순 조회 후 업데이트하기 때문에 트랜잭션이 필요한 건 아니지만 필요한 경우라고 가정하겠습니다.
+>
 ```java
 @Transactional
 public void update(long productNo, String name, int price) {
