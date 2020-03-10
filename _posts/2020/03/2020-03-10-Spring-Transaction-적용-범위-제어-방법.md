@@ -70,6 +70,7 @@ private void sendEmail() {
 
 자기 자신을 Spring Bean으로 Injection 하는 방법입니다. 이렇게 주입받는 Bean은 생성자 주입 방식으로는 처리가 불가능하기 때문에 `@Autowired`로 적용했습니다.
 ```java
+```java
 @Service
 @RequiredArgsConstructor
 public class TransactionSample {
@@ -82,7 +83,20 @@ public class TransactionSample {
         self.updateProduct(productNo, name, price);
         self.sendEmail();
     }
-    ...
+    
+    @Transactional
+    public void updateProduct(long productNo, String name, int price) {
+        Optional<Product> product = productRepository.findById(productNo);
+        product.ifPresent(p -> {
+            p.setName(name);
+            p.setPrice(price);
+            productRepository.save(p);
+        });
+    }
+
+    private void sendEmail() {
+        restTemplate.postForEntity("...", null, Void.class);
+    }
 }
 ```
 자신을 다시 Bean으로 주입받는 과정으로 인해 생성자 주입 방식을 사용할 수 없고 `update()` 처리를 하기 위해서 별도의 메서드 2개를 추가해야 하는 부분이 조금 아쉽습니다.
