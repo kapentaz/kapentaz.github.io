@@ -70,7 +70,6 @@ private void sendEmail() {
 
 자기 자신을 Spring Bean으로 Injection 하는 방법입니다. 이렇게 주입받는 Bean은 생성자 주입 방식으로는 처리가 불가능하기 때문에 `@Autowired`로 적용했습니다.
 ```java
-```java
 @Service
 @RequiredArgsConstructor
 public class TransactionSample {
