@@ -236,7 +236,7 @@ fun create(create: ArticleCreate) {
 
 `ValueGenerationType`를 이용하면 custom value 생성을 별도로 처리할 수 있습니다.  Hibernate에서 날짜 생성을 위해서 제공하는 `@CreationTimestamp`와 `@UpdateTimestamp`도 동일한 방식으로 구현되어 있습니다. 그리고 어떤 조건 기준으로 값을 증가시키는 방식은 동시 요청에 대한 고민을 해야 한다는 점도 잊지 말아야 할 것입니다.
 
-Id의 경우 custom value를 생성하는 방식이 조금 다릅니다. 자세한 내용은 [Hibernate에서 Custom ID 생성하기](https://kapentaz.github.io/jpa/Hibernate에서-Custom-ID-생성하기/)을 참고하세요.
+Id의 경우 custom value를 생성하는 방식이 조금 다릅니다. 자세한 내용은 [Hibernate에서 Custom ID 생성하기](https://kapentaz.github.io/jpa/Hibernate에서-Custom-ID-생성하기/)를 참고하세요.
 
 끝.
 
