@@ -72,7 +72,7 @@ data class SampleRequest @JsonCreator constructor(
     @JsonProperty("extraInfo") val extraInfo: Map<String, Any>
 )
 ```
-`@JsonCreator`는 class에서 사용 못 하기 때문에 생성자에 적용해야 합니다. 그러다 보니 생성자 관련 코드가 추가되어야 하다 보니 클래스가 약간 지저분 해지는 것 같습니다. kotlin의 간결함이 많이 사라지는 것 같네요. 그래도 이렇게 변경하고 실행하면 이상 없이 잘 만들어지는 걸 확인할 수 있습니다. 
+`@JsonCreator`는 class에서 사용 못 하기 때문에 생성자에 적용해야 합니다. 그러다 보니 생성자 관련 코드가 추가되어서 클래스가 약간 지저분해 보입니다.kotlin의 간결함이 많이 사라지는 것 같네요. 그래도 이렇게 변경하고 실행하면 이상 없이 잘 만들어지는 걸 확인할 수 있습니다. 
 
 > property 이름이 json이랑 같아도 @JsonProperty를 사용해야 합니다. 그렇지 않으면 오류가 발생합니다. `Argument #0 has no property name, is not Injectable: can not use as Creator`
 
