@@ -72,10 +72,11 @@ data class SampleRequest @JsonCreator constructor(
     @JsonProperty("extraInfo") val extraInfo: Map<String, Any>
 )
 ```
-`@JsonCreator`는 class에서 사용 못 하기 때문에 생성자에 적용해야 합니다. 그러다 보니 생성자 관련 코드가 추가되어서 클래스가 약간 지저분해 보입니다.kotlin의 간결함이 많이 사라지는 것 같네요. 그래도 이렇게 변경하고 실행하면 이상 없이 잘 만들어지는 걸 확인할 수 있습니다. 
+`@JsonCreator`는 class에서 사용 못 하기 때문에 생성자에 적용해야 합니다. 그러다 보니 생성자 관련 코드가 추가되어서 클래스가 약간 지저분해 보입니다. kotlin의 간결함이 많이 사라지는 것 같네요. 그래도 이렇게 변경하고 실행하면 이상 없이 잘 만들어지는 걸 확인할 수 있습니다. 
 
 > property 이름이 json이랑 같아도 @JsonProperty를 사용해야 합니다. 그렇지 않으면 오류가 발생합니다. `Argument #0 has no property name, is not Injectable: can not use as Creator`
 
+{% include ad_content.html %}
 
 ## KotlinModule 
 
@@ -130,11 +131,13 @@ MissingKotlinParameterException: Instantiation of ... value failed for JSON prop
 ```
 not null 타입인데 null 값을 세팅하려다 보니 오류가 발생합니다.  
 
-하지만 json에서 `"name": null`이 아니라 아예 빼버리고 name property에 기본값을 설정하면 잘 동작합니다.  다시 말해서 `{}` => `val name: String = ""` 이렇게 하면 기본값으로 적용됩니다.
+{% include ad_content.html %}
+
+하지만 json에서 `"name": null`이 아니라 아예 빼버리고 name property에 **기본값을 설정**하면 잘 동작합니다.  다시 말해서 `{}` => `val name: String = ""` 이렇게 하면 기본값으로 적용됩니다.
 
 문제는 처리할 json에서 name 을 아예 전달 안 할지 null이라도 전달할지 알 수가 없기 때문에 이렇게만 처리하기에는 만족스럽지 못 합니다.
 
-검색해서 찾아봤더니 비슷한 이슈가 이미 있었습니다. [Using Kotlin Default Parameter Values when JSON value is null and Kotlin parameter type is Non-Nullable](https://github.com/FasterXML/jackson-module-kotlin/issues/130) . 
+검색해서 찾아봤더니 비슷한 이슈가 이미 있었습니다. ([Using Kotlin Default Parameter Values when JSON value is null and Kotlin parameter type is Non-Nullable](https://github.com/FasterXML/jackson-module-kotlin/issues/130)) 
 
 jackson-module-kotlin 2.10.1 부터 `KotlinModule`에 `nullisSameAsDefault` 속성이 추가 되었다고 합니다. default가 false이기 때문에 true로 변경하면 json에서 name을 전달하지 않은 경우와 null인 경우 모두 기본값으로 적용이 됩니다.
 ```kotlin
