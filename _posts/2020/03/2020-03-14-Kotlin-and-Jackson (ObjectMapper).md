@@ -81,8 +81,6 @@ data class SampleRequest @JsonCreator constructor(
 
 data class와 불변인 구조를 포기하고 싶지는 않은데 이것을 유지하려면 너무 많은 annotation을 사용해야 하는 것 같습니다. 이 방법밖에 없다면 정말 사용하기 싫을 텐데요. 다행히도 `jackson-module-kotlin` 모듈에서 `KotlinModule` 클래스를 통해서 문제를 해결할 수 있습니다. 
 
-> implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
 `ObjectMapper` 객체를 생성해서 모듈을 직접 지정할 수도 있고 Jackson에서 제공하는 확장 함수로 쉽게 사용할 수도 있습니다.
 
 ```kotlin
