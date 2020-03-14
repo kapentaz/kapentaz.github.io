@@ -1,6 +1,6 @@
 ---
 title: "JdbcTemplate Bulk Insert ID 조회"
-last_modified_at: 2020-03-08T19:17:00+00:00
+last_modified_at: 2020-03-14T19:17:00+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2020/03/2020-03-08-bulk.jpg
@@ -24,7 +24,7 @@ comments: true
 
 
 
-이전에 작성했던 [JPA Batch Insert with MySQL](https://kapentaz.github.io/jpa/JPA-Batch-Insert-with-MySQL/) 글에서 JDBC Batch와 JdbcTemplate을 이용한 bulk insert 처리하는 방법에 대해 잠깐 얘기한 적이 있었습니다. 이번에는 batch insert 이후에 생성된 데이터의 키값을 가져오는 방법에 대해서 확인해보겠습니다.
+이전에 작성했던 [**JPA Batch Insert with MySQL**](https://kapentaz.github.io/jpa/JPA-Batch-Insert-with-MySQL/) 글에서 JDBC Batch와 JdbcTemplate을 이용한 bulk insert 처리하는 방법에 대해 잠깐 얘기한 적이 있었습니다. 이번에는 batch insert 이후에 생성된 데이터의 키값을 가져오는 방법에 대해서 확인해보겠습니다.
 
 > Kotlin, Spring, MySQL 환경입니다. 
 

@@ -1,6 +1,6 @@
 ---
 title: "Hibernate에서 Custom ID 생성하기"
-last_modified_at: 2020-03-07T13:38:00+00:00
+last_modified_at: 2020-03-14T13:38:00+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2020/03/2020-03-07-head.jpg
@@ -78,7 +78,7 @@ class OrderNoGenerator: IdentifierGenerator {
 val orderNo: String = ""
 ```
 
-테스트 코드를 실행하면 '1583553989221246952'  형태로 값이 생성되는 것을 확인할 수 있습니다. ID가 아닌 곳에 값을 설정하고 싶다면 지난 포스트 [Hibernate에서 Custom Value 생성하기](https://kapentaz.github.io/jpa/Hibernate%EC%97%90%EC%84%9C-Custom-Value-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/)를 참고해 주세요.
+테스트 코드를 실행하면 '1583553989221246952'  형태로 값이 생성되는 것을 확인할 수 있습니다. ID가 아닌 곳에 값을 설정하고 싶다면 지난 포스트 [**Hibernate에서 Custom Value 생성하기**](https://kapentaz.github.io/jpa/Hibernate%EC%97%90%EC%84%9C-Custom-Value-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/)를 참고해 주세요.
 
 끝.
 
