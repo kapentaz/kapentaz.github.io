@@ -1,5 +1,5 @@
 ---
-title: "Kotlin and Jackson(ObjectMapper)"
+title: "Kotlin and Jackson (ObjectMapper)"
 last_modified_at: 2020-03-14T19:34:00+00:00
 header:
   show_overlay_excerpt: false
