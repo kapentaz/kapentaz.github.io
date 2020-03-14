@@ -26,7 +26,7 @@ comments: true
 kotlin 환경에서 Jackson 라이브러리를 사용할 때 객체 변환이 생각대로 잘 안될 수 있습니다. 어떤 경우가 있는지 어떻게 해결할 수 있는지 확인해 보겠습니다.
 
 ## 너무 거추장스러운 Annotation
-먼저 아래  json을 deserialize 하겠습니다.
+먼저 아래  json을 deserialize 해보겠습니다.
 
 ```json
 {
