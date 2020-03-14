@@ -13,7 +13,7 @@ tags:
   - Jackson
 category: #카테고리
   - Kotlin
-  - Json
+  - JSON
 toc: false
 toc_label: "Table Of Contents"
 toc_icon: "fal fa-list-alt"
