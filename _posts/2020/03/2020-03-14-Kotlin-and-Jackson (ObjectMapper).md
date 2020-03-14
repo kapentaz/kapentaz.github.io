@@ -116,7 +116,7 @@ SampleRequest(ticketNo=189, name=test, discount=5.5, couponNos=[1, 2], extraInfo
 
 먼저 json에서 ticketNo를 null로 바꾸고 실행해보면 오류는 발생하지 않고 0으로 설정됩니다. primitive 타입이라 null 일 수 없어서 그렇습니다. 
 
-> primitive 타입의 null 문제는 DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES 설정을 통해서 제어할 수 있습니다.
+> primitive 타입의 null 문제는 DeserializationFeature 설정을 통해서 제어할 수 있습니다.
 
  String 프로퍼티인 name 을 null로 바꾸고 실행하면 어떻게 될까요?
 ```json
