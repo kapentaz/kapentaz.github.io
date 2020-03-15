@@ -1,10 +1,5 @@
-# Group 1
-User-agent: Googlebot
+User-agent: *
 Disallow: /categories/
 Disallow: /year-archive/
 Disallow: /tags/
-
-# Group 2
-User-agent: *
 Allow: /
-
