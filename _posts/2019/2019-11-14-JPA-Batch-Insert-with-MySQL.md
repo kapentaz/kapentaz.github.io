@@ -1,6 +1,6 @@
 ---
 title: "JPA Batch Insert with MySQL"
-last_modified_at: 2019-11-14T22:01:00+00:00
+last_modified_at: 2020-03-15T10:01:00+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2019/2019-11-14-light_in_dark_sky.jpg
@@ -212,7 +212,7 @@ batch 모드로 잘 실행은 되었지만,  로그를 확인해보면 sequence�
 
 product_sequence 시퀀스 테이블에 다른 트랜잭션에서도 접근할 수 있기 때문에 **row-lock**을 위해 for update 문을 이용해서 조회하고, 설정한 allocationSize 값만큼 next_val을 증가시킵니다.
 
-시퀀스 생성은 saveAll을 통해서 insert 하려는 list size만큼을 미리 생성하기 때문에 list size 보다 지나치게 작은 사이즈로 설정하는 것은 성능상 문제가 될 수 있습니다. 만약 1로 설정하고, batch insert 하려는 size가 10,000건이라면 총 10,000번의 시퀀스 생성을 시도하게 됩니다. 이렇게 비효율적으로 동작하지 않도록 적절한 사이즈를 설정할 필요가 있습니다.
+시퀀스 생성은 saveAll을 통해서 insert 하려는 list size만큼을 미리 생성하기 때문에 list size 보다 지나치게 작은 사이즈로 설정하는 것은 성능상 문제가 될 수 있습니다. 만약 1로 설정하고, Batch Insert 하려는 size가 10,000건이라면 총 10,000번의 시퀀스 생성을 시도하게 됩니다. 이렇게 비효율적으로 동작하지 않도록 적절한 사이즈를 설정할 필요가 있습니다.
 
 > allocationSize의 기본값은 50입니다.
 
@@ -225,7 +225,7 @@ sequence를 얻기 위해 별도 트랜잭션에서 처리한다는 것은 seque
 row-lock으로 인해 동시성이 떨어지고, connection이 추가로 필요한 부분 등과 같은 이유로 TABLE 생성 방식을 권장하지 않는 글([Why you should never use the TABLE identifier generator with JPA and Hibernate](https://vladmihalcea.com/why-you-should-never-use-the-table-identifier-generator-with-jpa-and-hibernate/))도 있습니다. 그래도 각자 개발하는 환경과 요구사항이 다르기 때문에 본인 환경에 맞춰서 사용하면 좋을것 같습니다.
 
 ###  대안
-Table 방식을 이용하기는 어렵고 batch insert가 필요한 상황이라면 MyBatis 또는 JOOQ등을 사용해서 해결할 수 있습니다. 만약 batch insert를 위해서만 해당 라이브러리 추가나 설정이 부담스럽다면 Spring JDBC이용해서 처리할 수도 있습니다.
+Table 방식을 이용하기는 어렵고 Batch Insert가 필요한 상황이라면 MyBatis 또는 JOOQ등을 사용해서 해결할 수 있습니다. 만약 Batch Insert를 위해서만 해당 라이브러리 추가나 설정이 부담스럽다면 Spring JDBC이용해서 처리할 수도 있습니다.
 ```kotlin
 fun batchInsert(products: List<Product>) {
   products.chunked(50).forEach {
@@ -243,6 +243,8 @@ fun batchInsert(products: List<Product>) {
   }
 }
 ```
+
+Batch Insert 후에 ID 조회가 필요하다면 [**JdbcTemplate-Bulk-Insert-ID-조회**](https://kapentaz.github.io/jdbc/JdbcTemplate-Bulk-Insert-ID-%EC%A1%B0%ED%9A%8C) 포스트에서 방법을 확인할 수 있습니다.
 
 ## 결론
 
