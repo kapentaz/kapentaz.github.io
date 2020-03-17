@@ -25,7 +25,7 @@ comments: true
 
 Spring에서 문자나 숫자로 전달된 Request Parameter를 Enum 타입으로 처리하는 방법과 custom conveter를 만드려면 어떻게 해야 하는지 확인해보겠습니다. 
 
-## StringToEnumConverterFactory
+### StringToEnumConverterFactory
 
 데이터를 검색할 때 조건을 구분하기 위한 `SearchType` 이라는 Enum 클래스가 있습니다. "제목", "생성일" 그리고 "이름" 이렇게 3가지 종류의 검색 타입을 구분할 수 있도록 만들었습니다.
 ```java
