@@ -49,7 +49,7 @@ public class EnumController {
     }
 }
 ```
-`/search?searchType=NAME&keyword=이름` 이렇게 호출 하면 전달한 파라미터 그대로 로그가 생기는걸 확인할 수 있습니다.
+**`/search?searchType=NAME&keyword=이름`** 이렇게 호출 하면 전달한 파라미터 그대로 로그가 생기는걸 확인할 수 있습니다.
 ```
 searchType: NAME, keyword: 이름
 ```
@@ -143,7 +143,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
     }
 }
 ```
-이제 `/search?searchType=SEARCH001&keyword=이름`  이렇게 다시 호출하면 새로 정의한 code로 호출하면 기존처럼 로그가 생성되는걸 확인할 수 있습니다.
+이제 **`/search?searchType=SEARCH001&keyword=이름`**  이렇게 다시 호출하면 새로 정의한 code로 호출하면 기존처럼 로그가 생성되는걸 확인할 수 있습니다.
 ```
 searchType: TITLE, keyword: 이름
 ```
