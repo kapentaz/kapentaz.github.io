@@ -143,7 +143,7 @@ jackson-module-kotlin 2.10.1 부터 `KotlinModule`에 `nullisSameAsDefault` 속�
 ```kotlin
 ObjectMapper().registerModule(KotlinModule(nullisSameAsDefault = true))
 ```
-> [jackson-module-kotlin:2.10.1]([https://github.com/FasterXML/jackson-module-kotlin/compare/jackson-module-kotlin-2.10.1...master](https://github.com/FasterXML/jackson-module-kotlin/compare/jackson-module-kotlin-2.10.1...master))에서 "Fixed issue #130 Default Parameter Values when JSON value is null (#259)" 을 확인할 수 있습니다.
+> [jackson-module-kotlin:2.10.1](https://github.com/FasterXML/jackson-module-kotlin/compare/jackson-module-kotlin-2.10.1...master)에서 "Fixed issue #130 Default Parameter Values when JSON value is null (#259)" 을 확인할 수 있습니다.
 
 nullisSameAsDefault 속성을 이용하면 나머지 다른 타입의 property도 모두 동일한 상황일 때 기본값으로 잘 동작합니다.
 
