@@ -29,9 +29,9 @@ comments: true
 
 Spring의 ConverterFactory는 Parameter를 대상으로 실행하기 때문에 JSON을 객체로 변환하는 deserialize 역할은 Jackson 라이브러리를 이용합니다. 그래서 Jackson의 `ObjectMapper`에서 Enum 변환 처리를 해줘야 합니다. 
 
-다행히 Jackson에서는 기본으로 `EnumDeserializer`가 있고 이미 설정되어 있어서 Enum의 name으로 변환하는 것은 따로 신경 쓸 부분이 없습니다. 잘 되는지 확인 한번 해보겠습니다.
+다행히 Jackson에서는 기본으로 `EnumDeserializer`가 있고 이미 설정되어 있어서 Enum의 name으로 변환하는 것은 따로 신경 쓸 부분이 없습니다. 그러면 잘 되는지 확인 한번 해보겠습니다.
 
-아래와 같은 JSON이 있고 type은 `NOTICE`, `NORMAL` 2가지가 있고 값이 있어서 Enum 클래스를 정의해서 request 모델을 만들겠습니다.
+아래와 같은 JSON이 있고 type은 `NOTICE`, `NORMAL` 2가지 값을 가지는 Enum 클래스를 정의해서 request 모델을 만들겠습니다.
 ```json
 {  
   "type": "NOTICE",  
