@@ -23,7 +23,7 @@ comments: true
 ---
 
 
-지난번 [**Enum and @RequestParam in Spring**](https://kapentaz.github.io/java/spring/Enum-and-@RequestParam-in-Spring/)에 이어서 이번에는 JSON으로 전달된 Request Body에서 Enum 타입을 처리하려면 어떻게 해야 하는지 확인해보겠습니다. 
+지난번에 작성한 [**Enum and @RequestParam in Spring**](https://kapentaz.github.io/java/spring/Enum-and-@RequestParam-in-Spring/)에 이어서 이번에는 JSON으로 전달된 Request Body에서 Enum 타입을 처리하려면 어떻게 해야 하는지 확인해보겠습니다. 
 
 ## EnumDeserializer
 
