@@ -102,7 +102,7 @@ Content-Type: application/json
 Enum의 name이 아니라 별도로 정의한 code 값으로 처리하고 싶을 때는 `@JsonCreator`와 `@JsonValue`를 이용하는 2가지 방법이 있습니다.
 
 ### @JsonCreator 
-`@JsonCreator`를 static method에 설정하는 방법입니다. Enum은 JVM 내에서 유일한 객체로 만들어지기 때문에 Enum의 생성자에 `@JsonCreator`을 설정한다고 해도  이미 객체가 만들어진 이후이기 때문에 제대로 동작하지 않습니다.
+`@JsonCreator`를 static method에 설정하는 방법입니다. 참고로 Enum은 JVM 내에서 유일한 객체로 만들어지기 때문에 Enum의 생성자에 `@JsonCreator`을 설정한다고 해도  이미 객체가 만들어진 이후이기 때문에 제대로 동작하지 않습니다.
 ```java
 @Getter
 @RequiredArgsConstructor
