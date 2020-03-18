@@ -89,9 +89,11 @@ Content-Type: application/json
   "content": "내용"
 }
 
+{% raw %}
 > {% client.test("status", function() {
   client.assert(response.status === 200, "OK");
 });
+{% endraw %}
 %}
 ```
 
