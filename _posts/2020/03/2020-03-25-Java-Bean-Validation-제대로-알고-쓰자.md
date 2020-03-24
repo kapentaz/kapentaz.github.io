@@ -53,6 +53,8 @@ HV000183: Unable to initialize 'javax.el.ExpressionFactory'.
 Check that you have the EL dependencies on the classpath, or use ParameterMessageInterpolator instead
 ```
 
+{% include ad_content.html %}
+
 ## Validation
 
 Validation 처리를 위해서 직접 코드로 할 수도 있겠지만 Jakarta Bean Validation을 이용하면 기본 제공 Annotation만 이용하더라도 심플하게 처리할 수 있습니다. 참고로 Hibernate Validator에서도 몇 가지 Annotation을 추가로 제공합니다.
@@ -180,6 +182,9 @@ public class Product {
     private final List<Option> options;
 }
 ```
+
+{% include ad_content.html %}
+
 ### Parameter
 
 Method Parameter를 대상으로 Validation을 실행할 수도 있습니다.  `Method` reflection을 이용하는 방법인데 특정 파라미터의 Validation 결과를 확인할 수 있습니다. 참고로 실제 메서드를 실행하는 것은 아닙니다. Reflection 정보로 파라미터가 유효한지 확인만 합니다.
@@ -287,6 +292,8 @@ Set<ConstraintViolation<Calculator>> violations =
 
 `ExecutableValidator`의 `validateConstructorReturnValue()`와 `validateConstructorParameters()` 메서드를 이용하면 생성자에서도 동일하가 파라미터와  return 값을 Validation 할 수 있습니다.
 
+{% include ad_content.html %}
+
 ## Message 
 
 Validation 실행 결과를 출력한 내용을 보면  `ConstraintViolationImpl`에서 4가지 주요 항목을 확인할 수 있습니다. **propertyPath**, **rootBeanClass**, **messageTemplate** 그리고 **interpolatedMessage** 
@@ -369,6 +376,7 @@ javax.validation.constraints.Positive.message=상품번호는 0보다 큰수를 
 
 Hibernate Validator는 Message Property 처리를 위해 모듈 내에 포함되어 있는`org.hibernate.validator.ValidationMessages` 파일명과 Application Classpath에서 `ValidationMessages` 이름의 Message Property를 찾습니다. 사용자가 정의한 `ValidationMessages`에 messageTemplate이 존재하면 그걸 먼저 사용하고 없다면 기본으로 정의한 Message Property를 사용합니다.
 
+{% include ad_content.html %}
 
 ## Custom Validator
 
