@@ -305,6 +305,7 @@ Hibernate Validator 모듈에서는 기본 템플릿 key에 대한 Message Prope
 Validator 객체를 생성하기 전에 Locale 설정을 변경하면 언어별 메시지를 확인할 수 있습니다. 
 
 > 지금 사용하고 있는 컴퓨터 기본 설정이 영어로 되어 있어서 한국어로 보려고 Locale 변경을 했습니다.
+
 ```java
 Locale.setDefault(KOREA);  
   
@@ -314,6 +315,7 @@ Validator validator = validatorFactory.getValidator();
 Set<ConstraintViolation<Product>> validate = validator.validate(product);  
 validate.forEach(System.out::println);
 ```
+
 ```
 ConstraintViolationImpl{interpolatedMessage='올바른 URL이어야 합니다', propertyPath=options[0].imageUrl, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{org.hibernate.validator.constraints.URL.message}'}
 ConstraintViolationImpl{interpolatedMessage='0보다 커야 합니다', propertyPath=productNo, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{javax.validation.constraints.Positive.message}'}
