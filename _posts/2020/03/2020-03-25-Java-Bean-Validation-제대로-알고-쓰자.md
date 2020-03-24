@@ -93,22 +93,22 @@ Annotation 이름만 봐도 어떤 역할을 할지 충분히 예측이 가능�
 이제 위에서 정의한 `Product` 객체를 생성해서 Validation을 실행해보겠습니다.
 ```java
 public static void main(String[] args) {
-  	// Product 객체 생성
+    // Product 객체 생성
     Product product = new Product(0, "화장품", 13000, BigDecimal.valueOf(5.5),
             LocalDateTime.now().plusDays(5),
             LocalDateTime.now().plusDays(10),
             LocalDate.now().minusMonths(3));
 
-  	// Validator 생성
+    // Validator 생성
     ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
     Validator validator = validatorFactory.getValidator();
 
-  	// validation 및 출력
+    // validation 및 출력
     Set<ConstraintViolation<Product>> validate = validator.validate(product);
     validate.forEach(System.out::println);
-  	
-  	// 예외로 바로 처리할 수도 있습니다.
-  	// throw new ConstraintViolationException(validate);
+    
+    // 예외로 바로 처리할 수도 있습니다.
+    // throw new ConstraintViolationException(validate);
 }
 ```
 ```
@@ -130,7 +130,7 @@ Annotation을 field에 적용할 수 있지만 getter에도 적용할 수 있습
 @RequiredArgsConstructor
 public class Product {
   
-		....
+    ....
 		
     /**
      * 종료일이 시작일보다 미래인지 확인
@@ -195,15 +195,15 @@ public class Calculator {
 ```
 ```java
 public static void main(String[] args) throws NoSuchMethodException {
-  	// ExecutableValidator 생성
+    // ExecutableValidator 생성
     ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     ExecutableValidator validator = factory.getValidator().forExecutables();
 
-  	// Calculator 클래스의 calculate(..) 메서드 정보 생성
+    // Calculator 클래스의 calculate(..) 메서드 정보 생성
     Calculator calculator = new Calculator();
     Method method = Calculator.class.getMethod("calculate", int.class, int.class);
   
-  	// 메서드 파라미터 validation. calculate(..) 메서드를 실행하지는 않음
+    // 메서드 파라미터 validation. calculate(..) 메서드를 실행하지는 않음
     Set<ConstraintViolation<Calculator>> violations = validator.validateParameters(
             calculator, method, new Object[] { 900, 4_000 });
 
@@ -261,13 +261,13 @@ public static void main(String[] args) {
     ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     ExecutableValidator validator = factory.getValidator().forExecutables();
 
-  	// Proxy 객체 생성
+    // Proxy 객체 생성
     Calculator calculatorProxy = (Calculator) Proxy.newProxyInstance(
             CalculatorImpl.class.getClassLoader(),
             new Class[]{Calculator.class},
             new ValidationInvocationHandler(validator, new CalculatorImpl()));
 
-  	// proxy를 통해서 파라미터 검증 후 calculate(..) 메서드 실행
+    // proxy를 통해서 파라미터 검증 후 calculate(..) 메서드 실행
     calculatorProxy.calculate(1000, 4000);
 }
 ```
