@@ -187,7 +187,7 @@ public class Product {
 
 ### Parameter
 
-Method Parameter를 대상으로 Validation을 실행할 수도 있습니다.  `Method` reflection을 이용하는 방법인데 특정 파라미터의 Validation 결과를 확인할 수 있습니다. 참고로 실제 메서드를 실행하는 것은 아닙니다. Reflection 정보로 파라미터가 유효한지 확인만 합니다.
+Method Parameter를 대상으로 Validation을 실행할 수도 있습니다.  `Method` Reflection을 이용하는 방법인데 특정 파라미터의 Validation 결과를 확인할 수 있습니다. 참고로 실제 메서드를 실행하는 것은 아닙니다. Reflection 정보로 파라미터가 유효한지 확인만 합니다.
 
 ```java
 public class Calculator {
