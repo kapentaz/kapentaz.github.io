@@ -291,7 +291,7 @@ Set<ConstraintViolation<Calculator>> violations = validator.validateReturnValue(
 
 ### Constructor
 
-`ExecutableValidator`의 `validateConstructorReturnValue()`와 `validateConstructorParameters()` 메서드를 이용하면 생성자에서도 동일하가 파라미터와  return 값을 Validation 할 수 있습니다.
+`ExecutableValidator`의 `validateConstructorReturnValue()`와 `validateConstructorParameters()` 메서드를 이용하면 생성자에서도 동일하가 파라미터와 return 값을 Validation 할 수 있습니다.
 
 {% include ad_content.html %}
 
