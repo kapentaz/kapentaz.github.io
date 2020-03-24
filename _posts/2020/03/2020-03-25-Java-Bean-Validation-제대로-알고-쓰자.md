@@ -57,7 +57,7 @@ Check that you have the EL dependencies on the classpath, or use ParameterMessag
 
 ## Validation
 
-Validation 처리를 위해서 직접 코드로 할 수도 있겠지만 Jakarta Bean Validation을 이용하면 기본 제공 Annotation만 이용하더라도 심플하게 처리할 수 있습니다. 참고로 Hibernate Validator에서도 몇 가지 Annotation을 추가로 제공합니다.
+Validation 처리를 위해서 직접 코드로 할 수도 있겠지만 Jakarta Bean Validation을 이용하면 기본 제공 Annotation만 이용하더라도 심플하게 처리할 수 있습니다. 참고로 Hibernate Validator에서도 몇 가지 Annotation을 [**추가로 제공**](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#validator-defineconstraints-hv-constraints)합니다.
 
 ### Field 적용
 Annotation을 이용하는 방법에 대해서 살펴보겠습니다. `Product`라는 클래스가 있고 객체에서 가질 수 있는 값에 대한 검증 정보를 아래와 같이 설정할 수 있습니다.
@@ -153,7 +153,7 @@ ConstraintViolationImpl{interpolatedMessage='must be true', propertyPath=validSa
 ```
 눈치 빠른 분들은 아시겠지만 `isValidSalePeriod()` 메서드를 보면 필드값을 리턴하는 게 아니라 `saleEndAt`이 `saleStartAt` 보다 미래인지 확인하는 용도로 사용했습니다. 이 방법을 이용하면 Cross Field Validation 처리를 할 수 있습니다.
 
-위 실행 결과 메시지를 보면  `must be true`라고 되어 있는데 좀 더 상세하게 메시지를 표현하고 싶다면 직접 message를 정의해서 처리할 수 있습니다.
+위 실행 결과 메시지를 보면  `must be true`라고 되어 있는데 좀 더 상세하게 메시지를 표현하고 싶다면 직접 Message를 정의해서 처리할 수 있습니다. Message 처리와 관련해서는 조금 뒤에 자세히 알아보겠습니다. 
 
 ### Nested
 
