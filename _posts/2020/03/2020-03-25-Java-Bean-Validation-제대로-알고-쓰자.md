@@ -286,8 +286,7 @@ Exception in thread "main" javax.validation.ConstraintViolationException: calcul
 `validateReturnValue()` 메서드를 이용하면 return value도 validation 할 수 있지만 이것도 실제 메서드를 실행하는 것은 아닙니다.
 
 ```java
-Set<ConstraintViolation<Calculator>> violations =   
-    validator.validateReturnValue(calculator, method, 100);
+Set<ConstraintViolation<Calculator>> violations = validator.validateReturnValue(calculator, method, 100);
 ```
 
 `ExecutableValidator`의 `validateConstructorReturnValue()`와 `validateConstructorParameters()` 메서드를 이용하면 생성자에서도 동일하가 파라미터와  return 값을 Validation 할 수 있습니다.
