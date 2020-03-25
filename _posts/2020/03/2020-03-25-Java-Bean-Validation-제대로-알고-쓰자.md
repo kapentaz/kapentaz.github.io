@@ -22,7 +22,7 @@ comments: true
 ---
 
 
-개발하면서 제일 중요하게 생각하는 것 중에 하나가 validation입니다. 개발하고 운영하다 보면 클라이언트로부터 입력받은 값의 오류로 발생하는 장애가 꽤 많습니다. 잘 못된 값을 전달받아 즉시 오류가 발생하면 그나마 다행입니다. 오류 없이 그대로 데이터가 저장이나 수정되고 그 데이터로 다른 작업을 진행하면서 오류가 발생하기도 합니다. 그런 경우에는 어디서부터 잘못되었는지 원인 파악도 힘들어집니다.
+개발하면서 제일 중요하게 생각하는 것 중에 하나가 validation입니다. 개발하고 운영하다 보면 클라이언트로부터 입력받은 값의 오류로 발생하는 장애가 꽤 많습니다. 잘못된 값을 전달받아 즉시 오류가 발생하면 그나마 다행입니다. 오류 없이 그대로 데이터가 저장이나 수정되고 그 데이터로 다른 작업을 진행하면서 오류가 발생하기도 합니다. 그런 경우에는 어디서부터 잘못되었는지 원인 파악도 힘들어집니다.
 
 이렇게 중요한 작업 중의 하나인 validation을 위해 Java에서는 [Jakarta Bean Validation](https://beanvalidation.org/)라는 Specification을 이용할 수 있습니다. Annotation을 이용해서 Validation을 처리할 수 있는 방법인데요. 이 Specification을 구현한 모듈이 [Hibernate Validator](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#validator-gettingstarted-createproject)입니다.  
 
