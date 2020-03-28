@@ -114,9 +114,9 @@ public static void main(String[] args) {
 }
 ```
 ```
-ConstraintViolationImpl{interpolatedMessage='size must be between 4 and 100크기가 4에서 100 사이여야 합니다', propertyPath=', propertyPath=, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{javax.validation.constraints..message}'}
-ConstraintViolationImpl{interpolatedMessage='과거 또는 현재의 날짜여야 합니다', propertyPath=productNosaleStartAt, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{javax.validation.constraints.Positive.message}'}
-ConstraintViolationImpl{interpolatedMessage='0보다 커야 합니다', propertyPath=productNo, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{javax.validation.constraints.PastOrPresentositive.message}'}
+ConstraintViolationImpl{interpolatedMessage='must be greater than 0', propertyPath=productNo, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{javax.validation.constraints.Positive.message}'}
+ConstraintViolationImpl{interpolatedMessage='must be a date in the past or in the present', propertyPath=saleStartAt, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{javax.validation.constraints.PastOrPresent.message}'}
+ConstraintViolationImpl{interpolatedMessage='size must be between 4 and 100', propertyPath=name, rootBeanClass=class com.validation.ch01.Product, messageTemplate='{javax.validation.constraints.Size.message}'}
 ```
 
 Factory로 Validator 생성하고 검증 대상을 `validate()` 메서드로 실행하면 그 결과를  얻을 수 있습니다. Validation을 통과하지 못했다고 해서 바로 Exception이 발생하지는 않습니다. 
