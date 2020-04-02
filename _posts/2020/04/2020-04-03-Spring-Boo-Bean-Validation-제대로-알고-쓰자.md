@@ -51,7 +51,7 @@ Spring 내부에서 생성된 프록시 객체를 통해서 `@RquestParam`과 `@
 public class ProductRestController {
 
 	@GetMapping(value = "/products")
-	public ResponseEntity<Void> search(@Min(1) @RequestParam(value = "page") int page,
+    public ResponseEntity<Void> search(@Min(1) @RequestParam(value = "page") int page,
                                        @Min(1) @Max(100) @RequestParam(value = "size") int size,
                                        @Range(min = 1, max = 10) @RequestParam(value = "keyword") String keyword) {
         // page는 1보다 크고 size는 1~100 사이
@@ -61,8 +61,8 @@ public class ProductRestController {
 
 	@GetMapping(value = "/products/{productNo}")
 	public ResponseEntity<Void> getProduct(@Min(1) @PathVariable("productNo") int productNo) {
-	    // productNo는 최소 1이상
-		return ResponseEntity.noContent().build();
+        // productNo는 최소 1이상
+        return ResponseEntity.noContent().build();
 	}
 }
 ```
