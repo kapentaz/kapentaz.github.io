@@ -147,12 +147,12 @@ Spring에서는 오류 메시지 코드관리르 위해 `MessageCodesResolver` �
 public static void main(String[] args) {
 	DefaultMessageCodesResolver codesResolver = new DefaultMessageCodesResolver();
 	//codesResolver.setMessageCodeFormatter(Format.POSTFIX_ERROR_CODE);
-    String[] codes = codesResolver.resolveMessageCodes(
-            "Min", "productRequest", "price", int.class);
+	String[] codes = codesResolver.resolveMessageCodes(
+			"Min", "productRequest", "price", int.class);
 
-    for (String code : codes) {
-        System.out.println(code);
-    }
+	for (String code : codes) {
+		System.out.println(code);
+	}
 }
 ```
 위 코드를 실행하면 애노테이션의 이름이 제일 앞에 있는 구조로 생성됩니다.
