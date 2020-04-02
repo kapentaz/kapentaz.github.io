@@ -226,7 +226,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 	private final MessageSource messageSource;
-	
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 			MethodArgumentNotValidException ex, HttpHeaders headers,
@@ -236,15 +236,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		for (ObjectError error : allErrors) {
 			String message = Arrays.stream(Objects.requireNonNull(error.getCodes()))
 					.map(c -> {
+						Object[] arguments = error.getArguments();
+						Locale locale = LocaleContextHolder.getLocale();
 						try {
-							return messageSource.getMessage(c, error.getArguments(),
-									LocaleContextHolder.getLocale());
+							return messageSource.getMessage(c, arguments, locale);
 						} catch (NoSuchMessageException e) {
 							return null;
 						}
 					}).filter(Objects::nonNull)
 					.findFirst()
-					.orElse(error.getDefaultMessage());	// 코드를 찾지 못할 경우 기본 메시지 사용.
+					// 코드를 찾지 못할 경우 기본 메시지 사용.
+					.orElse(error.getDefaultMessage());
 
 			log.error("error message: {}", message);
 		}
