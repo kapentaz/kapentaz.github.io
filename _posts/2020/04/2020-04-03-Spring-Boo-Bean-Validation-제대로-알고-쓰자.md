@@ -53,10 +53,10 @@ public class ProductRestController {
 	@GetMapping(value = "/products")
 	public ResponseEntity<Void> search(@Min(1) @RequestParam(value = "page") int page,
                                        @Min(1) @Max(100) @RequestParam(value = "size") int size,
-	                                   @Range(min = 1, max = 10) @RequestParam(value = "keyword") String keyword) {
-	    // page는 1보다 크고 size는 1~100 사이
+                                       @Range(min = 1, max = 10) @RequestParam(value = "keyword") String keyword) {
+        // page는 1보다 크고 size는 1~100 사이
         // keyword는 글자수 1~10 사이
-		return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();
 	}
 
 	@GetMapping(value = "/products/{productNo}")
