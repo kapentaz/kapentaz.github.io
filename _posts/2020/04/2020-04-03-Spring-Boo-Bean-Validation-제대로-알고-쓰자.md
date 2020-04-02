@@ -71,6 +71,8 @@ public class ProductRestController {
 
 실제 메서드 Validation 처리가 이루어지는 코드는 `MethodValidationInterceptor`에서 확인할 수 있습니다.
 
+{% include ad_content.html %}
+
 ## ConstraintViolationException
 
 위와 같이 메서드 파라미터나 리턴 값에 문제가 있으면 `ConstraintViolationException` 오류가 발생합니다. Spring에서는 이 오류를 기본적으로 HTTP 500 에러로 처리하기 때문에 사용자 요청 오류인 HTTP 400으로 변경하고 싶다면  별도로 변경처리를 해야 합니다.
@@ -180,6 +182,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 	}
 }
 ```
+
+{% include ad_content.html %}
 
 ## Message
 
