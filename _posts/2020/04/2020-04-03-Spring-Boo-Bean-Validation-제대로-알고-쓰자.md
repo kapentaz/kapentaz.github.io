@@ -265,6 +265,7 @@ error message: 상품가격은 0 ~ 99,999,999 사이만 입력할 수 있습니�
 
 두 번째로 왜 argument를 name이 아니고 index로 처리해야 할까요? name으로 처리하는 것은 Hibernate의 `AbstractMessageInterpolator`에서 처리를 하는데 위 예제 코드처럼 Spring에서 별도 메시지로 처리할 경우 이Hibernate의 MessageInterpolator를 사용하지 않기 때문에 결국 Java MessageFormat에 따라 index로 동작하게 됩니다.
 
+{% include ad_content.html %}
 
 ### Message argument를 name으로 처리하기
 
