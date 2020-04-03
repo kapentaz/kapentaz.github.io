@@ -285,7 +285,7 @@ productRequest.price.Range=상품가격은 ${validatedValue}은 사용할 수 �
 어떻게 보면 그냥 code 기준으로 메시지를 처리하고 index로 argument를 처리하는게 제일 편한 방법일 수도 있겠습니다.
 
 ### name 기준으로 치환하는 클래스 구현
-ConstraintViolationException의 경우에는 MethodArgumentNotValidException과 다르게 바인딩 정보가 없기 때문에 code를 직접 추출해서 만들어야 합니다. 
+`ConstraintViolationException`의 경우에는 `MethodArgumentNotValidException`과 다르게 바인딩 정보가 없기 때문에 code를 직접 추출해서 만들어야 합니다. 
 
 간단하게 참고할 수 있도록 code를 추출하고 name을 찾아서 치환하는 클래스를 하나 만들어 보겠습니다.
 
@@ -338,6 +338,7 @@ public class ViolationMessageResolver {
 			} catch (NoSuchMessageException ignored) {
 			}
 		}
+		// code 로 메시지를 찾지 못한 경우 기본값 사용
 		if (result == null) {
 			result = violation.getMessage();
 		}
