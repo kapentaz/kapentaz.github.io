@@ -265,18 +265,87 @@ error message: 상품가격은 0 ~ 99,999,999 사이만 입력할 수 있습니�
 
 두 번째로 왜 argument를 name이 아니고 index로 처리해야 할까요? name으로 처리하는 것은 Hibernate의 `AbstractMessageInterpolator`에서 처리를 하는데 위 예제 코드처럼 Spring에서 별도 메시지로 처리할 경우 이Hibernate의 MessageInterpolator를 사용하지 않기 때문에 결국 Java MessageFormat에 따라 index로 동작하게 됩니다.
 
-만약  name 기준으로 처리하고 싶다면 Hibernate Validator 기본인 classpath의ValidationMessages.properties 파일에 메시지를 추가하고 
-```properties
-productRequest.price.Range=상품가격 ${validatedValue}은 {min} ~ {max} 범위에 포함되지 않습니다.
-```
-별도로 정의했던 Spring Bean messageSource 와 validator를 제거하고 Spring Boot 기본설정으로만 하면 아래와 같은 메시지를 결과를 받을 수 있습니다.
-```java
-@Range(min = 0, max = 99_999_999, message = "{productRequest.price.Range}")  
+
+### Message argument를 name으로 처리하기
+
+Validation 애노테이션 message에 직접 key 형식으로 등록하는 방법입니다.  애노테이션이 message 속성에 `{..}`형식으로 입력하면 Hibernate MessageInterpolator를 통해서 처리하기 때문에 name 방식으로 properties를 사용할 수 있습니다.
+```kotlin
+@Range(min = 0, max = 99_999_999, message = "{productRequest.price.Range}")
 private final int price;
+````
+```properties
+productRequest.price.Range=상품가격은 ${validatedValue}은 사용할 수 없습니다. {min} ~ {max} 사이만 입력할 수 있습니다.
+````
 ```
+상품가격은 -1은 사용할 수 없습니다. 0 ~ 99999999 사이만 입력할 수 있습니다.
 ```
-error message: 상품가격 -1은 0 ~ 99999999 범위에 포함되지 않습니다.
+
+문제는 이렇게 필드마다 message를 지정하는 것은 번거로운 작업이 될 수 있습니다. 조금 불편함을 감수하고 사용하던지 아니면 메시지를 가져온 다음에 직접 name 기준으로 치환하는 클래스를 만들어야 합니다. 
+
+어떻게 보면 그냥 code 기준으로 메시지를 처리하고 index로 argument를 처리하는게 제일 편한 방법일 수도 있겠습니다.
+
+### name 기준으로 치환하는 클래스 구현
+ConstraintViolationException의 경우에는 MethodArgumentNotValidException과 다르게 바인딩 정보가 없기 때문에 code를 직접 추출해서 만들어야 합니다. 
+
+간단하게 참고할 수 있도록 code를 추출하고 name을 찾아서 치환하는 클래스를 하나 만들어 보겠습니다.
+
+```java
+/**
+ * MessageCodesResolver 를 통해서 생성된 코드를 이용해서
+ * properties 파일의 argument 를 name 기준으로 치환할 수 있는 클래스.
+ * <pre>
+ * 상품가격은 {validatedValue}은 사용할 수 없습니다. {min} ~ {max} 사이만 입력할 수 있습니다.
+ * => 상품가격은 -1은 사용할 수 없습니다. 0 ~ 99999999 사이만 입력할 수 있습니다.
+ * </pre>
+ */
+public class ViolationMessageResolver {
+	private final MessageSource messageSource;
+	private final MessageCodesResolver codesResolver;
+
+	public ViolationMessageResolver(MessageSource messageSource,
+	                                MessageCodesResolver codesResolver) {
+		this.messageSource = messageSource;
+		this.codesResolver = codesResolver;
+	}
+
+	public String message(ConstraintViolation<?> violation) {
+		ConstraintDescriptor<?> descriptor = violation.getConstraintDescriptor();
+		Map<String, Object> attributes = descriptor.getAttributes();
+
+		String annotationName = descriptor.getAnnotation().annotationType().getSimpleName();
+		String rootBeanName = violation.getRootBeanClass().getSimpleName();
+		rootBeanName = rootBeanName.substring(0, 1).toLowerCase() + rootBeanName.substring(1);
+		String path = violation.getPropertyPath().toString();
+
+		// 애노테이션, 클래스, 필드 조합으로 코드 생성
+		String[] codes = codesResolver.resolveMessageCodes(
+				annotationName, rootBeanName, path, null);
+
+		String result = null;
+		for (String code : codes) {
+			try {
+				// 코드로 메시지 조회
+				result = messageSource.getMessage(code, null, Locale.getDefault());
+				for (Map.Entry<String, Object> es : attributes.entrySet()) {
+					// 애노테이션 attribute 를 기준으로 {...} 형태의 메시지 치환.
+					result = result.replace(
+							"{" + es.getKey() + "}", es.getValue().toString());
+				}
+
+				// 검증 대상값 치환
+				result = result.replace("{validatedValue}",
+						violation.getInvalidValue().toString());
+			} catch (NoSuchMessageException ignored) {
+			}
+		}
+		if (result == null) {
+			result = violation.getMessage();
+		}
+		return result;
+	}
+}
 ```
+
 
 ## @Valid와 @Validated 차이
 
