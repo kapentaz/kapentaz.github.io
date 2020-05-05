@@ -1,5 +1,6 @@
 ---
 title: "@ManyToOne의 N+1 문제 원인 및 해결"
+published: false
 last_modified_at: 2020-05-05T17:55:00+00:00
 header:
   show_overlay_excerpt: false
@@ -158,7 +159,7 @@ employee를 먼저 조회한 후에 **관계 설정된 company 정보를 얻기 
 {% include ad_content.html %}
 
 ### N + 1
-위 예제 같이 한 employee가 아닌 여러 employee를 조회하고 그 company 정보가 여러개일 경우 그 수만큼 추가 select 쿼리가 실행됩니다. 즉 N+1 문제가 발생하게 됩니다.  이 문제는 위에서 말한대로 `@ManyToOne`관계에서 FetchType.LAZY으로 설정 한다고 해도 달라지는건 없습니다.  
+위 예제 같이 한 employee가 아닌 여러 employee를 조회하고 그 company 정보가 여러개일 경우 그 수만큼 추가 select 쿼리가 실행됩니다. 즉 N+1 문제가 발생하게 됩니다.  이 문제는 위에서 말한대로 @ManyToOne 관계에서 FetchType.LAZY으로 설정 한다고 해도 달라지는건 없습니다.  
 
 해결 방법으로는 fetch join 또는 entity graphs가 있는데 fetch join에 관해서 확인해보겠습니다. 
 
@@ -197,6 +198,8 @@ inner join
     company company1_ 
         on employee0_.company_no=company1_.company_no
 ```
+
+Entity query fetching
 
 끝.
 
