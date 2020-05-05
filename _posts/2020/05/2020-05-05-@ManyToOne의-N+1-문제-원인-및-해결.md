@@ -155,6 +155,8 @@ where
 
 employee를 먼저 조회한 후에 **관계 설정된 company 정보를 얻기 위해 추가 쿼리가 실행되는 것**입니다. Hibernate는 Collection 관계가 아니라면 정보를 얻기 위해 무조건 추가 쿼리를 실행합니다. 다만 employee의 company_no가 null 일 경우에는 조회할 데이터 자체가 없으므로 추가 쿼리 실행을 하지 않습니다.
 
+{% include ad_content.html %}
+
 ### N + 1
 위 예제 같이 한 employee가 아닌 여러 employee를 조회하고 그 company 정보가 여러개일 경우 그 수만큼 추가 select 쿼리가 실행됩니다. 즉 N+1 문제가 발생하게 됩니다.  이 문제는 위에서 말한대로 `@ManyToOne`관계에서 FetchType.LAZY으로 설정 한다고 해도 달라지는건 없습니다.  
 
