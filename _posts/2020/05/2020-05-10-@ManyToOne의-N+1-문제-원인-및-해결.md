@@ -22,7 +22,7 @@ comments: true
 ---
 
 
-# @ManyToOne의 N+1 문제 원인 및 해결
+
 
 Hibernate에서 @ManyToOne의 FetchType을 LAZY로 설정해도 추가 쿼리가 실행되는 이유와 N+1 현상이 발생하는 과정을 확인해보겠습니다.
 
