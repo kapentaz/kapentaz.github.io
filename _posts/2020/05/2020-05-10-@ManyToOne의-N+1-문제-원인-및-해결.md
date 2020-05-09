@@ -1,6 +1,6 @@
 ---
 title: "@ManyToOne의 N+1 문제 원인 및 해결"
-last_modified_at: 2020-05-10T02465:00+00:00
+last_modified_at: 2020-05-10T02:52+00:00
 header:
   show_overlay_excerpt: false
   overlay_image: /assets/images/post/2020/05/2020-05-10-title.jpg
