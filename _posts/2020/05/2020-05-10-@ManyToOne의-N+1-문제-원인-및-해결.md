@@ -140,6 +140,8 @@ where
 
 이런 현상이 생기는 이유는 예제에서 JPQL로 `Employee`만 조회했고 조회한 이후에  @ManyToOne 관계를 확인하게 되는데 FetchType이 EAGER이기 때문에 뒤늦게   `Company` 를 가져오기 위해 추가 쿼리가 실행되는 것입니다.
 
+{% include ad_content.html %}
+
 ## FetchType.LAZY
 
 만약 FetchType을 LAZY로 변경하게 되면 이런 현상은 발생하지 않습니다.  `Company` 를 proxy 객체로 가지고 있고 필요한 시점에 쿼리를 호출하기 때문입니다. 
@@ -167,10 +169,10 @@ entityManager.createQuery(
 
 ### Kotlin All-open plugin
 
-kotlin은 기본이 final 클래스입니다. LAZY 동작이 정상적으로 되려면 Hibernate가 프록시 객체 생성할 수 있도록 Entity는 open 클래스 이어야 합니다. 직접 하나 하나 지정할 수도 있고 All-open 플러그인을 이용해서 한번에 처리할 수 있습니다. All-open에 대한 자세한 내용은 [여기](https://kotlinlang.org/docs/reference/compiler-plugins.html#all-open-compiler-plugin)를 참고하세요.
+kotlin은 기본이 final 클래스입니다. LAZY 동작이 정상적으로 되려면 Hibernate가 프록시 객체 생성할 수 있도록 Entity는 open 클래스 이어야 합니다. 직접 하나 하나 지정할 수도 있고 All-open 플러그인을 이용해서 한번에 처리할 수 있습니다. All-open에 대한 자세한 내용은 [All-open compiler plugin](https://kotlinlang.org/docs/reference/compiler-plugins.html#all-open-compiler-plugin)를 참고하세요.
 
 ## 결론
-@ManyToOne의 기본 FetchType은 EAGER이지만 특별한 경우가 아니라면 LAZY를 기본 세팅해서 사용하는게 좋습니다. LAZY로 사용하더라도 N+1이 발생할 수 있음을 인지하고 사용해야하며 필요한 경우에는 fetch join이나 설명은 안 했지만 entity graphs를 이용해서 한번에 데이터를 모두 조회하도록 합니다.
+@ManyToOne의 기본 FetchType은 EAGER이지만 특별한 경우가 아니라면 LAZY를 기본 세팅해서 사용하는게 좋습니다. LAZY로 사용하더라도 N+1이 발생할 수 있음을 인지하고 사용해야하며 필요한 경우에는 fetch join이나 entity graphs를 이용해서 한번에 데이터를 모두 조회하도록 합니다.
 
 끝.
 
