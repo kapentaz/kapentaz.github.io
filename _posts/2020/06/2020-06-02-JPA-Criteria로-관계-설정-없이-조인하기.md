@@ -124,7 +124,7 @@ val resultList = entityManager.createQuery(select).resultList
 
 실제 실행된 SQL 쿼리를 확인해 보겠습니다.
 
-```SQL
+```sql
 SELECT order1_.order_no   AS order_no1_3_, 
        order1_.member_no  AS member_n2_3_, 
        order1_.product_no AS product_3_3_ 
