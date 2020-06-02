@@ -66,7 +66,9 @@ order.fetch<Order, Member>(Order::member.name, JoinType.INNER)
 val select = criteria.select(order)
 val resultList = entityManager.createQuery(select).resultList
 ```
+
 위 코드를 실행하면  Order와 Member를 영속성 객체로 한 번에 조회할 수 있습니다.
+
 ```sql
 SELECT order0_.order_no   AS order_no1_3_0_, 
        member1_.member_no AS member_n1_2_1_, 
@@ -82,6 +84,7 @@ FROM   ` order` order0_
 
 Order와 Member를 관계 설정하지 않아도 조인 쿼리를 만들 수 있습니다.
 먼저 앞서 사용했던 Order Entity에서 Member와의 관계 설정을 제거하겠습니다.
+
 ```kotlin
 @Entity
 @Table(name = "`order`")
@@ -98,7 +101,9 @@ data class Order(
     val memberNo: Int
 )
 ```
+
 그리고 아래 코드를 실행하면 조인 쿼리가 실행되는 것을 확인할 수 있습니다.
+
 ```kotlin
 val builder = entityManager.criteriaBuilder
 val criteria: CriteriaQuery<Order> = builder.createQuery(Order::class.java)
@@ -118,6 +123,7 @@ val resultList = entityManager.createQuery(select).resultList
 ```
 
 실제 실행된 SQL 쿼리를 확인해 보겠습니다.
+
 ```SQL
 SELECT order1_.order_no   AS order_no1_3_, 
        order1_.member_no  AS member_n2_3_, 
@@ -126,7 +132,9 @@ FROM   member member0_
        CROSS JOIN ` order` order1_ 
 WHERE  member0_.member_no = order1_.member_no 
 ```
+
 INNER JOIN이나  OUTER JOIN이 아닌 CROSS JOIN으로 실행됩니다.  CROSS JOIN은 카티션 곱이라고도 하는데 양쪽 테이블의 모든을 행을 조인 시키기 때문에 의도한 것이 아니라면 필요한 데이터만 조인하기 위해서 조인 컬럼을 조건으로 추가해야 합니다.
+
 ```kotlin
 val predicate = builder.equal(
     member.get<Int>(Member::memberNo.name),
@@ -134,6 +142,7 @@ val predicate = builder.equal(
 )
 criteria.where(predicate)
 ```
+
 이렇게  관계 설정 없이 Order를 영속성 객체로 조회했지만, 아쉽게도 Member 까지는 영속성 객체로 조회할 수는 없습니다. 
 
 Member를 영속성 객체로 조회할 수 없더라도 **Order를 조회하는 과정에 Member를 검색 조건으로 함께 사용해야 하는 경우**에는 유용할 수 있습니다.
