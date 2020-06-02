@@ -108,11 +108,13 @@ data class Order(
 val builder = entityManager.criteriaBuilder
 val criteria: CriteriaQuery<Order> = builder.createQuery(Order::class.java)
 
+// order 와 member 조인
 val member: Root<Member> = criteria.from(Member::class.java)
 val order: Root<Order> = criteria.from(Order::class.java)
 
 val select = criteria.select(order)
 
+// Order.memberNo 와 Member.memberNo가 같은 경우
 val predicate = builder.equal(
     member.get<Int>(Member::memberNo.name),
     order.get<Int>(Order::memberNo.name)
