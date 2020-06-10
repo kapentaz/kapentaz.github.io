@@ -85,9 +85,9 @@ interface BaseRepository<T, ID : Serializable?> : JpaRepository<T, ID>, JpaSpeci
 ```
 ```kotlin
 class BaseRepositoryImpl<T, ID>(  
-  private val entityInformation: JpaEntityInformation<T, *>?,  
+  private val entityInformation: JpaEntityInformation<T, *>,  
   private val em: EntityManager  
-) : SimpleJpaRepository<T, ID>(entityInformation!!, em), BaseRepository<T, ID> {  
+) : SimpleJpaRepository<T, ID>(entityInformation, em), BaseRepository<T, ID> {  
   
   override fun findByPage(spec: Specification<T>, pageable: Pageable): List<T> {
     val query = getQuery(spec, pageable)
