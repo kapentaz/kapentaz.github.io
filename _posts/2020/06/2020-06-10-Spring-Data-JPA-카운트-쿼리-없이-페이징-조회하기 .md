@@ -31,6 +31,7 @@ JpaRepository 인터페이스가 상속받은 `PagingAndSortingRepository`에 �
 val pageRequest = PageRequest.of(1, 10)  
 val page: Page<Product> = productRepository.findAll(pageRequest)```
 ```
+
 findAll의 리턴 타입이 Page<Product>이고 Page 객체에 카운트 정보를 만들기 위해 카운트 쿼리를 추가로 실행합니다.
 
 ### Query by Example
