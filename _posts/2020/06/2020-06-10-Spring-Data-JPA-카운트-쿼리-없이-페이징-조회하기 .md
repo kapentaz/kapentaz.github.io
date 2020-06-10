@@ -26,7 +26,7 @@ Spring Data JPA를 이용하면 쉽게 페이징 처리를 할 수 있습니다.
 
 ## 페이징 처리를 위한 카운트 쿼리 실행
 
-JpaRepository 인터페이스가 상속받은 PagingAndSortingRepository에 있는 findAll 메서드 이용하는 방법입니다. 이 메서드는 검색 조건 없이 전체를 대상으로 조회를 합니다.
+JpaRepository 인터페이스가 상속받은 `PagingAndSortingRepository`에 있는 findAll 메서드 이용하는 방법입니다. 이 메서드는 검색 조건 없이 전체를 대상으로 조회를 합니다.
 ```kotlin
 val pageRequest = PageRequest.of(1, 10)  
 val page: Page<Product> = productRepository.findAll(pageRequest)```
@@ -43,7 +43,7 @@ val page: Page<Product> = productRepository.findAll(example, pageRequest)
 ```
 
 ### Specification
-JpaSpecificationExecutor 인터페이스에서 제공하는 findAll  메서드를 이용하는 경우에도 Page<Product>를 리턴하기 때문에 카운트 쿼리를 추가로 실행합니다.
+`JpaSpecificationExecutor` 인터페이스에서 제공하는 findAll  메서드를 이용하는 경우에도 Page<Product>를 리턴하기 때문에 카운트 쿼리를 추가로 실행합니다.
 
 ```kotlin
 val spec = Specification<Product> { root, _, builder ->  
