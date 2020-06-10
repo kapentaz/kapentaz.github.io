@@ -108,6 +108,10 @@ val pageRequest = PageRequest.of(1, 10)
 val list: List<Product> = productRepository.findByPage(spec, pageRequest)
 ```
 
+### Querydsl & Criteria
+
+Querydsl과 Criteria는 다이나믹하게 원하는 결과를 얻을 수 있는 방법이므로 관련 내용은 생략합니다.
+
 ## 결론
 성능이 중요하지 않다면 심플하게 Page 객체로 반환하는 구조도 괜찮을 수 있지만, 매번 카운트 쿼리가 필요한 상황이 아니며, 쿼리 한 번이라도 줄일 필요가 있다면 페이징 처리와 카운트 쿼리는 필요에 따라 실행할 수 있는 구조로 하는 게 좋을 것 같습니다.
 
