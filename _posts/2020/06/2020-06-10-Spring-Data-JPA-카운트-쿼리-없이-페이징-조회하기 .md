@@ -43,6 +43,8 @@ val pageRequest = PageRequest.of(1, 10)
 val page: Page<Product> = productRepository.findAll(example, pageRequest)
 ```
 
+{% include ad_content.html %}
+
 ### Specification
 `JpaSpecificationExecutor` 인터페이스에서 제공하는 findAll  메서드를 이용하는 경우에도 Page<Product>를 리턴하기 때문에 카운트 쿼리를 추가로 실행합니다.
 
