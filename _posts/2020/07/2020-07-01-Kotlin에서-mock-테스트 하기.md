@@ -21,7 +21,7 @@ classes: wide
 comments: true
 ---
 
-예전에 테스트 코드를 작성하려고 했지만 스스로도 익숙하지 않았고 테스트 코드에 호의적이지 않은 사람이 있거나 일정 압박으로 테스트 코드를 작성하다가도 중간에 포기한 적이 많았습니다.
+예전에는 테스트 코드를 작성하려고 했지만 스스로도 익숙하지 않았고 테스트 코드에 호의적이지 않은 사람이 있거나 일정 압박으로 테스트 코드를 작성하다가도 중간에 포기한 적이 많았습니다.
  
 지금 진행하는 프로젝트는 kotlin으로 개발하고 있으며 구성원 모두가 테스트 코드의 필요성을 느끼고 있어서 일정 압박 속에서도 열심히 테스트 코드를 작성하고 있습니다. 이번에는 중간에 포기하지 않고 오픈한 이후에도 계속해서 잘 관리할 것으로 기대됩니다.
 
@@ -144,18 +144,20 @@ fun mockTest() {
   val paymentService = mockk<PaymentService>(relaxed = true)  
   // 생성된 mock을 이용해서 orderService 객체 생성  
   val orderService = OrderService(paymentService)  
-  
+
   // pay() 실행시 stub 객체 return    
-  every { paymentService.pay() } returns PayResult(codes = listOf("SUCCESS"))  
+  val payResult = PayResult(codes = listOf("SUCCESS"))
+  every { paymentService.pay() } returns payResult  
   
   // order() 실행  
   orderService.order()  
   
   verify { paymentService.pay() }  
+  assert(payResult.codes.first() == "SUCCESS")
 }
 ```
 
-mock과 stub의 차이는 mock은 메서드(행위)에 대한 검증을 `verify`로 하는 것이고 stub은 상태에 대한 검증으로 `assert`를 이용합니다.  
+mock과 stub의 다른점 중에 하나는 mock은 메서드(행위)에 대한 검증을 `verify`로 하고 stub은 상태에 대한 검증으로 `assert`를 이용합니다.  
 
 ## Annotation
 
@@ -177,7 +179,9 @@ class OrderServiceTest {
   
   @Test  
   fun mockTest() {  
-    every { paymentService.pay() } returns PayResult(codes = listOf("SUCCESS"))  
+    // pay() 실행시 stub 객체 return    
+    val payResult = PayResult(codes = listOf("SUCCESS"))
+    every { paymentService.pay() } returns payResult  
   
     orderService.order()  
   
@@ -198,7 +202,9 @@ class OrderServiceTest {
   
   @Test  
   fun mockTest() {  
-    every { paymentService.pay() } returns PayResult(codes = listOf("SUCCESS"))  
+    // pay() 실행시 stub 객체 return    
+    val payResult = PayResult(codes = listOf("SUCCESS"))
+    every { paymentService.pay() } returns payResult  
   
     orderService.order()  
   
