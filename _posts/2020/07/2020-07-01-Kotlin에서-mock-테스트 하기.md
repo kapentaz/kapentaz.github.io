@@ -75,7 +75,7 @@ no answer found for: PaymentService(#1).pay()
 io.mockk.MockKException: no answer found for: PaymentService(#1).pay()
 ```
 
-`every {...}`를 통해서 `pay()`를 호출할 때 어떤 값을 반환할지 설정할 수 있습니다. 
+이 에러는 `every {...}`를 통해서 `pay()`를 호출할 때 어떤 값을 반환할지 설정하면 해결할 수 있습니다. 
 ```kotlin
 @Test  
 fun mockTest() {  
@@ -97,7 +97,7 @@ fun mockTest() {
 
 ## Relaxed mock 테스트
 
-`every {...}`를 통해서 매번 mock 처리를 하는 것은 번거로울 수 있습니다. 해당 내용에 대해서 특별히 확인할 내용이 없다면 더욱 그럴 것입니다. 이런 경우에 relaxed mock을 이용하는 게 좋습니다.
+`every {...}`를 통해서 매번 mock 처리를 하는 것은 번거로울 수 있습니다. mock 대상이 많거나 특별히 확인할 내용이 없다면 더욱 그럴 것입니다. 이런 경우에 relaxed mock을 이용하는 게 좋습니다.
 
 ```kotlin
 @Test  
@@ -114,10 +114,12 @@ fun mockTest() {
   verify { paymentService.pay() }
 }
 ```
-relaxed mock은 `0`, `false`, `""` 과 같은 기본값을 반환하고 참조 타입인 경우에는 mock 객체를 반환합니다. 
+`every {...}` 코드가 없지만 오류도 발생하지 않고 `verify {...}`가 통과합니다. 
+
+relaxed mock의 메소드를 호출하면 `0`, `false`, `""` 과 같은 기본값을 반환하고 참조 타입인 경우에는 다시 relaxed mock 객체를 반환합니다. 
 
 ## Stub
-relaxed mock으로 모든 경우가 해결되지는 않습니다. `pay()` 호출로 payResult을 반환받고 그 결과 코드에는 무조건 "SUCCESS"가 있어야 하는 상황에서 mock으로 테스트를 하면 오류가 발생합니다.
+relaxed mock으로 모든 경우가 해결되지는 않습니다. `pay()` 호출로 payResult을 반환받고 그 결과 코드에는 무조건 "SUCCESS"가 있어야 하는 상황이라면 오류가 발생합니다.
 ```kotlin
 class OrderService(  
     private val paymentService: PaymentService  
@@ -152,6 +154,8 @@ fun mockTest() {
   verify { paymentService.pay() }  
 }
 ```
+
+mock과 stub의 차이는 mock은 메서드(행위)에 대한 검증을 `verify`로 하는 것이고 stub은 상태에 대한 검증으로 `assert`를 이용합니다.  
 
 ## Annotation
 
