@@ -3,8 +3,8 @@ title: "Kotlin에서 mock 테스트 하기"
 last_modified_at: 2020-07-01T17:22+00:00
 header:
   show_overlay_excerpt: false
-  overlay_image: /assets/images/post/2020/06/2020-07-01-title.jpg
-  og_image: /assets/images/post/2020/06/2020-07-01-title.jpg
+  overlay_image: /assets/images/post/2020/07/2020-07-01-title.jpg
+  og_image: /assets/images/post/2020/07/2020-07-01-title.jpg
   overlay_filter: 0.6
   caption: "Photo by Angèle Kamp on Unsplash"
   
@@ -21,7 +21,7 @@ classes: wide
 comments: true
 ---
 
-예전에는 테스트 코드를 작성하려고 해도 스스로도 익숙하지 않았고 테스트 코드에 호의적이지 않은 사람이 있거나 일정 압박으로 테스트 코드를 작성하다가도 중간에 포기한 적이 많았습니다.
+예전에는 테스트 코드를 작성하려고 했지만 스스로도 익숙하지 않았고 테스트 코드에 호의적이지 않은 사람이 있거나 일정 압박으로 테스트 코드를 작성하다가도 중간에 포기한 적이 많았습니다.
  
 지금 진행하는 프로젝트는 kotlin으로 개발하고 있으며 구성원 모두가 테스트 코드의 필요성을 느끼고 있어서 일정 압박 속에서도 열심히 테스트 코드를 작성하고 있습니다. 이번에는 중간에 포기하지 않고 오픈한 이후에도 계속해서 잘 관리할 것입니다.
 
