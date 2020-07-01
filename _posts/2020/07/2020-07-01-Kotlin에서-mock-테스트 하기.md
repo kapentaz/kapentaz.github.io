@@ -157,7 +157,7 @@ fun mockTest() {
 }
 ```
 
-mock과 stub의 다른점 중에 하나는 mock은 메서드(행위)에 대한 검증을 `verify`로 하고 stub은 상태에 대한 검증으로 `assert`를 이용합니다.  
+mock과 stub의 다른점 중에 하나는 mock은 메서드(행위)에 대한 검증으로 `verify`를 사용하고 stub은 상태에 대한 검증으로 `assert`를 사용합니다.  
 
 ## Annotation
 
