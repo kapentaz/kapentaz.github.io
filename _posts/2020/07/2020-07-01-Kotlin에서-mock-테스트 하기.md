@@ -192,7 +192,7 @@ fun spyTest() {
 ```
 그런데 뭔가 이상합니다.  앞서 mock은 메서드(행위)를 테스트하기 위함이라고 했습니다. 메소드 실행 여부를 확인하는 것인데 `getAmountForPayment()`가 제대로 동작하는지 확인하는 용도로는 맞지 않은 것 같습니다.
 
-Order를 mock이 아니라 직접 생성해서 테스트해보겠습니다.
+그럼 이제 Order를 mock이 아니라 직접 생성해서 테스트해보겠습니다.
 ```kotlin
 @Test
 fun spyTest() {
