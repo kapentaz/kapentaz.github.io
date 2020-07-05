@@ -157,7 +157,81 @@ fun mockTest() {
 }
 ```
 
-mock과 stub의 다른점 중에 하나는 mock은 메서드(행위)에 대한 검증으로 `verify`를 사용하고 stub은 상태에 대한 검증으로 `assert`를 사용합니다.  
+mock과 stub의 다른점 중에 하나는 mock은 메서드(행위)에 대한 검증으로 `verify`를 사용하고 stub은 상태에 대한 검증으로 `assert`를 사용합니다.
+
+## Spy 테스트
+
+아래와 같은 Order 클래스가 있고 `getAmountForPayment()` 메서드가 제대로 동작하는지 테스트해보겠습니다.
+```kotlin
+data class Order(
+    val orderNo: Long,
+    val orderAmount: Int,
+    val deliveryFee: Int,
+    val name: String,
+    val address: String,
+    val contact: String
+) {
+  fun getAmountForPayment(): Int {
+    return orderAmount + deliveryFee
+  }
+}
+```
+
+Order를 mock 객체로 생성해서 테스트하면 성공적으로 실행됩니다.
+```kotlin
+@Test  
+fun spyTest() {  
+  val order = mockk<Order>()  
+  
+  every { order.getAmountForPayment() } returns mockk(relaxed = true)  
+  
+  order.getAmountForPayment()  
+  
+  verify { order.getAmountForPayment() }  
+}
+```
+그런데 뭔가 이상합니다.  앞서 mock은 메서드(행위)를 테스트하기 위함이라고 했습니다. 메소드 실행 여부를 확인하는 것인데 `getAmountForPayment()`가 제대로 동작하는지 확인하는 용도로는 맞지 않은 것 같습니다.
+
+Order를 mock이 아니라 직접 생성해서 테스트해보겠습니다.
+```kotlin
+@Test
+fun spyTest() {
+  val order = Order(
+      orderNo = 1,
+      orderAmount = 19_800,
+      deliveryFee = 2_500,
+      name = "김주문",
+      address = "서울특별시",
+      contact = "010-0000-000"
+  )
+
+  val amountForPayment = order.getAmountForPayment()
+
+  assert(19_800 + 2_500 == amountForPayment)
+}
+```
+테스트 결과는 성공입니다. 
+
+결과는 성공이지만, Order 객체를 직접 생성하면서 생성자 필수 값을 다 설정해야 하는 부분은 좀 불편한 것 같습니다. `getAmountForPayment()` 테스트에 필요하지 않은 값까지 설정해야 하기 때문입니다.
+
+이런 경우에는 spy를 사용하는 게 좋습니다.
+
+```kotlin
+@Test
+fun spyTest() {
+  val order = mockk<Order> {
+    every { orderAmount } returns 19_800
+    every { deliveryFee } returns 2_500
+  }
+
+  val amountForPayment = spyk(order).getAmountForPayment()
+
+  assert(19_800 + 2_500 == amountForPayment)
+}
+``` 
+mock으로 생성한 Order 객체에 `getAmountForPayment()` 실행에 필요한 값만 설정하고 spy 객체로 변경하고 실행하면 원했던 대로 테스트 결과를 확인할 수 있습니다.
+
+이처럼 spy는 mock과 실제 객체를 같이 사용하는 효과를 볼 수 있습니다.  
 
 ## Annotation
 
