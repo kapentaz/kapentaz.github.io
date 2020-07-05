@@ -161,7 +161,7 @@ mock과 stub의 다른점 중에 하나는 mock은 메서드(행위)에 대한 �
 
 ## Spy 테스트
 
-아래와 같은 Order 클래스가 있고 `getAmountForPayment()` 메서드가 제대로 동작하는지 테스트해보겠습니다.
+아래와 같은 Order 클래스의 `getAmountForPayment()` 메서드가 제대로 동작하는지 테스트해보겠습니다.
 ```kotlin
 data class Order(
     val orderNo: Long,
