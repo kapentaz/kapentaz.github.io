@@ -231,7 +231,7 @@ fun spyTest() {
 ``` 
 mock으로 생성한 Order 객체에 `getAmountForPayment()` 실행에 필요한 값만 설정하고 spy 객체로 변경하고 실행하면 원했던 대로 테스트 결과를 확인할 수 있습니다.
 
-이처럼 spy는 mock과 실제 객체를 같이 사용하여 테스트할 수 있습니다.  
+이처럼 spy는 mock과 실제 객체를 같이 사용하여 테스트하는 효과를 볼 수 있습니다.  
 
 ## Annotation
 
