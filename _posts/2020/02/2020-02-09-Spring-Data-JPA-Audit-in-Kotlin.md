@@ -72,7 +72,7 @@ lateinit var updateAt: LocalDateTime
 ```kotlin
 kotlin.UninitializedPropertyAccessException: lateinit property createAt has not been initialized
 ```
-실제 이렇게 호출하는 코드를 작성하지 않는다고 하더라도 호출할 수 있는 가능성과 호출 시 오류가 발생한다는 것은 잠재적 문제라고 할 수는 없을 것 같습니다.
+실제 이렇게 호출하는 코드를 작성하지 않는다고 하더라도 호출할 수 있는 가능성과 호출 시 오류가 발생한다는 것은 잠재적 문제라고 할수 있을 것 같습니다.
 
 {% include ad_content.html %}
 
