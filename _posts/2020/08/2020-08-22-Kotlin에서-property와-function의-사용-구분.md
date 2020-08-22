@@ -161,18 +161,21 @@ property와 function으로 정의하고 호출해 보니 둘의 차이점이 보
 
 방법1)
 ```kotlin
+// property
 val isSoldOut: Boolean
   get() = stock == 0
 ```
 
 방법2)
 ```kotlin
+// function
 fun isSoldOut(): Boolean {
   return stock == 0
 }
 ```
 자바 변환 결과
 ```java
+// java 
 public final boolean isSoldOut() {
    return this.stock == 0;
 }
