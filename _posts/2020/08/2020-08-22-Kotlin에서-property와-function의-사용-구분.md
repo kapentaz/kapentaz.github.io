@@ -80,7 +80,7 @@ fun main() {
 }
 ```
 
-이제 salePrice도 함수 호출 방식이 아니라 속성에 접근하는 구조로 변경됐습니다. 
+이제 salePrice도 호출 방식이 아니라 속성에 접근하는 구조로 변경됐습니다. 
 
 그런데 salePrice의 속성 접근자를 재정의 했기 때문에 salePrice에 접근하려고 할 때마다 값을 계산하게 됩니다. price와 discount는 `val`이기 때문에 최초 **Product**가 생성된 이후에는 변경될 일이 없습니다.
 
