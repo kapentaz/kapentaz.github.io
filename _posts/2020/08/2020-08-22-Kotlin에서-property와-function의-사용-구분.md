@@ -98,7 +98,7 @@ class Product(
 
 ## function
 
-이번에는 재고를 차감하는 메소드(subtract)와 stock이 0일 경우에 매진을 나타내는 메소드(isSoldOut)을 만들어 보겠습니다.
+이번에는 재고를 차감하는 메소드(subtract)와 *stock*이 0일 경우에 매진을 나타내는 메소드(isSoldOut)을 만들어 보겠습니다.
 
 ```kotlin
 class Product(
@@ -127,7 +127,7 @@ fun main() {
 }
 ```
 
-정상적으로 동작하는 코드이지만 *isSoldOut()* 은 매진 여부를 나타내는 것인데 앞서 살펴 본 것 처럼 property로 접근하는 방법이 더 자연스러울 것 같습니다. 한번 변경해보겠습니다.
+정상적으로 동작하는 코드이지만 *isSoldOut()* 은 매진 여부를 나타내는 것인데 앞서 살펴 본 것 처럼 property로 접근하는 방법이 더 좋을 것 같습니다. 한번 변경해보겠습니다.
 
 ```kotlin
 class Product(
@@ -151,13 +151,33 @@ fun main() {
 }
 ```
 
-salePrice처럼 isSoldOut를 property 호출방식으로 변경하는게 더 자연스러운 것 같습니다.
+변경해 보니 salePrice처럼 isSoldOut를 property 호출방식으로 변경하는게 더 자연스러운 것 같습니다.
 
 ## property와 function 구분
 
 property와 function으로 정의하고 호출해 보니 둘의 차이점이 보입니다. property는 **Product** 의 상태 값을 의미하고 function은 **Product** 의 행위를 의미합니다. 앞서 살펴본 매진여부는 **Product** 의 매진상태를 의미하기 때문에  *isSoldOut()* 보다  *isSoldOut* 으로 변경하는 것이 더 자연스럽게 느껴진 것 같습니다.
 
-그동안 Java를 사용하면서 getter/setter에 익숙해져서 상태 값 접근이 필요할 때 function으로 정의하는 경우가 있었는데 재고 차감 같은 어떠한 행위를 하는 것이 아닌 경우에는 function 보다는 property로 정의해서 사용하는 것이 더 바람직할 것 같습니다.
+사실 아래 property와 function의 자바코드 변환 결과를 보면 방법1, 방법2 보두 동일한 결과입니다. 실행결과도 동일하고 자바 코드에서 차이도 없는데 개인취향에 맞게 자유롭게 사용할 수 있다고 생각할 수 있지만 속성 값 확인과 행위를 명확하게 구분하는 것이 코드를 이해하는데 더 도움이 됩니다.
+방법1)
+```kotlin
+val isSoldOut: Boolean
+  get() = stock == 0
+```
+
+방법2)
+```kotlin
+fun isSoldOut(): Boolean {
+  return stock == 0
+}
+```
+자바 변환 결과
+```java
+public final boolean isSoldOut() {
+   return this.stock == 0;
+}
+```
+
+그동안 Java를 사용하면서 getter/setter에 익숙해져서 상태 값 접근이 필요할 때 function을 이용했는데 재고 차감 같은 어떠한 행위를 하는 것이 아닌 경우에는 function 보다는 property로 정의해서 사용하는 것이 더 바람직할 것 같습니다.
 
 끝.
 
