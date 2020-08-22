@@ -158,6 +158,7 @@ fun main() {
 property와 function으로 정의하고 호출해 보니 둘의 차이점이 보입니다. property는 **Product** 의 상태 값을 의미하고 function은 **Product** 의 행위를 의미합니다. 앞서 살펴본 매진여부는 **Product** 의 매진상태를 의미하기 때문에  *isSoldOut()* 보다  *isSoldOut* 으로 변경하는 것이 더 자연스럽게 느껴진 것 같습니다.
 
 사실 아래 property와 function의 자바코드 변환 결과를 보면 방법1, 방법2 보두 동일한 결과입니다. 실행결과도 동일하고 자바 코드에서 차이가 없어서 개인취향에 맞게 자유롭게 사용할 수 있지만 속성 값과 행위를 명확하게 구분하는 것이 코드를 이해하는데 더 도움이 됩니다.
+
 방법1)
 ```kotlin
 val isSoldOut: Boolean
