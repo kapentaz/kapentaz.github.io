@@ -20,7 +20,7 @@ classes: wide
 comments: true
 ---
 
-kotlin을 이용해서 개발하고 있지만 최근에서야 property와 function의 차이점을 알게 된 것 같습니다. 어떻게 구분해서 사용하는 것이 좋을까?에 대한 고민 없이 그냥 사용했었는데요. 그 차이에 대해서 고민한 내용입니다.
+kotlin을 이용해서 개발하고 있지만 최근에서야 property와 function의 차이점을 알게 된 것 같습니다. 어떻게 구분해서 사용하는 것인가? 대한 고민 없이 그냥 사용했었는데요. 그 차이에 대해서 고민한 내용입니다.
 
 ## property
 property는 `var`나 `val`를 통해서 표현합니다. 먼저 **Product** 클래스를 만들어서 *price*, *discount* 그리고 *stock*을 정의해보겠습니다.
