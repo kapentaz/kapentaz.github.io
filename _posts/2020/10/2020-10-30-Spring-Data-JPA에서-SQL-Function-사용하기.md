@@ -163,7 +163,7 @@ tags의 타입이 LIst<String>로 되어 있기 때문에 like 검색을 할 수
 
 MySQL의 `JSON_CONTAINS`함수를 JPA에서 사용할 수 있으면 좋을 것 같아 검색을 했더니, 이 문제를 해결할 수 있는 [좋은 글](https://vladmihalcea.com/hibernate-sql-function-jpql-criteria-api-query/)을 찾았습니다. Hibernate 5.2.18부터 MetadataBuilderContributor라는 인터페이스를 사용할 수 있고 이 것을 구현하면 SQL Function을 추가할 수 있습니다.
 
->Dialect에 추가하는 방법도 있지만, Dialect를 수정하거나 버전을 변경할 경우 같이 챙겨서 수정해야 하기에 권장하지 않는다고 합니다.
+>Dialect에 추가하는 방법도 있지만, Dialect를 수정하거나 버전을 변경할 경우 같이 챙겨서 수정해야 하기에 추천하지 않는다고 합니다.
 
 ```kotlin
 class SqlFunctionsMetadataBuilderContributor : MetadataBuilderContributor {
