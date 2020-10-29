@@ -249,7 +249,7 @@ override fun getArticle(tags: List<String>): List<Article> {
 
 ## 결론
 
-SQL Function이 필요하다면 JPA에서 Native Query 없이도 사용할 수 있습니다.
+Entity 필드 타입은 도메인에 최대한 맞는 것으로 선택하고 SQL Function이 필요하다면 JPA에서 Native Query 없이도 사용할 수 있습니다.
 
 ## Reference
 
