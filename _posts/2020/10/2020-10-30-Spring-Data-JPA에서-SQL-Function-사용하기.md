@@ -25,7 +25,7 @@ JPA를 사용하면서 SQL function을 사용하고 싶은 경우가 생길 수�
 
 간단한 예제를 하나 만들어 보겠습니다. 게시물을 관리하는 테이블(article)이 있고 게시물에는 여러 tag를 설정할 수 있습니다.  태그는 별도의 활용 가치는 없고 단순 노출을 목적으로 한다면 간단하게 json 컬럼으로 여러 태그 정보를 관리할 수 있을 것입니다. 
 
-```mysql
+```sql
 create table article
 (
     article_no int           not null auto_increment comment '일련번호',
