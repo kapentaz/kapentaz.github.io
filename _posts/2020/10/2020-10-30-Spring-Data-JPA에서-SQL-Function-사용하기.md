@@ -251,5 +251,5 @@ SQL Function이 필요하다면 JPA에서 Native Query 없이도 사용할 수 �
 
 ## Reference
 
-- https://vladmihalcea.com/the-best-way-to-map-a-projection-query-to-a-dto-with-jpa-and-hibernate/
-- https://stackoverflow.com/questions/57904266/how-to-use-mysql-json-contains-with-jpa-specification
+- [The best way to map a projection query to a DTO (Data Transfer Object) with JPA and Hibernate](https://vladmihalcea.com/the-best-way-to-map-a-projection-query-to-a-dto-with-jpa-and-hibernate/)
+- [How to use mysql “json_contains” with JPA Specification](https://stackoverflow.com/questions/57904266/how-to-use-mysql-json-contains-with-jpa-specification)
