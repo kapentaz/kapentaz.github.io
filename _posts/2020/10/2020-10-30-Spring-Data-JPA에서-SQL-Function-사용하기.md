@@ -195,7 +195,8 @@ tags 파라미터에 json array 형태의 문자열을 전달하는 방법입니
 fun getArticle(@Param("tags") tags: String): List<Article>
 ```
 
-파라미터를 String이 아닌 List<String>으로 전달하고 싶을 수 있습니다. 이럴 경우에는 SpEL를 이용해서 ObjectMapper  Bean을 사용하는 방법도 있습니다. 
+위 예제는 파라미터를 String으로 전달하고 있습니다.
+아무래도 List<String>으로 전달하고 싶을 것입니다. 이럴 경우에는 SpEL를 이용해서 ObjectMapper Bean을 사용하는 방법도 있습니다. 
 
 ```kotlin
 @Query("""
