@@ -112,7 +112,7 @@ var tags: List<String>? = null
 
 ## 타입 변경으로 인한 문제
 
-아무 문제 없이 잘 사용하고 있던 어느 날, 게시물을 조회할 때 tag를 검색 조건에 포함하는 요구 사항이 발생합니다. tags는 AttributeConverter를 통해서 List<String> 타입으로 관리되고 있기 때문에 생각처럼 잘 동작할지 모르겠습니다.
+아무 문제 없이 잘 사용하고 있던 어느 날, 게시물을 조회할 때 tag를 검색 조건에 포함하는 요구 사항이 발생합니다. tags는 AttributeConverter를 통해서 List<String> 타입으로 관리되고 있기 때문에 잘 동작할지 모르겠습니다.
 
 몇 가지 케이스로 확인해보겠습니다.
 
