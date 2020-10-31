@@ -118,8 +118,8 @@ var tags: List<String>? = null
 
 ### @Query
 
-List<String> 타입으로 정의되어 있다 보니 JPQL에서 like 키워드로 검색할 수도 없습니다. 
-IDE에서부터 미리 에러 표시가 노출됩니다. `Type mismatch: string type expected`
+List<String> 타입으로 정의되어 있다 보니 JPQL에서 like 키워드로 검색할 수 없습니다. 
+IDE에서 미리 에러 표시가 노출됩니다. `Type mismatch: string type expected`
 
 ```kotlin
 @Query("""
@@ -157,7 +157,7 @@ override fun getArticle(tags: List<String>): List<Article> {
 }
 ```
 
-tags의 타입이 LIst<String>로 되어 있기 때문에 like 검색을 할 수가 없는 구조가 됩니다. 아무래도 조회 방법을 변경하는 것으로 해결하기는 어려울 것 같습니다. 그럼 타입을 그냥 List<String>에서 String으로 그냥 다시 변경해야 할까요?
+tags의 타입이 LIst<String>로 되어 있기 때문에 like 검색을 할 수가 없는 구조가 됩니다. 아무래도 조회 방법을 변경하는 것으로 해결하기는 어려울 것 같습니다. 그럼 타입을 그냥 List<String>에서 String으로 다시 변경해야 할까요?
 
 ## MetadataBuilderContributor
 
