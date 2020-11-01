@@ -98,13 +98,13 @@ public class TransactionSample {
     }
 }
 ```
-자신을 다시 Bean으로 주입받는 과정으로 인해 생성자 주입 방식을 사용할 수 없고 `update()` 처리를 하기 위해서 별도의 메서드 2개를 추가해야 하는 부분이 조금 아쉽습니다.
+제대로 동작하기는 하지만, 자신을 다시 Bean으로 주입받는 과정으로 인해 생성자 주입 방식을 사용할 수 없고 `update()` 처리를 하기 위해서 메서드 2개가 여전히 존재해야 하는 부분은 조금 아쉽습니다.
 
 {% include ad_content.html %}
 
 ## TransactionTemplate 
 
-programmatic transaction 설정을 위해서 Spring에서 제공하는 클래스입니다.  thread-safe 하기 때문에 Spring Bean으로 정의해서 사용할 수 있습니다. 
+TransactionTemplate은 programmatic transaction 설정을 위해서 Spring에서 제공하는 클래스입니다.  thread-safe 하기 때문에 Spring Bean으로 정의해서 사용할 수 있습니다. 
 ```java
 @Bean  
 public TransactionTemplate transactionTemplate(PlatformTransactionManager manager) {  
