@@ -9,7 +9,7 @@ header:
   caption: "Photo by Alec Favale on Unsplash"
   
 tags:
-  - spring
+  - Spring
 category: #카테고리
   - Spring
 toc: false
