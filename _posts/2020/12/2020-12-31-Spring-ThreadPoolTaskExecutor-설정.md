@@ -40,7 +40,7 @@ core와 max 사이즈를 설정할 수 있습니다. 여기서 주의할 점이 
 내부적으로는 Integer.MAX_VALUE 사이즈의 LinkedBlockingQueue를 생성해서 core 사이즈만큼의 스레드에서 task를 처리할 수 없을 경우 queue에서 대기하게 됩니다. queue가 꽉 차게 되면 그때 max 사이즈만큼 스레드를 생성해서 처리하게 됩니다.
 
 ## Capacity
-core 사이즈 보다 많은 요청이 발생할 경우 Integer.MAX_VALUE 사이즈만큼의 queue를 이용한다고 했는데 이게 너무 크다고 생각된다면 queueCapacity 사이즈는 변경할 수 있습니다.
+core 사이즈 보다 많은 요청이 발생할 경우 Integer.MAX_VALUE 사이즈만큼의 queue를 이용한다고 했는데 이게 너무 크다고 생각된다면 queueCapacity 사이즈를 변경할 수 있습니다.
 
 ```java
 @Bean("simpleTaskExecutor")
