@@ -88,9 +88,6 @@ RUN apk add --no-cache logrotate
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx /etc/logrotate.d/
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
 ```
 
 ### Docker 이미지 생성
