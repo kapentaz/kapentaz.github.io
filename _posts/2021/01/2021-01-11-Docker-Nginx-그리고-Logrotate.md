@@ -31,7 +31,7 @@ logrotate가 포함된 nginx 이미지를 만들기 위해서 Dockerfile을 생�
 
 ### Logrotate
 먼저 logrotate 설정 파일을 하나 준비합니다. `/logs/*.log`는 docker 컨테이너 안의 경로입니다.
-옵션 정보는 검색하면 많이 나오기 때문에 생략합니다.
+옵션 정보는 검색하면 많이 나오기 때문에 생략합니다. 파일 이름은 nginx로 만들겠습니다.
 
 ```
 /logs/*.log {
