@@ -140,7 +140,7 @@ services:
 ```
 > docker-compose up 			# 실행
 > docker-compose up -d 			# detach 모드 실행
-> docker-compose up --no-deps	    # 연결된 다른 서비스 제외하고 시작
+> docker-compose up --no-deps	        # 연결된 다른 서비스 제외하고 시작
 > docker-compose up --build		# 컨테이너를 시작하기 전에 이미지를 빌드한다.
 
 > docker-compose stop 			# 컨테이너 정지
