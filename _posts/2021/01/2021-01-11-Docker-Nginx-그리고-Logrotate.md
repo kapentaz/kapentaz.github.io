@@ -59,8 +59,8 @@ events {
 
 http {
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                          '$status $body_bytes_sent "$http_referer" '
-                          '"$http_user_agent" "$http_x_forwarded_for"';
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
 
     keepalive_timeout  60;
 
@@ -97,14 +97,15 @@ CMD ["nginx", "-g", "daemon off;"]
 Dockerfile에 있는 경로에서 아래 커맨드를 입력하면 sample-nginx 이름의 docker 이미지가 생성됩니다.
 ```
 > docker build --tag sample-nginx .		# 도커이미지 생성
-> docker images							# 생성된 이미지 확인
+> docker images					# 생성된 이미지 확인
 ```
 
 ## 실행
 sample-nginx라는 이름으로 docker 이미지를 생성했으니 nginx를 실행해 보겠습니다.
 
 ### docker run
-docker run 명령을 통해서 직접 실행합니다. run 명령으로 실행하게 되면 호스트가 변경되었거나 컨테이너 삭제 후 다시 실행할 경우 실행했던 명령어를 기억하지 못해 불편할 수 있습니다.
+docker run 명령을 통해서 직접 실행할 수 있습니다.
+run 명령으로 실행하게 되면 호스트가 변경되었거나 컨테이너 삭제 후 다시 실행할 경우에 실행했던 명령어를 기억하지 못해 불편할 수 있습니다.
 ```
 > docker run -d \
      --name sample-nginx \
@@ -115,8 +116,10 @@ docker run 명령을 통해서 직접 실행합니다. run 명령으로 실행�
      -v ~/volumes/nginx/logs:/logs \
      sample-nginx
 ```
+
 ### docker-compose
-아래 내용으로 docker-compose.yml 이라는 파일을 만들면 docker run 보다 실행 관리하기가 좀 더 편리합니다.
+docker run으로 간단하게 실행해볼 수도 있지만, 실행 정보를 좀 더 구조적으로 확인하고 실행하려면 docker-compose를 이용하는 게 좋습니다.
+아래 내용으로 docker-compose.yml이라는 파일을 만들면 docker-compose 명령어로 실행할 수 있습니다.
 ```yaml
 version: '3.8'
 services:
@@ -133,23 +136,23 @@ services:
     environment:
       TZ: Asia/Seoul
 ```
-자주 사용하는 docker-compose 명령어입니다.
+아래는 자주 사용하는 docker-compose 명령어입니다.
 ```
 > docker-compose up 			# 실행
 > docker-compose up -d 			# detach 모드 실행
-> docker-compose up --no-deps	# 연결된 다른 서비스 제외하고 시작
+> docker-compose up --no-deps	    # 연결된 다른 서비스 제외하고 시작
 > docker-compose up --build		# 컨테이너를 시작하기 전에 이미지를 빌드한다.
 
 > docker-compose stop 			# 컨테이너 정지
 > docker-compose pause			# 컨테이너 일시정지
 > docker-compose restart 		# 컨테이너 재시작
-> docker-compose rm				# 컨테이너 삭제
+> docker-compose rm			# 컨테이너 삭제
 > docker-compose down			# 컨테이너 제거(네트워크, 볼륨 전체)
 
-> docker-compose ps				# 실행중인 컨테이너 확인
+> docker-compose ps			# 실행중인 컨테이너 확인
 > docker-compose logs			# 컨테이너 로그 확인
 ```
-`docker-compose up -d` 로 실행하고 http://localhost로 접속하면 **Welcome to nginx!** 페이지를 확인할 수 있습니다.
+`docker-compose up -d`를 입력해서 docker-compose를 실행하고 http://localhost로 접속하면 **Welcome to nginx!** 페이지를 확인할 수 있습니다.
 
 ## Logrotate 적용 확인
 logrotate가 잘 적용되었는지 확인하려면 컨테이너로 접속해서 확인해 볼 수 있습니다. 아래 명령어로 실행중인 컨테이너 안을 확인할 수 있습니다.
