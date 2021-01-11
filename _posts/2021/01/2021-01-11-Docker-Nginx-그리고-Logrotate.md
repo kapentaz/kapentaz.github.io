@@ -23,15 +23,16 @@ comments: true
 
 
 
-docker 환경으로 nginx를 실행하고 logrotate 설정하는 방법을 확인해 보겠습니다.
-
-## Nginx Logrotate가 필요해
-nginx alpine 이미지에는 logrotate가 없지만, 호스트에 logrotate가 있다면 docker volume을 통해서 log 파일을 logrotate를 실행할 수 있습니다. 이렇게 구성하게 되면 호스트가 변경될 경우 logrotate를 다시 설정해야 하는 번거로움이 생깁니다.
+docker로 nginx를 실행하고 logrotate 설정하는 방법을 확인해 보겠습니다. nginx alpine 이미지에는 logrotate가 없지만, 호스트에 logrotate가 있다면 docker volume을 통해서 log 파일을 logrotate를 실행할 수 있습니다.
+이렇게 구성하게 되면 호스트가 변경되면 logrotate를 다시 설정해야 하는 번거로움이 생깁니다. 그래서 nginx docker 컨테이너 안에서 logrotate를 실행하는 구조로 만드는 것이 더 좋다고 생각합니다.
 
 ## Dockerfile 생성
+logrotate가 포함된 nginx 이미지를 만들기 위해서 Dockerfile을 생성해보겠습니다.
 
 ### Logrotate
-logrotate 설정 파일을 하나 준비 합니다. 옵션 정보는 검색하면 많이 나오기 때문에 생략합니다.
+먼저 logrotate 설정 파일을 하나 준비합니다. `/logs/*.log`는 docker 컨테이너 안의 경로입니다.
+옵션 정보는 검색하면 많이 나오기 때문에 생략합니다.
+
 ```
 /logs/*.log {
     daily
@@ -45,8 +46,9 @@ logrotate 설정 파일을 하나 준비 합니다. 옵션 정보는 검색하�
     endscript
 }
 ```
+
 ### nginx.conf
-docker nginx에 있는 기본 conf을 참고해서 심플하게 변경한 내용입니다. nginx실행시 `/logs` 디렉토리 밑에 로그 파일이 생성되도록 했습니다.
+docker nginx에 있는 기본 conf을 참고해서 심플하게 생성한 nginx.conf 파일입니다. nginx실행시 `/logs` 디렉토리 밑에 로그 파일이 생성되도록 했습니다.
 ```nginx
 user  nginx;
 worker_processes  auto;
@@ -75,8 +77,9 @@ http {
     }
 }
 ```
+
 ### Dockerfile
-nginx alpine에는 logrotate가 없기 때문에  설치하고 앞서 생성한 logrotate, nginx.conf파을을 nginx 이미지에 포함시킵니다.
+nginx alpine에는 logrotate가 없기 때문에 docker 이미지 생성 시 먼저 설치하고 앞서 생성한 logrotate, nginx.conf 파일을 이미지에 포함시킵니다.
 ```dockerfile
 FROM nginx:1.19.6-alpine
 
