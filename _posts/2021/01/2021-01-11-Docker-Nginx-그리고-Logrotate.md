@@ -155,11 +155,11 @@ services:
 `docker-compose up -d`를 입력해서 docker-compose를 실행하고 http://localhost로 접속하면 **Welcome to nginx!** 페이지를 확인할 수 있습니다.
 
 ## Logrotate 적용 확인
-logrotate가 잘 적용되었는지 확인하려면 컨테이너로 접속해서 확인해 볼 수 있습니다. 아래 명령어로 실행중인 컨테이너 안을 확인할 수 있습니다.
+logrotate가 잘 적용되었는지 확인하려면 컨테이너로 접속해서 확인해 볼 수 있습니다. 아래 명령어로 실행 중인 컨테이너 안을 확인할 수 있습니다.
 ```
 > docker exec -it <CONTAINER_ID> /bin/sh
 ```
-접속한 후에 logrotate 명령어로 이상 없이 실행가능한지 확인할 수 있습니다.
+접속한 후에 logrotate 명령어로 이상 없이 실행 가능한지 확인할 수 있습니다.
 ```
 > logrotate -v /etc/logrotate.d/nginx
 > cat /var/lib/logrotate.status
