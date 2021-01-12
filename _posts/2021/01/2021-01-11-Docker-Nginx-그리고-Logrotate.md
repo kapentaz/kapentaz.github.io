@@ -29,9 +29,9 @@ docker로 nginx를 실행하고 logrotate 설정하는 방법을 확인해 보�
 ## Dockerfile 생성
 logrotate가 포함된 nginx 이미지를 만들기 위해서 Dockerfile을 생성해보겠습니다.
 
-### Logrotate
+### logrotate.conf
 먼저 logrotate 설정 파일을 하나 준비합니다. `/logs/*.log`는 docker 컨테이너 안의 경로입니다.
-옵션 정보는 검색하면 많이 나오기 때문에 생략합니다. 파일 이름은 nginx로 만들겠습니다.
+옵션 정보는 검색하면 많이 나오기 때문에 생략합니다.
 
 ```
 /logs/*.log {
@@ -87,7 +87,7 @@ FROM nginx:1.19.6-alpine
 RUN apk add --no-cache logrotate
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./nginx /etc/logrotate.d/
+COPY ./logrotate.conf /etc/logrotate.conf
 ```
 
 ### Docker 이미지 생성
