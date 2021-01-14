@@ -78,6 +78,15 @@ http {
 }
 ```
 
+### script.sh
+nginx 실행시 logrotate도 함께 실행될 수 있도록 shell script 파일도 하나 생성합니다.
+```shell script
+#! /bin/sh
+
+logrotate -fv /etc/logrotate.conf
+nginx -g 'daemon off;'
+```
+
 ### Dockerfile
 nginx alpine에는 logrotate가 없기 때문에 docker 이미지 생성 시 먼저 설치하고 앞서 생성한 logrotate, nginx.conf 파일을 이미지에 포함시킵니다.
 ```dockerfile
@@ -88,6 +97,11 @@ RUN apk add --no-cache logrotate
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./logrotate.conf /etc/logrotate.conf
+
+COPY ./script.sh /script.sh
+RUN chmod +x /script.sh
+
+ENTRYPOINT ["/script.sh"]
 ```
 
 ### Docker 이미지 생성
