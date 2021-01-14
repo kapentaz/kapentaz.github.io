@@ -80,7 +80,7 @@ http {
 
 ### script.sh
 nginx 실행시 logrotate도 함께 실행될 수 있도록 shell script 파일도 하나 생성합니다.
-```shell script
+```shell
 #! /bin/sh
 
 logrotate -fv /etc/logrotate.conf
