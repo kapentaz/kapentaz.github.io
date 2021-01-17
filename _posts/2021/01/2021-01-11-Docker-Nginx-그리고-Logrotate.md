@@ -79,11 +79,11 @@ http {
 ```
 
 ### script.sh
-nginx 실행시 logrotate도 함께 실행될 수 있도록 shell script 파일도 하나 생성합니다.
+nginx 실행시 cron을 통해서 logrotate도 실행될 수 있도록 shell script 파일도 하나 생성합니다.
 ```shell
 #! /bin/sh
 
-logrotate -fv /etc/logrotate.conf
+crond
 nginx -g 'daemon off;'
 ```
 
