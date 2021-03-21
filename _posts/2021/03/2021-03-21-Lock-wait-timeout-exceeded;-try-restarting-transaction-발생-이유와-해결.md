@@ -55,7 +55,7 @@ insert into product_history(product_no) values
 ```
 
 
-하나의 트랜잭션에서는 Lock을 잡고 있고 다른 트랜잭션에서는 Lock을 얻기 위해 대기하고 있는 상황을 재현하기 위해 코드를 작성 했습니다.
+하나의 트랜잭션에서는 Lock을 잡고 있고 다른 트랜잭션에서의 Lock을 얻기 위해 대기하고 있는 상황을 재현하기 위해 코드를 작성 했습니다.
 ```kotlin
 @Service
 class DemoService(
