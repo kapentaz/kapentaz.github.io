@@ -150,3 +150,7 @@ kill 175;   -- 강제종료
 배치에서 롱 트랜잭션이 발생하는 경우는 자주 있는데 처음에는 데이터가 작아서 문제가 되지 않다가 시간이 지나면서 이렇게 문제 되는 경우가 종종 있습니다. 배치의 경우 트랜잭션을 지나치게 길지 않게 적절한 chunk 사이즈로 처리하는 것이 좋습니다.
 
 끝.
+
+## Reference
+- [MySQL Lock 상황 문제 해결](https://www.popit.kr/mysql-lock-%EC%83%81%ED%99%A9-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0/)
+- [MySQL InnoDB lock & deadlock 이해하기](https://www.letmecompile.com/mysql-innodb-lock-deadlock/))
