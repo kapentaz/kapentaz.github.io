@@ -71,8 +71,8 @@ class DemoService(
     }.run {
       submit {
         transactionTemplate.execute {
-          jdbcTemplate.update("delete from product_history")
-	      // 테이블 전체 삭제 후 트랜잭션을 계속 유지하기 위해 60초 대기
+          jdbcTemplate.update("delete from product_history") 
+          // 테이블 전체 삭제 후 트랜잭션을 계속 유지하기 위해 60초 대기
           TimeUnit.SECONDS.sleep(60)
         }
       }
@@ -81,8 +81,8 @@ class DemoService(
   }
   
   fun delete() {
-    transactionTemplate.execute {
-	  // 특정 데이터 하나 삭제
+    transactionTemplate.execute { 
+      // 특정 데이터 하나 삭제
       jdbcTemplate.update("delete from product_history where product_no = 1")
     }
   }
