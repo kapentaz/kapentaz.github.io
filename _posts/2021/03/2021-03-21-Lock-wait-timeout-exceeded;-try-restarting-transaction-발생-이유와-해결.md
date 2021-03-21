@@ -88,7 +88,7 @@ class DemoService(
   }
 }
 ```
-테이블 전체 데이터를 삭제하는 `deleteAll()`를 먼저 실행하고 트랜잭션이 바로 commit되지 않도록 60초 대기하도록 합니다. 이후에 `delete()`를 실행해서 `deleteAll()`이 완료될 때까지 대기하는 상황을 코드로 만들었습니다.
+테이블 전체 데이터를 삭제하는 `deleteAll()`를 먼저 실행하고 트랜잭션이 바로 commit되지 않도록 60초 대기하도록 합니다. 이후에 `delete()`를 실행해서 `deleteAll()`이 완료될 때까지 대기하는 내용입니다.
 
 ```kotlin
 @SpringBootApplication
@@ -116,9 +116,9 @@ fun main(args: Array<String>) {
 위 코드 기준으로 오류가 발생하기 50초 전까지 `INNODB_LOCK_WAITS` 테이블을 통해서 Lock을 얻기 위해 대기 중인 트랜잭션을 확인할 수 있고 `INNODB_TRX` 테이블을 통해 Lock을 가지고 오랫동안 실행 중인 트랜잭션을 찾을 수 있습니다.
 
 ```sql
-> select * from information_schema.INNODB_LOCKS;		-- 현재 Lock 정보
-> select * from information_schema.INNODB_LOCK_WAITS;	-- Lock을 대기 정보
-> select * from information_schema.INNODB_TRX;			-- 트랜잭션 상태
+> select * from information_schema.INNODB_LOCKS;        -- 현재 Lock 정보
+> select * from information_schema.INNODB_LOCK_WAITS;   -- Lock을 대기 정보
+> select * from information_schema.INNODB_TRX;          -- 트랜잭션 상태
 ```
 
 찾은 `trx_id`의 실행중인 쿼리를 확인하고 싶을 경우에는 아래 쿼리를 이용하면 어떤 작업 때문에 시간이 오래 소요되는지 확인할 수 있습니다.
@@ -141,8 +141,8 @@ order by esh.event_id;
 만약 롱트랜잭션이 처리되기 기다리기 보다 강제로 종료 시켜야 한다면 `INNODB_TRX` 테이블에서 `trx_mysql_thread_id` 컬럼에 있는 값을 이용해서 직접 프로세스를 종료시킬 수 있습니다.
 
 ```sql
-SELECT * FROM information_schema.processlist where id = 175;  -- 프로세스 확인
-kill 175;	-- 강제종료
+SELECT * FROM information_schema.processlist where id = 175;    -- 프로세스 확인
+kill 175;   -- 강제종료
 ```
 
 ## 결론
