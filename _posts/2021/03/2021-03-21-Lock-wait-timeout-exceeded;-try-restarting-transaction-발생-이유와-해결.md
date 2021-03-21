@@ -130,9 +130,9 @@ select
 from information_schema.INNODB_TRX trx  
     inner join information_schema.INNODB_LOCK_WAITS lw  
         on trx.trx_id = lw.blocking_trx_id  
-  inner join performance_schema.threads th  
+    inner join performance_schema.threads th  
         on th.processlist_id = trx.trx_mysql_thread_id  
-  inner join performance_schema.events_statements_history esh  
+    inner join performance_schema.events_statements_history esh  
         on esh.thread_id = th.thread_id  
 where trx.trx_id = :trx_id  
 order by esh.event_id;
