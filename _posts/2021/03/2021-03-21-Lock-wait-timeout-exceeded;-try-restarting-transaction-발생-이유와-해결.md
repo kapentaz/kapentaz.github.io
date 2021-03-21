@@ -23,7 +23,7 @@ comments: true
 
 # Lock wait timeout exceeded; try restarting transaction 발생 이유와 해결
 
-지난밤에 발생한 오류를 확인하던 중 아래와 같은 메시지가 눈에 띄었습니다.
+지난밤에 발생한 오류를 확인하던 중 메시지 하나가 눈에 띄었습니다.
 
 > org.springframework.dao.CannotAcquireLockException ... Lock wait timeout exceeded; try restarting transaction
 
