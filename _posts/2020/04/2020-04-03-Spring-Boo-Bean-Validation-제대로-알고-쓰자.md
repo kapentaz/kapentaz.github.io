@@ -354,7 +354,7 @@ public class ViolationMessageResolver {
 두 애노테이션의 차이점은 알아보면 `@Valid`는 jakarta.validation-api에서 제공하는 애노테이션입니다. nested 객체나 메서드 파라미터 객체를 validation할  사용합니다. 하지만 groups 관련 설정이 없기 때문에 Spring에서 `@Validated` 애노테이션을 추가로 만들어서 사용합니다.
 
 ```java
-// groups를 설정 불강
+// groups를 설정 불가
 @Valid
 private final ProductRequest request
 ```
