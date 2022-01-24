@@ -21,7 +21,7 @@ classes: wide                       # 기본 본문 넓이가 작다. wide 추�
 comments: true                      # 댓글 시스템 사용여부
 ---
 
-> 커머스 서비스를 운영하면서 겪은 MySQL 관련 문제를 공유합니다.
+> 직접 서비스를 운영하면서 겪은 MySQL 관련 문제를 공유합니다.
 
 ## MySQL Master-Slave 데이터의 등록시간 불일치 현상
 
