@@ -11,9 +11,7 @@ header:
 tags: # 태그(복수개 가능)
   - MySQL  
   - JPA
-  - Mybatis
   - Replication
-  - BUG
 category: #카테고리
   - MySQL
 toc: false                          # 목차(table of contents) 사용여부
