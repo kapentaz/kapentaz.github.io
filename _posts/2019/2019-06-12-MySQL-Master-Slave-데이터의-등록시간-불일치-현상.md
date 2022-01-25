@@ -1,7 +1,6 @@
 ---
 title: "MySQL Master-Slave 데이터의 등록시간 불일치 현상"
 last_modified_at: 2019-06-12T15:49:13-05:00 # 마지막 수정일
-excerpt: "MySQL 사용중 데이터 등록시간 불일치 현상에 대해서 공유합니다."
 header:
   overlay_image: /assets/images/post/2019/2019-06-12-mysql-replication.png
   og_image: /assets/images/post/2019/2019-06-12-mysql-replication.png
