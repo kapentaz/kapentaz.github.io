@@ -1,7 +1,8 @@
 ---
 title: "MySQL Master-Slave 데이터의 등록시간 불일치 현상"
-last_modified_at: 2019-06-12T15:49:13-05:00 # 마지막 수정일
+last_modified_at: 2019-06-12T15:49:13-05:00
 header:
+  show_overlay_excerpt: false
   overlay_image: /assets/images/post/2019/2019-06-12-mysql-replication.png
   og_image: /assets/images/post/2019/2019-06-12-mysql-replication.png
   overlay_filter: 0.6
@@ -12,12 +13,12 @@ tags: # 태그(복수개 가능)
   - JPA
 category: #카테고리
   - MySQL
-toc: false                          # 목차(table of contents) 사용여부
-toc_label: "Table Of Contents"      # 목차 Label 변경
-toc_icon: "fal fa-list-alt"         # https://fontawesome.com 에서 찾으면됨
-toc_sticky: true                    # 스크롤 내릴때 같이 내려가는 목차
-classes: wide                       # 기본 본문 넓이가 작다. wide 추천
-comments: true                      # 댓글 시스템 사용여부
+toc: false
+toc_label: "Table Of Contents"
+toc_icon: "fal fa-list-alt"
+toc_sticky: true
+classes: wide
+comments: true
 ---
 
 > 직접 서비스를 운영하면서 겪은 MySQL 관련 문제를 공유합니다.
