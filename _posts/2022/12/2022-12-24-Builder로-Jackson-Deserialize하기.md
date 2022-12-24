@@ -66,17 +66,16 @@ void testJson() throws JsonProcessingException {
 }
 ```
 테스트코드를 실행 해보면 아래 메시지와 함께 실패하게 됩니다.
-
+내용을 보면 objectMapper의 readValue를 처리하는 곳에서 에러가 발생하는 것을 확인할 수 있습니다.
 
 ```
 Cannot construct instance of `com.example.person.PersonDto` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
  at [Source: (String)"{"name":"Tom","age":18}"; line: 1, column: 2]
 ```
-상세 내용을 보면 objectMapper의 readValue를 처리하는 곳에서 에러가 발생하는 것을 확인할 수 있습니다.
 ```java
 PersonDto dto = objectMapper.readValue(json, PersonDto.class);
 ```
-오류 메시지 내용을 보니 deserialize하기 위해서 기본 생성자를 추가하면 해결이 될 것 같습니다.
+오류 메시지를 보니깐 deserialize하기 위해서 기본 생성자를 추가하면 해결이 될 것 같습니다.
 하지만, 기본 생성자를 만들게 되면 객체에 값을 생성하기 위한 setter 같은 메소드가 존재해야 하기 때문에 불변을 유지할 수 없게 됩니다.
 
 불변은 포기할 수 없습니다. 다른 해결방법을 확인해 보겠습니다.
