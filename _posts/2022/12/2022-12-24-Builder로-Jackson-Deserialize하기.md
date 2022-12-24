@@ -158,10 +158,10 @@ public class PersonDto {
 불변 클래스로 Json deserialize하는 방법을 살펴봤습니다. 
 기본 생성자를 추가해서 불변을 포기하지 말고, 본인 환경에 맞는 방법을 찾아서 사용하면 좋을 것 같습니다.
 
+끝.
 
 ## Reference
 - [@Jacksonized](https://projectlombok.org/features/experimental/Jacksonized)
 - [@JsonPOJOBuilder](https://www.baeldung.com/jackson-advanced-annotations)
 
-끝.
 
