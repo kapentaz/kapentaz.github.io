@@ -79,7 +79,7 @@ PersonDto dto = objectMapper.readValue(json, PersonDto.class);
 하지만, 기본 생성자를 만들게 되면 객체에 값을 생성하기 위한 setter 같은 메소드가 존재해야 하기 때문에 불변을 유지할 수 없게 됩니다.
 
 
-## 방법1. @JsonCreator와 @JsonProperty 이용
+## 방법1. @JsonCreator와 @JsonProperty 사용하기
 
 불변은 포기할 수 없습니다. `PersonDto`생성에 @JsonCreator와 @JsonProperty를 적용하면 위에서 만든 테스트 클래스가 성공합니다.
 이 방법은 필드 이름을 문자열로 추가해야 하고, 필드가 변경될 때 잘 챙겨야 한다는 단점이 있습니다.
@@ -103,7 +103,7 @@ public class PersonDto {
 ```
 ![성공1](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2022/12/2022-12-24-solution1.png)
 
-## 방법2. @JsonDeserialize와 @JsonPOJOBuilder
+## 방법2. @JsonDeserialize와 @JsonPOJOBuilder 사용하기
 
 @JsonPOJOBuilder는 json과 필드 이름이 다른 경우에 사용하는데 @JsonDeserialize과 함께 사용해서 해결할 수 있습니다.
 방법1 보다는 좋지만, deserialize를 직접 정의해야 하는게 조금은 번거롭습니다.
