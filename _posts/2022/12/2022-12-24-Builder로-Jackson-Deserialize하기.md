@@ -9,7 +9,8 @@ header:
   caption: "Photo by Ralph (Ravi) Kayden on Unsplash"
   
 tags:
-  - Jackson, Builder
+  - Jackson
+  - Builder
 category: #카테고리
   - Java
 toc: false
