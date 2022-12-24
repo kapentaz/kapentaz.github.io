@@ -82,6 +82,7 @@ PersonDto dto = objectMapper.readValue(json, PersonDto.class);
 ## 방법1. @JsonCreator와 @JsonProperty 이용
 
 불변은 포기할 수 없습니다. `PersonDto`생성에 @JsonCreator와 @JsonProperty를 적용하면 위에서 만든 테스트 클래스가 성공합니다.
+이 방법은 필드 이름을 문자열로 추가해야 하고, 필드가 변경될 때 잘 챙겨야 한다는 단점이 있습니다.
 
 ```java
 @Getter
@@ -101,7 +102,6 @@ public class PersonDto {
 }
 ```
 ![성공1](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2022/12/2022-12-24-solution1.png)
-이 방법은 필드 이름을 문자열로 추가해야 하고, 필드가 변경될 때 잘 챙겨야 한다는 단점이 있습니다.
 
 ## 방법2. @JsonDeserialize와 @JsonPOJOBuilder
 
