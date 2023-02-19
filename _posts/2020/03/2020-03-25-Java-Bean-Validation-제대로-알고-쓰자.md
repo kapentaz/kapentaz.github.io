@@ -430,7 +430,9 @@ public class ProductConstraintValidator
 
 `isValid()` 메서드에서 파라미터를 Product로 받을 수 있기 때문에 Cross Field Validation 처리를 할 수 있습니다.
 
-만약 Cross Field Validation가 목적이라면 이렇게 별도의 애노테이션과 Validator 클래스를 만드는 것이 꺼려질 수도 있습니다. 그렇다면 앞서 살펴본 `@AssertTrue` 애노테이션을 사용하는 게 효과적일 수도 있습니다. 
+만약 Cross Field Validation가 목적이라면 이렇게 별도의 애노테이션과 Validator 클래스를 만드는 것이 꺼려질 수도 있습니다. 그렇다면 앞서 살펴본 `@AssertTrue` 애노테이션을 사용하는 게 효과적일 수도 있습니다.
+
+혹시 Spring Bean Validation에 대해서 확인하고 싶다면 [**다음글**](https://kapentaz.github.io/spring/Spring-Boo-Bean-Validation-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%95%8C%EA%B3%A0-%EC%93%B0%EC%9E%90/)을 확인해 보세요.
 
 끝.
 
