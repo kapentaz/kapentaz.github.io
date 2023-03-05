@@ -97,7 +97,7 @@ public static void main(String[] args) {
 }
 ```
 ## 방법2
-Intellij Structure에서 보면 소스코드에서는 보이지 않는 Lombok으로 생성된 builder() 메소를 확인할 수 있습니다.
+Intellij Structure에서 보면 에디터 창의 소스코드에서는 보이지 않는 Lombok으로 생성된 builder() 메소를 확인할 수 있습니다.
 여기서 `Find Usages(⌥F7)`를 사용하면 실제 사용하고 있는 곳을 찾을 수 있습니다.
 ![Find Usages](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2023/03/2023-03-05-structure.png)
 
