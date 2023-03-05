@@ -71,7 +71,7 @@ public static void main(String[] args) {
 사용하고 있는 곳을 찾을 수 없다면 코드를 제거하거나 리팩토링하기가 어려워지게 됩니다.
 이걸 해결할 있는 방법을 확인해 보겠습니다.
 
-방법1
+## 방법1
 `@Builder` 애노테이션의 `builderMethodName`나  `buildMethodName` 속성을 정의해서 이름으로 찾기를 할 수 있습니다.
 하지만 Intellij의 `Find Usages(⌥F7)`를 사용해서 찾는게 아니고 문자열로 찾기 때문에 정확하게 사용하는 곳을 찾는 방법은 아닙니다.
 
@@ -96,7 +96,7 @@ public static void main(String[] args) {
             .customBuild();
 }
 ```
-방법2
+## 방법2
 Intellij Structure에서 보면 소스코드에서는 보이지 않는 Lombok으로 생성된 builder() 메소를 확인할 수 있습니다.
 여기서 `Find Usages(⌥F7)`를 사용하면 실제 사용하고 있는 곳을 찾을 수 있습니다.
 ![Find Usages](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2023/03/2023-03-05-structure.png)
