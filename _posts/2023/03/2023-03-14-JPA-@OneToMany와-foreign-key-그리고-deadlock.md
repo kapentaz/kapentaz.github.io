@@ -250,12 +250,12 @@ Deadlock이 발생하지 않습니다.
 JPA에서는 ID가 IDENTITY 방식인 경우 쓰기 지연이 방식이 안 되기 때문에 insert는 호출 즉시 바로 실행하게 되는데 
 update를 명시적으로 먼저 실행될 수 있도록 flush()를 하면 됩니다.
 
-이 방법은 순서가 중요하다는 것을 개발하는 모두가 인지하고 주의해야 하기 때문에 장기적으로는 결국 문제가 생길 가능성이 있습니다.
+이 방법은 순서가 중요하다는 것을 개발하는 모두가 인지하고 주의해야 하기 때문에 주의하지 않으면 장기적으로는 결국 문제가 생길 가능성이 있습니다.
 
 ## 해결방법3 (foreign key 제거)
 foreign key 자체를 제거하는 방법입니다. foreign key설정이 없다면 S락을 사용하지 않을 것이기 때문에 위 상황에서는 Deadlock이 발생하지 않습니다. 
 사실 여러 제약들로 인해 실무에서는 foreign key를 사용하는 경우는 많지는 않습니다. 
-foreign key 설정 여부와 관계 없이 애플리케이션에서 관계에 대한 관리가 잘 되어 있도록 개발하는게 좋습니다.
+foreign key 설정 여부와 관계 없이 애플리케이션에서 관계에 대한 관리가 잘 되어 있도록 개발하는게 편합니다.
 
 ## 참고 
 - [FOREIGN KEY Constraint Differences](https://dev.mysql.com/doc/mysql-reslimits-excerpt/5.7/en/ansi-diff-foreign-keys.html)
