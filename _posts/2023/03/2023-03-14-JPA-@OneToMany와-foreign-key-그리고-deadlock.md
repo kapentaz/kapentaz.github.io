@@ -215,6 +215,23 @@ foreign key를 설정하게 되면 MySQL은 부모나 자식 관계에 있는 �
 > In an SQL statement that inserts, deletes, or updates many rows, foreign key constraints (like unique constraints) are checked row-by-row. 
 > When performing foreign key checks, InnoDB sets shared row-level locks on child or parent records that it must examine.
 
+콘솔창에서 직접 재현을 해보겠습니다.
+아래 이미지 기준으로 1,2번을 통해서 S락이 설정되고 3번에서 X을 얻기 위해 S락을 대기하게 됩니다.
+
+![Deadlock](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2023/03/2023-03-14-deadlock.png)
+
+3번까지 실행하고 락을 확인할 수 있는 쿼리를 실행 해보면 실제 X락을 얻기 위해 S락을 대기하고 있는 것을 확인할 수 있습니다.
+```sql
+select trx.trx_id, trx.trx_state, trx.trx_query, locks.lock_mode, locks.lock_type, locks.lock_table,
+       locks.lock_index, locks.lock_page, locks.lock_rec, locks.lock_data
+FROM information_schema.INNODB_TRX trx
+     inner join information_schema.innodb_locks locks
+        on trx.trx_id = locks.lock_trx_id;
+```
+![Lock Wait](https://raw.githubusercontent.com/kapentaz/kapentaz.github.io/master/assets/images/post/2023/03/2023-03-14-wait.png)
+
+
+
 이 문제를 해결할 수 있는 방법을 확인해 보겠습니다.
 
 ## 해결방법1 (분산락)
