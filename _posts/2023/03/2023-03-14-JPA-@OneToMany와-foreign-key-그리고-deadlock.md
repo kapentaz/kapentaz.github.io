@@ -23,6 +23,7 @@ comments: true
 
 @OneToMany 관계와 foreign key를 사용하면서 Deallock이 발생할 수 있는 경우를 확인해 보고 해결 방법도 확인해 보겠습니다.
 
+## 준비과정
 먼저 상품과 옵션의 테이블을 만들어보겠습니다. 상품과 옵션이 있고 이 둘은 1:N 관계로 옵션에는 상품번호를 foreign key로 설정합니다.
 
 ```sql
