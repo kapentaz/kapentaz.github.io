@@ -45,7 +45,8 @@ create table product_option
   default charset = utf8mb4 comment '옵션';
 ```
 
-이제 위에서 생성한 테이블 기준으로 Entity도 만듭니다. @OneToMany, @ManyToOne으로 양방향 관계를 설정하겠습니다. 
+이제 위에서 생성한 테이블 기준으로 Entity도 만듭니다. @OneToMany, @ManyToOne으로 양방향 관계를 설정하겠습니다.
+`Product`에는 새로운 `ProductOption`을 추가하고 `Product`에 옵션 수를 증가시키는 addOption() 메소드도 같이 만들겠습니다.
 
 ```java
 @Entity
@@ -66,12 +67,9 @@ public class Product {
         this.optionCount = this.optionCount + 1;
         this.options.add(option);
     }
-
-    public void increase(int optionCount) {
-        this.optionCount = this.optionCount + optionCount;
-    }
 }
 ```
+
 ```java
 @Entity
 @Table(name = "product_option")
@@ -93,16 +91,23 @@ public class ProductOption {
 }
 ```
 
-위에서 만든 Entity를 기존 상품을 조회해서 새로운 `ProductOption`을 추가하고 `Product`에는 옵션 수를 증가시키는 메소드를 하나 만들어 보겠습니다.
-미리 등록해둔 상품번호 1에 해당하는 데이터를 조회하고 addOption()을 통해서 옵션을 등록하는 간단한 메서드입니다.
+상품번호 1에 해당하는 Product를 미리 하나 등록 합니다. 그리고 해당 데이터를 조회하고 addOption()을 통해서 옵션을 등록하는 간단한 메서드를 만듭니다.
 
 ```java
-@Transactional
-public void addOption() {
-    Product product = productRepository.findById(1).orElseThrow();
-    product.addOption(ProductOption.createBy(product));
+@Service
+@RequiredArgsConstructor
+public class ProductService {
+    private final ProductRepository productRepository;
+
+    @Transactional
+    public void addOption() {
+        Product product = productRepository.findById(1).orElseThrow();
+        product.addOption(ProductOption.createBy(product));
+    }
 }
 ```
+
+이제 Deallock을 발생시키기 위한 준비를 마쳤습니다. 실제 Deadlock이 발생하는지 확인해 보겠습니다. 
 
 ## Deadlock 발생 재현
 데드락이 발생하는 상황을 확인하기 위해 2개의 스레드로 위에서 만든 addOption() 메서드를 실행하는 간단한 코드를 작성해보겠습니다.
