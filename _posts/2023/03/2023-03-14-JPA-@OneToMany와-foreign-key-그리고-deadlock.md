@@ -92,7 +92,7 @@ public class ProductOption {
 }
 ```
 
-상품번호 1에 해당하는 Product를 미리 하나 등록 합니다. 그리고 해당 데이터를 조회하고 addOption()을 통해서 옵션을 등록하는 간단한 메서드를 만듭니다.
+상품번호에 해당하는 Product를 조회하고 addOption()을 통해서 옵션을 등록하는 간단한 메서드를 만듭니다.
 
 ```java
 @Service
@@ -101,8 +101,8 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public void addOption() {
-        Product product = productRepository.findById(1).orElseThrow();
+    public void addOption(int productNo) {
+        Product product = productRepository.findById(productNo).orElseThrow();
         product.addOption(ProductOption.createBy(product));
     }
 }
@@ -111,7 +111,7 @@ public class ProductService {
 이제 Deallock을 발생시키기 위한 준비를 마쳤습니다. 실제 Deadlock이 발생하는지 확인해 보겠습니다. 
 
 ## Deadlock 발생 재현
-데드락이 발생하는 상황을 확인하기 위해 2개의 스레드로 위에서 만든 addOption() 메서드를 실행하는 간단한 코드를 작성해보겠습니다.
+데드락이 발생하는 상황을 확인하기 위해 2개의 스레드로 위에서 만든 ProductService.addOption() 메서드를 실행하는 간단한 코드를 작성해보겠습니다.
 ```java
 public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(DeadlockApplication.class, args);
@@ -119,8 +119,8 @@ public static void main(String[] args) {
     ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     while (true) {
-        Future<?> submit1 = executorService.submit(productService::addOption);
-        Future<?> submit2 = executorService.submit(productService::addOption);
+        Future<?> submit1 = executorService.submit(() -> productService.addOption(1));
+        Future<?> submit2 = executorService.submit(() -> productService.addOption(1));
         try {
             submit1.get();
             submit2.get();
@@ -131,7 +131,9 @@ public static void main(String[] args) {
     }
 }
 ```
-실행하면 결과는 어떻게 될까요? 제 경우에는 실행과 동시에 바로 Deadlock이 발생하는 것을 확인할 수 있었습니다.  
+실행하면 결과는 어떻게 될까요? 제 경우에는 실행과 동시에 바로 Deadlock found when trying to get lock; try restarting transaction라는 메시지와 함께 
+Deadlock이 발생하는 것을 확인할 수 있었습니다.  
+
 ```
 com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Deadlock found when trying to get lock; try restarting transaction
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:123) ~[mysql-connector-j-8.0.32.jar:8.0.32]
@@ -146,8 +148,10 @@ com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Deadlock found w
 ## Deadlock이 발생한 이유
 
 ### Deadlock 발생 로그
-"(1) TRANSACTION"의 "(1) WAITING FOR THIS LOCK TO BE GRANTED" 부분을 보면 product 테이블 레코드에 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
-"(2) TRANSACTION"의 "(2) "HOLDS THE LOCK(S)"를 보면 product 테이블 레코드에 S락을 걸고 있고 "(2) WAITING FOR THIS LOCK TO BE GRANTED"를 보면 product 테이블에 다시 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
+1번 TRANSACTION의 "**(1) WAITING FOR THIS LOCK TO BE GRANTED**" 부분을 보면 product 테이블 레코드에 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
+2번 TRANSACTION의 "**(2) "HOLDS THE LOCK(S)**"를 보면 product 테이블 레코드에 S락을 걸고 있고 "**(2) WAITING FOR THIS LOCK TO BE GRANTED**"를 
+보면 product 테이블에 다시 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
+
 ``` 
 *** (1) TRANSACTION:
 TRANSACTION 104362, ACTIVE 0 sec starting index read
@@ -186,8 +190,10 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 4; compact format; info bits 0
  3: len 4; hex 80000000; asc     ;;
 
 *** WE ROLL BACK TRANSACTION (2)
-```
-product 테이블에 update를 하기위해 X락을 가지려고 하는건 알겠는데 S락을 가지고 대기하고 있는 이유는 뭘까요?
+``` 
+product 테이블에 update를 하기 위해 X락을 가지려고 하는건 알겠는데 S락을 가지고 대기하고 있는 이유는 무엇일까요?
+
+> MySQL InnoDB 락(Lock)의 종류는 [여기](https://www.letmecompile.com/mysql-innodb-lock-deadlock/)에서 확인할 수 있습니다.
 
 ### 원인 확인
 먼저 실행된 쿼리를들을 확인해 보겠습니다.
@@ -205,30 +211,34 @@ product 테이블에 update를 하기위해 X락을 가지려고 하는건 알�
 그 이유는 최초 테이블 생성시 **설정한 foreign key**와 관련이 있습니다.
 
 foreign key를 설정하게 되면 MySQL은 부모나 자식 관계에 있는 테이블에 S락을 설정하게 됩니다. foreign key 관계에 있는 데이터가
-제대로 존재하는지 확인하기 위해서이죠. 자세한 설명은 [공식문서](https://dev.mysql.com/doc/mysql-reslimits-excerpt/5.7/en/ansi-diff-foreign-keys.html)에 나와 있습니다.
+제대로 존재하는지 확인하기 위해서라고 합니다. 자세한 설명은 [공식문서](https://dev.mysql.com/doc/mysql-reslimits-excerpt/5.7/en/ansi-diff-foreign-keys.html)에 나와 있습니다.
 > In an SQL statement that inserts, deletes, or updates many rows, foreign key constraints (like unique constraints) are checked row-by-row. 
 > When performing foreign key checks, InnoDB sets shared row-level locks on child or parent records that it must examine.
 
+이 문제를 해결할 수 있는 방법을 확인해 보겠습니다.
 
-## 해결방법1(분산락)
-레디스를 이용해서 분산락을 설정해서 메서드를 동시에 실행하지 못하도록 막는 방법이 있습니다.
-하지만, 분산락을 적용해야 하는 대상 메서드가 서로 다르고 통합하기 어려운 구조라면 적용하기 어려울 수 있습니다.
-그리고 사실 위 상황에 대한 근본적인 해결책은 아닙니다.
+## 해결방법1 (분산락)
+레디스를 이용해서 분산락을 설정해서 메서드를 동시에 실행하지 못하도록 막는 방법입니다.
+이 방법은 분산락을 적용해야 하는 대상 메서드가 서로 다르거나 통합하기 어려운 구조라면 적용하기 어려울 수 있습니다.
+분산락을 사용하면 여러 스레드가 동시에 접근하지 못하게 막을 수 있어서 데드락을 상황을 막을 수는 있지만 
+사실 위 상황에 대한 근본적인 해결책은 아닙니다.
 
-## 해결방법2(순서변경)
-foreign key로 인해 S락 설정이 먼저 적용되는 부분을 X락이 먼저 적용되도록 순서를 변경하면 됩니다.
+## 해결방법2 (순서변경)
+foreign key로 인해 S락 설정이 먼저 적용되는 부분을 X락이 먼저 적용 되도록 순서를 변경하는 방법입니다.
 다시 말해 insert와 update의 순서를 변경하면 자연스럽게 문제를 해결할 수 있습니다. 
-
-JPA에서 ID가 IDENTITY 방식인 경우 쓰기 지연이 방식이 안 되기 때문에 insert보다 updaterk 먼저 실행될 수 있도록 flush()를 하면 됩니다.  
 
 update를 먼저하게 될 경우 X락이 설정되기 때문에 foreign key로 인해 S락을 설정하려면 X락이 끝나기를 기다려야 하기 때문에
 Deadlock이 발생하지 않습니다.
 
-하지만 순서가 중요하다는 것을 모두가 인지하고 주의해야 하기 때문에 관리적 어려운 문제가 생길 수 있습니다.
+JPA에서는 ID가 IDENTITY 방식인 경우 쓰기 지연이 방식이 안 되기 때문에 insert는 호출 즉시 바로 실행하게 되는데 
+update를 명시적으로 먼저 실행될 수 있도록 flush()를 하면 됩니다.
 
-## 해결방법3(foreign key 제거)
-foreign key 자체를 제거하는 방법이 있습니다. 여러 제약들로 인해 실무에서는 foreign key를 설정하면서 사용하는 경우는 
-그렇게 많지는 않습니다. foreign key 설정과 관계 없이 애플리케이션에 관계에 대한 관리가 잘 되어 있도록 개발하는게 좋습니다.
+이 방법은 순서가 중요하다는 것을 개발하는 모두가 인지하고 주의해야 하기 때문에 장기적으로는 결국 문제가 생길 가능성이 있습니다.
+
+## 해결방법3 (foreign key 제거)
+foreign key 자체를 제거하는 방법입니다. foreign key설정이 없다면 S락을 사용하지 않을 것이기 때문에 위 상황에서는 Deadlock이 발생하지 않습니다. 
+사실 여러 제약들로 인해 실무에서는 foreign key를 사용하는 경우는 많지는 않습니다. 
+foreign key 설정 여부와 관계 없이 애플리케이션에서 관계에 대한 관리가 잘 되어 있도록 개발하는게 좋습니다.
 
 ## 참고 
 - [FOREIGN KEY Constraint Differences](https://dev.mysql.com/doc/mysql-reslimits-excerpt/5.7/en/ansi-diff-foreign-keys.html)
