@@ -148,10 +148,6 @@ com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Deadlock found w
 "(1) TRANSACTION"의 "(1) WAITING FOR THIS LOCK TO BE GRANTED" 부분을 보면 product 테이블 레코드에 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
 "(2) TRANSACTION"의 "(2) "HOLDS THE LOCK(S)"를 보면 product 테이블 레코드에 S락을 걸고 있고 "(2) WAITING FOR THIS LOCK TO BE GRANTED"를 보면 product 테이블에 다시 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
 ``` 
-------------------------
-LATEST DETECTED DEADLOCK
-------------------------
-2023-03-13 23:50:17 0x40e6eb2700
 *** (1) TRANSACTION:
 TRANSACTION 104362, ACTIVE 0 sec starting index read
 mysql tables in use 1, locked 1
@@ -189,9 +185,6 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 4; compact format; info bits 0
  3: len 4; hex 80000000; asc     ;;
 
 *** WE ROLL BACK TRANSACTION (2)
-------------
-TRANSACTIONS
-------------
 ```
 product 테이블에 update를 하기위해 X락을 가지려고 하는건 알겠는데 S락을 가지고 대기하고 있는 이유는 뭘까요?
 
