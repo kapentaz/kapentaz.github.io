@@ -21,9 +21,9 @@ classes: wide
 comments: true
 ---
 
-@OneToMany 관계를 사용하면서 Deallock이 발생할 수 있는 경우를 확인해 보고 해결방법도 확인해 보겠습니다.
+@OneToMany 관계와 foreign key를 사용하면서 Deallock이 발생할 수 있는 경우를 확인해 보고 해결 방법도 확인해 보겠습니다.
 
-먼저 상품과 옵션의 테이블을 만들어보겠습니다. 상품과 옵션은 1:N 관계로 옵션에는 상품번호를 foreign key로 설정합니다.
+먼저 상품과 옵션의 테이블을 만들어보겠습니다. 상품과 옵션이 있고 이 둘은 1:N 관계로 옵션에는 상품번호를 foreign key로 설정합니다.
 
 ```sql
 create table product
@@ -33,7 +33,8 @@ create table product
     primary key (`product_no`)
 ) engine = InnoDB
   default charset = utf8mb4 comment '상품';
-
+```
+```sql
 create table product_option
 (
     option_no  int          not null auto_increment comment '옵션번호',
@@ -42,9 +43,10 @@ create table product_option
     constraint fk_product_option foreign key (product_no) references product (product_no)
 ) engine = InnoDB
   default charset = utf8mb4 comment '옵션';
-
 ```
-생성한 테이블 기준으로 Entity도 생성합니다. @OneToMany, @ManyToOne으로 양방향 관계로 설정합니다. 
+
+이제 위에서 생성한 테이블 기준으로 Entity도 만듭니다. @OneToMany, @ManyToOne으로 양방향 관계를 설정하겠습니다. 
+
 ```java
 @Entity
 @Table(name = "product")
@@ -91,8 +93,9 @@ public class ProductOption {
 }
 ```
 
-이제 기존 상품을 조회해서 새로운 `ProductOption`을 추가하고 `Product`에는 옵션 수를 증가시키는 메소드를 하나 만들어 보겠습니다.
+위에서 만든 Entity를 기존 상품을 조회해서 새로운 `ProductOption`을 추가하고 `Product`에는 옵션 수를 증가시키는 메소드를 하나 만들어 보겠습니다.
 미리 등록해둔 상품번호 1에 해당하는 데이터를 조회하고 addOption()을 통해서 옵션을 등록하는 간단한 메서드입니다.
+
 ```java
 @Transactional
 public void addOption() {
