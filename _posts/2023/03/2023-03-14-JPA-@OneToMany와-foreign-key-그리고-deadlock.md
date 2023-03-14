@@ -110,7 +110,7 @@ public class ProductService {
 
 이제 Deallock을 발생시키기 위한 준비를 마쳤습니다. 실제 Deadlock이 발생하는지 확인해 보겠습니다. 
 
-## Deadlock 발생 재현
+## Deadlock 재현
 데드락이 발생하는 상황을 확인하기 위해 2개의 스레드로 위에서 만든 ProductService.addOption() 메서드를 실행하는 간단한 코드를 작성해보겠습니다.
 ```java
 public static void main(String[] args) {
@@ -147,7 +147,7 @@ com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Deadlock found w
 
 ## Deadlock이 발생한 이유
 
-### Deadlock 발생 로그
+### Deadlock 로그
 1번 TRANSACTION의 "**(1) WAITING FOR THIS LOCK TO BE GRANTED**" 부분을 보면 product 테이블 레코드에 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
 2번 TRANSACTION의 "**(2) "HOLDS THE LOCK(S)**"를 보면 product 테이블 레코드에 S락을 걸고 있고 "**(2) WAITING FOR THIS LOCK TO BE GRANTED**"를 
 보면 product 테이블에 다시 X락을 얻기 위해 대기중인 것을 확인할 수 있습니다.
