@@ -1,5 +1,5 @@
 ---
-title: "@OneToMany와 foreign key 그리고 deadlock"
+title: "JPA @OneToMany와 foreign key 그리고 deadlock"
 last_modified_at: 2023-03-05T20:09:00+00:00
 header:
   show_overlay_excerpt: false
